@@ -184,6 +184,31 @@ void main() {
           );
         },
       );
+      group('should update existing pot', () {
+        test(
+          'by editing amount',
+          () {
+            final currentListLength = potset.pots.length;
+            // arrange
+            final newPot = Pot(
+              id: 'uniqueId2',
+              name: 'test name',
+              amount: 800,
+              isAmountFixed: true,
+            );
+            // act
+            potset.updatePot(potId: newPot.id, newPot: newPot);
+            _debugPotsPrint(potset);
+            // assert
+            expect(
+              potset.pots.firstWhere((pot) => pot.amount == 800).id,
+              'uniqueId2',
+            );
+            expect(potset.pots.length, currentListLength,
+                reason: "length was not changed");
+          },
+        );
+      });
     },
   );
 }

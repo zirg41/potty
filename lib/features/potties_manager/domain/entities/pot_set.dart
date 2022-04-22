@@ -58,4 +58,14 @@ class PotSet {
     pots.add(newPot);
     calculate();
   }
+
+  void updatePot({required String potId, required Pot newPot}) {
+    final potIndex = pots.indexWhere(
+      (pot) => pot.id == potId,
+    );
+
+    pots[potIndex] = newPot;
+
+    calculate();
+  }
 }

@@ -3,9 +3,9 @@
 class Pot {
   late String id;
   late String name;
-  final double? percent;
-  final double? amount;
-  final bool? isAmountFixed;
+  double? percent;
+  double? amount;
+  bool? isAmountFixed;
 
   Pot({
     required this.id,

@@ -63,6 +63,23 @@ void main() {
           expect(listOfPercents, [10.0, 20.0, 40.0]);
         },
       );
+      test(
+        'should calculate pots which were created either by amounts and percent(isAmountFixed mixed)',
+        () {
+          // arrange
+          potset.pots = mockedPotsMixedCreatedByPercentsAndAmounts;
+          // act
+          potset.calculate();
+          // assert
+          final listOfPercents = potset.pots.map((e) => e.percent).toList();
+          final listOfAmounts = potset.pots.map((e) => e.amount).toList();
+
+          expect(potset.unallocatedBalance, 300);
+          expect(potset.unallocatedPercent, 30);
+          expect(listOfPercents, [10.0, 20.0, 40.0]);
+          expect(listOfAmounts, [100.0, 200.0, 400.0]);
+        },
+      );
     },
   );
 }

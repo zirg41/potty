@@ -208,6 +208,29 @@ void main() {
                 reason: "length was not changed");
           },
         );
+        test(
+          'by editing percent',
+          () {
+            final currentListLength = potset.pots.length;
+            // arrange
+            final newPot = Pot(
+              id: 'uniqueId2',
+              name: 'test name',
+              percent: 15,
+              isAmountFixed: false,
+            );
+            // act
+            potset.updatePot(potId: newPot.id, newPot: newPot);
+            _debugPotsPrint(potset);
+            // assert
+            expect(
+              potset.pots.firstWhere((pot) => pot.id == 'uniqueId2'),
+              newPot,
+            );
+            expect(potset.pots.length, currentListLength,
+                reason: "length was not changed");
+          },
+        );
       });
     },
   );

@@ -30,4 +30,20 @@ class PotSet {
     unallocatedPercent = (100 - percentSumm);
     unallocatedBalance = income * unallocatedPercent! / 100;
   }
+
+  void calculate() {
+    for (var pot in pots) {
+      if (!pot.isAmountFixed!) {
+        pot.amount = income * pot.percent! / 100;
+      } else {
+        pot.percent = pot.amount! / income * 100;
+      }
+    }
+    calculateUnallocatedBalanceAndPercent();
+    _sortPots();
+  }
+
+  void _sortPots() {
+    pots.sort((potA, potB) => potA.percent!.compareTo(potB.percent!));
+  }
 }

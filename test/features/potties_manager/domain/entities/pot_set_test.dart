@@ -103,7 +103,6 @@ void main() {
         test(
           'when income changed',
           () {
-            debugPrint(mockedPotsFull.map((e) => e.amount).toList().toString());
             // arrange
             potset.pots = mockedPotsFull;
             // act
@@ -116,7 +115,6 @@ void main() {
             expect(potset.unallocatedPercent, 30);
             expect(listOfPercents, [10.0, 20.0, 40.0]);
             expect(listOfAmounts, [1000.0, 2000.0, 4000.0]);
-            debugPrint(mockedPotsFull.map((e) => e.amount).toList().toString());
           },
         );
         test(
@@ -138,7 +136,6 @@ void main() {
             expect(potset.unallocatedPercent, 39);
             expect(listOfPercents, [1.0, 20.0, 40.0]);
             expect(listOfAmounts, [100.0, 2000.0, 4000.0]);
-            debugPrint(mockedPotsFull.map((e) => e.amount).toList().toString());
           },
         );
       });

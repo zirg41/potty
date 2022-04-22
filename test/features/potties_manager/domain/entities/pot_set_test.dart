@@ -162,6 +162,26 @@ void main() {
               );
             },
           );
+          test(
+            'by defining amount',
+            () {
+              // arrange
+              final newPot = Pot(
+                id: 'uniqueId2',
+                name: 'test name',
+                amount: 1000,
+                isAmountFixed: true,
+              );
+              // act
+              potset.addPot(newPot: newPot);
+              _debugPotsPrint(potset);
+              // assert
+              expect(
+                potset.pots.firstWhere((pot) => pot.amount == 1000),
+                newPot,
+              );
+            },
+          );
         },
       );
     },

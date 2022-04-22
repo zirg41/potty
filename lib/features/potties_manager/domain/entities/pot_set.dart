@@ -1,11 +1,12 @@
-import 'package:potty/features/potties_manager/domain/entities/pot.dart';
+import 'pot.dart';
 
+/// WARNING: all double fields must be decimal formatted
 class PotSet {
   late String id;
   late String name;
   late double income;
   List<Pot> pots;
-  double? unallocatedAmount;
+  double? unallocatedBalance;
   double? unallocatedPercent;
 
   PotSet({
@@ -13,7 +14,18 @@ class PotSet {
     required this.income,
     required this.name,
     this.pots = const [],
-    this.unallocatedAmount,
+    this.unallocatedBalance,
     this.unallocatedPercent,
   });
+
+  /// Calculates unallocatedBalance and unallocatedPercent
+  /// by calculating the remains of all pots in the set
+  void calculateUnallocatedBalanceAndPercent() {
+    double percentSumm = 0.0;
+    for (var pot in pots) {
+      percentSumm += pot.percent!;
+    }
+    unallocatedPercent = (100 - percentSumm);
+    unallocatedBalance = income * unallocatedPercent! / 100;
+  }
 }

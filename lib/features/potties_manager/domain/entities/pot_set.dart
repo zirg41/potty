@@ -68,4 +68,10 @@ class PotSet {
 
     calculate();
   }
+
+  void deletePot({required String potId}) {
+    pots.removeWhere((pot) => pot.id == potId);
+
+    calculate();
+  }
 }

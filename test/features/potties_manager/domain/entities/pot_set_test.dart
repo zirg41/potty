@@ -257,6 +257,24 @@ void main() {
           },
         );
       });
+      test(
+        'should delete pot by its ID',
+        () {
+          final currentListLength = potset.pots.length;
+          // arrange
+
+          final potIdToDelete = 'uniqueId2';
+          // act
+          potset.deletePot(potId: potIdToDelete);
+          _debugPotsPrint(potset);
+          // assert
+          expect(
+            potset.pots.contains((pot) => pot.id == 'uniqueId2'),
+            false,
+          );
+          expect(potset.pots.length, currentListLength - 1);
+        },
+      );
     },
   );
 }

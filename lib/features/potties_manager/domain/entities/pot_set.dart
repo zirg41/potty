@@ -53,4 +53,9 @@ class PotSet {
     income = newIncome;
     calculate();
   }
+
+  void addPot({required Pot newPot}) {
+    pots.add(newPot);
+    calculate();
+  }
 }

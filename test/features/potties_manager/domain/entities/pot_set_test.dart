@@ -139,6 +139,31 @@ void main() {
           },
         );
       });
+      group(
+        'should add new pot',
+        () {
+          test(
+            'by defining percent',
+            () {
+              // arrange
+              final newPot = Pot(
+                id: 'uniqueId',
+                name: 'test name',
+                percent: 5,
+                isAmountFixed: false,
+              );
+              // act
+              potset.addPot(newPot: newPot);
+              _debugPotsPrint(potset);
+              // assert
+              expect(
+                potset.pots.firstWhere((pot) => pot.percent == newPot.percent),
+                newPot,
+              );
+            },
+          );
+        },
+      );
     },
   );
 }

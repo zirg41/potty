@@ -7,8 +7,12 @@ import '../../../../fixtures/mocked_pots.dart';
 class MockPotSet extends Mock implements PotSet {}
 
 void main() {
-  PotSet potset =
-      PotSet(id: 'id', income: 1000, name: 'name', pots: mockedPots);
+  PotSet potset = PotSet(
+      id: 'id',
+      income: 1000,
+      name: 'name',
+      pots: mockedPots,
+      createdDate: DateTime.now());
 
   group(
     'PotSet',

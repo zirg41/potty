@@ -80,6 +80,23 @@ void main() {
           expect(listOfAmounts, [100.0, 200.0, 400.0]);
         },
       );
+      test(
+        'should calculate pots when income changed',
+        () {
+          // arrange
+          potset.pots = mockedPotsFull;
+          // act
+          potset.changeIncome(newIncome: 10000);
+          // assert
+          final listOfPercents = potset.pots.map((e) => e.percent).toList();
+          final listOfAmounts = potset.pots.map((e) => e.amount).toList();
+
+          expect(potset.unallocatedBalance, 3000);
+          expect(potset.unallocatedPercent, 30);
+          expect(listOfPercents, [10.0, 20.0, 40.0]);
+          expect(listOfAmounts, [1000.0, 2000.0, 4000.0]);
+        },
+      );
     },
   );
 }

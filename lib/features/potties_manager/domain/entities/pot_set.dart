@@ -46,4 +46,11 @@ class PotSet {
   void _sortPots() {
     pots.sort((potA, potB) => potA.percent!.compareTo(potB.percent!));
   }
+
+  /// Changes income value in current PotSet
+  /// WARNING: newIncome must be positive decimal
+  void changeIncome({required double newIncome}) {
+    income = newIncome;
+    calculate();
+  }
 }

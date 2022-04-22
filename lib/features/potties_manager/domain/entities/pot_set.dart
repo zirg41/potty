@@ -5,6 +5,7 @@ class PotSet {
   late String id;
   late String name;
   late double income;
+  late DateTime createdDate;
   List<Pot> pots;
   double? unallocatedBalance;
   double? unallocatedPercent;
@@ -13,6 +14,7 @@ class PotSet {
     required this.id,
     required this.income,
     required this.name,
+    required this.createdDate,
     this.pots = const [],
     this.unallocatedBalance,
     this.unallocatedPercent,

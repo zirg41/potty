@@ -9,9 +9,11 @@ import '../../../../fixtures/mocked_pots.dart';
 class MockPotSet extends Mock implements PotSet {}
 
 void _debugPotsPrint(PotSet potSets) {
+  final listOfNames = potSets.pots.map((e) => e.name).toList();
   final listOfPercents = potSets.pots.map((e) => e.percent).toList();
   final listOfAmounts = potSets.pots.map((e) => e.amount).toList();
   final listOfFlags = potSets.pots.map((e) => e.isAmountFixed).toList();
+  debugPrint("Names : " + listOfNames.toString());
   debugPrint("Percents: " + listOfPercents.toString());
   debugPrint("Amounts: " + listOfAmounts.toString());
   debugPrint("Flags: " + listOfFlags.toString());
@@ -201,8 +203,8 @@ void main() {
             _debugPotsPrint(potset);
             // assert
             expect(
-              potset.pots.firstWhere((pot) => pot.amount == 800).id,
-              'uniqueId2',
+              potset.pots.firstWhere((pot) => pot.id == 'uniqueId2'),
+              newPot,
             );
             expect(potset.pots.length, currentListLength,
                 reason: "length was not changed");
@@ -216,6 +218,29 @@ void main() {
             final newPot = Pot(
               id: 'uniqueId2',
               name: 'test name',
+              percent: 15,
+              isAmountFixed: false,
+            );
+            // act
+            potset.updatePot(potId: newPot.id, newPot: newPot);
+            _debugPotsPrint(potset);
+            // assert
+            expect(
+              potset.pots.firstWhere((pot) => pot.id == 'uniqueId2'),
+              newPot,
+            );
+            expect(potset.pots.length, currentListLength,
+                reason: "length was not changed");
+          },
+        );
+        test(
+          'by editing name',
+          () {
+            final currentListLength = potset.pots.length;
+            // arrange
+            final newPot = Pot(
+              id: 'uniqueId2',
+              name: 'adjusted name',
               percent: 15,
               isAmountFixed: false,
             );

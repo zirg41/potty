@@ -48,6 +48,21 @@ void main() {
           expect(listOfAmounts, [100.0, 200.0, 400.0]);
         },
       );
+      test(
+        'should calculate pots which were created only with amounts (all isAmountFixed = true)',
+        () {
+          // arrange
+          potset.pots = mockedPotsOnlyAmounts;
+          // act
+          potset.calculate();
+          // assert
+          final listOfPercents = potset.pots.map((e) => e.percent).toList();
+
+          expect(potset.unallocatedBalance, 300);
+          expect(potset.unallocatedPercent, 30);
+          expect(listOfPercents, [10.0, 20.0, 40.0]);
+        },
+      );
     },
   );
 }

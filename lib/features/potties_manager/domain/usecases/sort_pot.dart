@@ -13,3 +13,13 @@ class SortLowToHigh implements ISortPot {
     return potsToSort;
   }
 }
+
+class SortHighToLow implements ISortPot {
+  const SortHighToLow();
+
+  @override
+  List<Pot> sortPots(List<Pot> potsToSort) {
+    potsToSort.sort((potA, potB) => potB.percent!.compareTo(potA.percent!));
+    return potsToSort;
+  }
+}

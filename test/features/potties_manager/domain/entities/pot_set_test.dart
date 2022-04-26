@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:potty/features/potties_manager/domain/entities/pot.dart';
 import 'package:potty/features/potties_manager/domain/entities/pot_set.dart';
+import 'package:potty/features/potties_manager/domain/usecases/sort_pot.dart';
 
 final pot1 = Pot(id: '1', name: 'pot1', percent: 10, isAmountFixed: false);
 final pot2 = Pot(id: '2', name: 'pot2', amount: 150, isAmountFixed: true);
@@ -40,8 +41,8 @@ void main() {
           // act
           potset.addPot(newPot: pot2);
           // assert
-          expect(potset.pots[1], pot2);
-          expect(potset.pots[1].percent, 15);
+          expect(potset.pots[0], pot2);
+          expect(potset.pots[0].percent, 15);
           expect(potset.unallocatedPercent, 75);
           expect(potset.unallocatedBalance, 750);
         },
@@ -55,7 +56,7 @@ void main() {
           // act
           potset.updatePot(potId: potList[2].id, newPot: pot4);
           // assert
-          expect(potset.pots[2], pot4);
+          expect(potset.pots[0], pot4);
           expect(potset.unallocatedBalance, 450);
         },
       );
@@ -68,7 +69,28 @@ void main() {
           potset.deletePot(potId: potList[2].id);
           // assert
           expect(potset.pots.length, 2);
-          expect(potset.unallocatedBalance, 750);
+          expect(potset.unallocatedBalance, 550);
+        },
+      );
+      test(
+        "should sort pots in default high to low sorting",
+        () async {
+          // arrange
+
+          // act
+          final p = potset.pots;
+          potset.addPot(newPot: pot1);
+          potset.addPot(newPot: pot4);
+          potset.addPot(newPot: pot3);
+          potset.addPot(newPot: pot2);
+
+          // assert
+          expect(
+            (p[0].amount! > p[1].amount!) ||
+                (p[1].amount! > p[2].amount!) ||
+                (p[2].amount! > p[3].amount!),
+            true,
+          );
         },
       );
     },

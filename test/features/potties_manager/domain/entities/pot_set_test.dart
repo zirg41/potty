@@ -93,6 +93,27 @@ void main() {
           );
         },
       );
+      test(
+        "should sort pots in low to high sorting",
+        () async {
+          // arrange
+          potset.sortingLogic = SortLowToHigh();
+          // act
+          final p = potset.pots;
+          potset.addPot(newPot: pot1);
+          potset.addPot(newPot: pot4);
+          potset.addPot(newPot: pot3);
+          potset.addPot(newPot: pot2);
+
+          // assert
+          expect(
+            (p[0].amount! < p[1].amount!) ||
+                (p[1].amount! < p[2].amount!) ||
+                (p[2].amount! < p[3].amount!),
+            true,
+          );
+        },
+      );
     },
   );
 }

@@ -55,6 +55,10 @@ class PotSet {
     _calculate();
   }
 
+  void changePotSetName({required String newName}) {
+    name = newName;
+  }
+
   /// Calculates unallocatedBalance and unallocatedPercent
   /// by calculating the remains of all pots in the set
   void _calculateUnallocatedBalanceAndPercent() {

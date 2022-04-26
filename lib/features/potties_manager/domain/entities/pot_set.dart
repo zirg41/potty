@@ -1,3 +1,4 @@
+import '../usecases/sort_pot.dart';
 import 'pot.dart';
 
 /// WARNING: all double fields must be decimal formatted
@@ -9,6 +10,7 @@ class PotSet {
   List<Pot> pots;
   double? unallocatedBalance;
   double? unallocatedPercent;
+  late ISortPot sortingLogic;
 
   PotSet({
     required this.id,
@@ -40,11 +42,12 @@ class PotSet {
       }
     }
     calculateUnallocatedBalanceAndPercent();
-    _sortPots();
+    setSorting();
   }
 
-  void _sortPots() {
-    pots.sort((potA, potB) => potA.percent!.compareTo(potB.percent!));
+  void setSorting() {
+    //
+    pots = sortingLogic.sortPots(pots);
   }
 
   /// Changes income value in current PotSet

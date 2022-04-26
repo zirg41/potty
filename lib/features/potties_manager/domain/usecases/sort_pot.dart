@@ -1,5 +1,3 @@
-import 'dart:isolate';
-
 import 'package:potty/features/potties_manager/domain/entities/pot.dart';
 
 abstract class ISortPot {

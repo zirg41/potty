@@ -34,12 +34,14 @@ void main() {
           potset.addPot(newPot: pot1);
           // assert
           expect(potset.pots[0], pot1);
+          expect(potset.pots[0].amount, 100);
           expect(potset.unallocatedPercent, 90);
           expect(potset.unallocatedBalance, 900);
           // act
           potset.addPot(newPot: pot2);
           // assert
           expect(potset.pots[1], pot2);
+          expect(potset.pots[1].percent, 15);
           expect(potset.unallocatedPercent, 75);
           expect(potset.unallocatedBalance, 750);
         },
@@ -55,6 +57,18 @@ void main() {
           // assert
           expect(potset.pots[2], pot4);
           expect(potset.unallocatedBalance, 450);
+        },
+      );
+      test(
+        "should delete Pot and calculate",
+        () async {
+          // arrange
+          potset.pots = potList;
+          // act
+          potset.deletePot(potId: potList[2].id);
+          // assert
+          expect(potset.pots.length, 2);
+          expect(potset.unallocatedBalance, 750);
         },
       );
     },

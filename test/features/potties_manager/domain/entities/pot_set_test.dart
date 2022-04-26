@@ -33,13 +33,16 @@ void main() {
         () async {
           // act
           potset.addPot(newPot: pot1);
+
           // assert
           expect(potset.pots[0], pot1);
           expect(potset.pots[0].amount, 100);
           expect(potset.unallocatedPercent, 90);
           expect(potset.unallocatedBalance, 900);
+
           // act
           potset.addPot(newPot: pot2);
+
           // assert
           expect(potset.pots[0], pot2);
           expect(potset.pots[0].percent, 15);
@@ -53,8 +56,10 @@ void main() {
         () async {
           // arrange
           potset.pots = potList;
+
           // act
           potset.updatePot(potId: potList[2].id, newPot: pot4);
+
           // assert
           expect(potset.pots[0], pot4);
           expect(potset.unallocatedBalance, 450);
@@ -65,8 +70,10 @@ void main() {
         () async {
           // arrange
           potset.pots = potList;
+
           // act
           potset.deletePot(potId: potList[2].id);
+
           // assert
           expect(potset.pots.length, 2);
           expect(potset.unallocatedBalance, 550);
@@ -75,8 +82,6 @@ void main() {
       test(
         "should sort pots in default high to low sorting",
         () async {
-          // arrange
-
           // act
           final p = potset.pots;
           potset.addPot(newPot: pot1);
@@ -98,6 +103,7 @@ void main() {
         () async {
           // arrange
           potset.sortingLogic = SortLowToHigh();
+
           // act
           final p = potset.pots;
           potset.addPot(newPot: pot1);
@@ -118,17 +124,19 @@ void main() {
       test(
         "should calculate if income changes",
         () async {
-          // arrange
           // act
           potset.addPot(newPot: pot1);
           potset.addPot(newPot: pot4);
           potset.addPot(newPot: pot2);
           potset.addPot(newPot: pot3);
+
           // assert
           expect(potset.unallocatedBalance, 200);
 
+          // act
           potset.changeIncome(newIncome: 10000);
 
+          // assert
           expect(potset.unallocatedBalance, 5600);
         },
       );

@@ -24,7 +24,7 @@ class PotSet {
 
   /// Calculates unallocatedBalance and unallocatedPercent
   /// by calculating the remains of all pots in the set
-  void calculateUnallocatedBalanceAndPercent() {
+  void _calculateUnallocatedBalanceAndPercent() {
     double percentSumm = 0.0;
     for (var pot in pots) {
       percentSumm += pot.percent!;
@@ -33,7 +33,7 @@ class PotSet {
     unallocatedBalance = income * unallocatedPercent! / 100;
   }
 
-  void calculate() {
+  void _calculate() {
     for (var pot in pots) {
       if (!pot.isAmountFixed!) {
         pot.amount = income * pot.percent! / 100;
@@ -41,7 +41,7 @@ class PotSet {
         pot.percent = pot.amount! / income * 100;
       }
     }
-    calculateUnallocatedBalanceAndPercent();
+    _calculateUnallocatedBalanceAndPercent();
     setSorting();
   }
 
@@ -54,12 +54,12 @@ class PotSet {
   /// WARNING: newIncome must be positive decimal
   void changeIncome({required double newIncome}) {
     income = newIncome;
-    calculate();
+    _calculate();
   }
 
   void addPot({required Pot newPot}) {
     pots.add(newPot);
-    calculate();
+    _calculate();
   }
 
   void updatePot({required String potId, required Pot newPot}) {
@@ -69,12 +69,12 @@ class PotSet {
 
     pots[potIndex] = newPot;
 
-    calculate();
+    _calculate();
   }
 
   void deletePot({required String potId}) {
     pots.removeWhere((pot) => pot.id == potId);
 
-    calculate();
+    _calculate();
   }
 }

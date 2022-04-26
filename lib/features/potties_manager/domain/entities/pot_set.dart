@@ -20,7 +20,7 @@ class PotSet {
     this.pots = const [],
     this.unallocatedBalance,
     this.unallocatedPercent,
-    this.sortingLogic = const SortLowToHigh(),
+    this.sortingLogic = const SortHighToLow(),
   });
 
   void addPot({required Pot newPot}) {

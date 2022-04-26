@@ -5,6 +5,8 @@ abstract class ISortPot {
 }
 
 class SortLowToHigh implements ISortPot {
+  const SortLowToHigh();
+
   @override
   List<Pot> sortPots(List<Pot> potsToSort) {
     potsToSort.sort((potA, potB) => potA.percent!.compareTo(potB.percent!));

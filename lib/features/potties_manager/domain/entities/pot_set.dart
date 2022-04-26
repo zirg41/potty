@@ -20,7 +20,40 @@ class PotSet {
     this.pots = const [],
     this.unallocatedBalance,
     this.unallocatedPercent,
+    this.sortingLogic = const SortLowToHigh(),
   });
+
+  void addPot({required Pot newPot}) {
+    pots.add(newPot);
+    _calculate();
+  }
+
+  void updatePot({required String potId, required Pot newPot}) {
+    final potIndex = pots.indexWhere(
+      (pot) => pot.id == potId,
+    );
+
+    pots[potIndex] = newPot;
+
+    _calculate();
+  }
+
+  void deletePot({required String potId}) {
+    pots.removeWhere((pot) => pot.id == potId);
+
+    _calculate();
+  }
+
+  void setSorting() {
+    pots = sortingLogic.sortPots(pots);
+  }
+
+  /// Changes income value in current PotSet
+  /// WARNING: newIncome must be positive decimal
+  void changeIncome({required double newIncome}) {
+    income = newIncome;
+    _calculate();
+  }
 
   /// Calculates unallocatedBalance and unallocatedPercent
   /// by calculating the remains of all pots in the set
@@ -43,38 +76,5 @@ class PotSet {
     }
     _calculateUnallocatedBalanceAndPercent();
     setSorting();
-  }
-
-  void setSorting() {
-    //
-    pots = sortingLogic.sortPots(pots);
-  }
-
-  /// Changes income value in current PotSet
-  /// WARNING: newIncome must be positive decimal
-  void changeIncome({required double newIncome}) {
-    income = newIncome;
-    _calculate();
-  }
-
-  void addPot({required Pot newPot}) {
-    pots.add(newPot);
-    _calculate();
-  }
-
-  void updatePot({required String potId, required Pot newPot}) {
-    final potIndex = pots.indexWhere(
-      (pot) => pot.id == potId,
-    );
-
-    pots[potIndex] = newPot;
-
-    _calculate();
-  }
-
-  void deletePot({required String potId}) {
-    pots.removeWhere((pot) => pot.id == potId);
-
-    _calculate();
   }
 }

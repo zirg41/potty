@@ -114,6 +114,24 @@ void main() {
           );
         },
       );
+
+      test(
+        "should calculate if income changes",
+        () async {
+          // arrange
+          // act
+          potset.addPot(newPot: pot1);
+          potset.addPot(newPot: pot4);
+          potset.addPot(newPot: pot2);
+          potset.addPot(newPot: pot3);
+          // assert
+          expect(potset.unallocatedBalance, 200);
+
+          potset.changeIncome(newIncome: 10000);
+
+          expect(potset.unallocatedBalance, 5600);
+        },
+      );
     },
   );
 }

@@ -5,6 +5,7 @@ import 'package:potty/features/potties_manager/domain/entities/pot_set.dart';
 final pot1 = Pot(id: '1', name: 'pot1', percent: 10, isAmountFixed: false);
 final pot2 = Pot(id: '2', name: 'pot2', amount: 150, isAmountFixed: true);
 final pot3 = Pot(id: '3', name: 'pot3', amount: 250, isAmountFixed: true);
+final pot4 = Pot(id: '4', name: 'pot4', percent: 30, isAmountFixed: false);
 
 final potList = [pot1, pot2, pot3];
 
@@ -41,6 +42,19 @@ void main() {
           expect(potset.pots[1], pot2);
           expect(potset.unallocatedPercent, 75);
           expect(potset.unallocatedBalance, 750);
+        },
+      );
+
+      test(
+        "should update existing Pot and calculate",
+        () async {
+          // arrange
+          potset.pots = potList;
+          // act
+          potset.updatePot(potId: potList[2].id, newPot: pot4);
+          // assert
+          expect(potset.pots[2], pot4);
+          expect(potset.unallocatedBalance, 450);
         },
       );
     },

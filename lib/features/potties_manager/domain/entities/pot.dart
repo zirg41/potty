@@ -1,6 +1,8 @@
 // ignore: must_be_immutable
+import 'package:equatable/equatable.dart';
+
 /// WARNING amount fields must be decimal formatted
-class Pot {
+class Pot extends Equatable {
   late String id;
   late String name;
   double? percent;
@@ -14,4 +16,7 @@ class Pot {
     this.amount,
     this.isAmountFixed,
   });
+
+  @override
+  List<Object?> get props => [id, name, percent, amount, isAmountFixed];
 }

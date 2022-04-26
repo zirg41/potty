@@ -1,8 +1,10 @@
+import 'package:equatable/equatable.dart';
+
 import '../usecases/sort_pot.dart';
 import 'pot.dart';
 
 /// WARNING: all double fields must be decimal formatted
-class PotSet {
+class PotSet extends Equatable {
   late String id;
   late String name;
   late double income;
@@ -81,4 +83,15 @@ class PotSet {
     _calculateUnallocatedBalanceAndPercent();
     setSorting();
   }
+
+  @override
+  List<Object?> get props => [
+        id,
+        name,
+        income,
+        createdDate,
+        pots,
+        unallocatedBalance,
+        unallocatedPercent,
+      ];
 }

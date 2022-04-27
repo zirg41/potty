@@ -15,4 +15,10 @@ class LocalDatasourceImpl implements ILocalDatasource {
     // TODO: implement saveToMemory
     throw UnimplementedError();
   }
+
+  @override
+  Future<void> deletePotSet(String potSetId) {
+    // TODO: implement deletePotSet
+    throw UnimplementedError();
+  }
 }

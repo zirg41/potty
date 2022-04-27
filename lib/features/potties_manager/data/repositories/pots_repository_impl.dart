@@ -23,9 +23,9 @@ class PotsRepositoryImpl implements IPotsRepository {
   }
 
   @override
-  Future<void> addPotSet(PotSet potSet) {
-    // TODO: implement addPotSet
-    throw UnimplementedError();
+  Future<void> addPotSet(PotSet potSet) async {
+    potsets.add(potSet);
+    await localDatasource.saveToMemory(potSet);
   }
 
   @override

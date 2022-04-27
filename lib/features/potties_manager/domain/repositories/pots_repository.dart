@@ -15,6 +15,6 @@ abstract class IPotsRepository {
   Future<void> updatePot(String potSetId, String potId, Pot newPot);
   Future<void> deletePot(String potSetId, Pot newPot);
   Future<void> deletePotSet(String potSetId);
-  Future<void> changePotSetName(String newName);
-  Future<void> changePotSetIncome(double newIncome);
+  Future<void> changePotSetName(String potSetId, String newName);
+  Future<void> changePotSetIncome(String potSetId, double newIncome);
 }

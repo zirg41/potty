@@ -29,15 +29,17 @@ class PotsRepositoryImpl implements IPotsRepository {
   }
 
   @override
-  Future<void> changePotSetIncome(double newIncome) {
-    // TODO: implement changePotSetIncome
-    throw UnimplementedError();
+  Future<void> changePotSetIncome(String potSetId, double newIncome) async {
+    final currentPotSet = _definePotSet(potSetId);
+    currentPotSet.changeIncome(newIncome: newIncome);
+    await localDatasource.saveToMemory(currentPotSet);
   }
 
   @override
-  Future<void> changePotSetName(String newName) {
-    // TODO: implement changePotSetName
-    throw UnimplementedError();
+  Future<void> changePotSetName(String potSetId, String newName) async {
+    final currentPotSet = _definePotSet(potSetId);
+    currentPotSet.changePotSetName(newName: newName);
+    await localDatasource.saveToMemory(currentPotSet);
   }
 
   @override

@@ -13,7 +13,7 @@ abstract class IPotsRepository {
   Future<void> addPot(String potSetId, Pot newPot);
   Future<void> setSorting(String potSetId, ISortPot sortingLogic);
   Future<void> updatePot(String potSetId, String potId, Pot newPot);
-  Future<void> deletePot(String potSetId, Pot newPot);
+  Future<void> deletePot(String potSetId, String potId);
   Future<void> deletePotSet(String potSetId);
   Future<void> changePotSetName(String potSetId, String newName);
   Future<void> changePotSetIncome(String potSetId, double newIncome);

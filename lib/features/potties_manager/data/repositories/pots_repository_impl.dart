@@ -53,7 +53,7 @@ class PotsRepositoryImpl implements IPotsRepository {
   }
 
   @override
-  Future<Either<Failure, List<PotSet>>> getAllPots() {
+  Stream<Either<Failure, List<PotSet>>> getAllPots() {
     // TODO: implement getAllPots
     throw UnimplementedError();
   }

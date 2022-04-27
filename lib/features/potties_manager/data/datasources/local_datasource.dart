@@ -4,5 +4,5 @@ import 'package:potty/features/potties_manager/domain/entities/pot_set.dart';
 
 abstract class ILocalDatasource {
   Future<void> saveToMemory(PotSet potset);
-  Future<Either<Failure, List<PotSet>>> getFromMemory();
+  Stream<Either<Failure, List<PotSet>>> getFromMemory();
 }

@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
-import 'package:potty/features/potties_manager/data/datasources/local_datasource.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../domain/entities/pot.dart';
 import '../../domain/entities/pot_set.dart';
 import '../../domain/repositories/pots_repository.dart';
 import '../../domain/usecases/sort_pot.dart';
+import '../datasources/local_datasource.dart';
 
 class PotsRepositoryImpl implements IPotsRepository {
   late ILocalDatasource localDatasource;
@@ -57,8 +57,7 @@ class PotsRepositoryImpl implements IPotsRepository {
 
   @override
   Stream<Either<Failure, List<PotSet>>> getAllPots() {
-    // TODO: implement getAllPots
-    throw UnimplementedError();
+    return localDatasource.getFromMemory();
   }
 
   @override

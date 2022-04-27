@@ -10,11 +10,15 @@ environment:
 
 dependencies:
   bloc: ^8.0.3
+  build_runner: ^2.1.10
   cupertino_icons: ^1.0.2
   dartz: ^0.10.1
   equatable: ^2.0.3
   flutter:
     sdk: flutter
+  hive: ^2.1.0
+  hive_flutter: ^1.1.0
+  hive_generator: ^1.1.2
   mockito: ^5.1.0
 
 dev_dependencies:

@@ -50,9 +50,9 @@ class PotsRepositoryImpl implements IPotsRepository {
   }
 
   @override
-  Future<void> deletePotSet(String potSetId) {
-    // TODO: implement deletePotSet
-    throw UnimplementedError();
+  Future<void> deletePotSet(String potSetId) async {
+    potsets.removeWhere((element) => element.id == potSetId);
+    await localDatasource.deletePotSet(potSetId);
   }
 
   @override

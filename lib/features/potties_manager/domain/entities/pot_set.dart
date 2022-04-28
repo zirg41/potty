@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:potty/features/potties_manager/domain/entities/sorting_logic.dart';
 
 import 'pot.dart';
 
@@ -97,9 +98,4 @@ class PotSet extends Equatable {
         unallocatedBalance,
         unallocatedPercent,
       ];
-}
-
-enum SortingLogic {
-  lowToHigh,
-  highToLow,
 }

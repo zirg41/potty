@@ -1,24 +1,54 @@
-import 'package:potty/core/errors/failure.dart';
+import 'dart:async';
+
 import 'package:dartz/dartz.dart';
-import 'package:potty/features/potties_manager/data/datasources/local_datasource.dart';
-import 'package:potty/features/potties_manager/domain/entities/pot_set.dart';
+import 'package:hive/hive.dart';
 
-class LocalDatasourceImpl implements ILocalDatasource {
+import '../../../../core/errors/failure.dart';
+import '../../domain/entities/pot_set.dart';
+import '../models/pot_set_model.dart';
+import 'local_datasource.dart';
+
+class LocalHiveDatasourceImpl implements ILocalDatasource {
+  final Box<PotSetHiveModel> _potSetBox;
+
+  LocalHiveDatasourceImpl(this._potSetBox);
+
+  final _outputController = StreamController<Either<Failure, List<PotSet>>>();
+
+  final _inputController = StreamController<DatasourceEvent>();
+
   @override
-  Stream<Either<Failure, List<PotSet>>> getFromMemory() {
-    // TODO: implement getFromMemory
-    throw UnimplementedError();
+  Stream<Either<Failure, List<PotSet>>> getFromMemory() async* {
+    _inputController.stream.listen((event) {
+      if (event == DatasourceEvent.update) {
+        try {
+          _outputController.sink.add(
+            Right(_potSetBox.values.map((e) => e.toPotSetEntity()).toList()),
+          );
+        } catch (e) {
+          _outputController.sink.add(
+            Left(CacheFailure()),
+          );
+        }
+      }
+    });
+    yield* _outputController.stream;
   }
 
   @override
-  Future<void> saveToMemory(PotSet potset) {
-    // TODO: implement saveToMemory
-    throw UnimplementedError();
+  Future<void> saveToMemory(PotSet potset) async {
+    final potSetModel = PotSetHiveModel.fromPotSetEntity(potset);
+    _inputController.sink.add(DatasourceEvent.update);
+    await _potSetBox.put(potset.id, potSetModel);
   }
 
   @override
-  Future<void> deletePotSet(String potSetId) {
-    // TODO: implement deletePotSet
-    throw UnimplementedError();
+  Future<void> deletePotSet(String potSetId) async {
+    _inputController.sink.add(DatasourceEvent.update);
+    await _potSetBox.delete(potSetId);
   }
+}
+
+enum DatasourceEvent {
+  update,
 }

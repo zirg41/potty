@@ -1,6 +1,5 @@
 import 'package:equatable/equatable.dart';
 
-import '../usecases/sort_pot.dart';
 import 'pot.dart';
 
 /// WARNING: all double fields must be decimal formatted

@@ -4,7 +4,6 @@ import '../../../../core/errors/failure.dart';
 import '../../domain/entities/pot.dart';
 import '../../domain/entities/pot_set.dart';
 import '../../domain/repositories/pots_repository.dart';
-import '../../domain/usecases/sort_pot.dart';
 import '../datasources/local_datasource.dart';
 
 class PotsRepositoryImpl implements IPotsRepository {
@@ -61,7 +60,7 @@ class PotsRepositoryImpl implements IPotsRepository {
   }
 
   @override
-  Future<void> setSorting(String potSetId, ISortPot sortingLogic) async {
+  Future<void> setSorting(String potSetId, SortingLogic sortingLogic) async {
     final currentPotSet = _definePotSet(potSetId);
     currentPotSet.sortingLogic = sortingLogic;
     currentPotSet.setSorting();

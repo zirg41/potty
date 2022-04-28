@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:intl/intl.dart';
 import 'package:potty/features/potties_manager/domain/entities/sorting_logic.dart';
 
 import 'pot.dart';
@@ -107,7 +106,7 @@ POTSET
      Name: $name
      ID: $id
      Income: $income rubles
-     createdDate: ${createdDate.hour}
+     createdDate: ${createdDate.hour}:${createdDate.minute} 
      UnallocatedBalance: $unallocatedBalance rubles
      UnallocatedPercent: $unallocatedPercent %
      pots: ${pots.toString()}""";

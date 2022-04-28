@@ -30,7 +30,7 @@ class PotSetHiveModel {
       name: potSet.name,
       createdDate: potSet.createdDate,
       pots: potSet.pots.map((pot) => PotHiveModel.fromPotEntity(pot)).toList(),
-      sortingLogic: potSet.sortingLogic,
+      sortingLogic: _convertFromEntity(potSet.sortingLogic),
       unallocatedBalance: potSet.unallocatedBalance,
       unallocatedPercent: potSet.unallocatedPercent,
     );
@@ -42,10 +42,24 @@ class PotSetHiveModel {
       income: income,
       name: name,
       createdDate: createdDate,
-      sortingLogic: sortingLogic,
+      sortingLogic: _convertToEntity(sortingLogic),
       pots: pots.map((potSet) => potSet.toPotEntity()).toList(),
       unallocatedBalance: unallocatedBalance,
       unallocatedPercent: unallocatedPercent,
     );
+  }
+
+  static SortingLogic _convertToEntity(SortingLogicModel slModel) {
+    if (slModel == SortingLogicModel.highToLow) return SortingLogic.highToLow;
+    if (slModel == SortingLogicModel.lowToHigh) return SortingLogic.lowToHigh;
+    if (slModel == SortingLogicModel.manual) return SortingLogic.manual;
+    return SortingLogic.manual;
+  }
+
+  static SortingLogicModel _convertFromEntity(SortingLogic slEntity) {
+    if (slEntity == SortingLogic.highToLow) return SortingLogicModel.highToLow;
+    if (slEntity == SortingLogic.lowToHigh) return SortingLogicModel.lowToHigh;
+    if (slEntity == SortingLogic.manual) return SortingLogicModel.manual;
+    return SortingLogicModel.manual;
   }
 }

@@ -19,4 +19,15 @@ class Pot extends Equatable {
 
   @override
   List<Object?> get props => [id, name, percent, amount, isAmountFixed];
+
+  @override
+  String toString() {
+    return """\n*Pot*
+      Name: $name
+      ID: $id
+      Percent: $percent%
+      Amount: $amount rubles
+      IsAmountFixed: $isAmountFixed
+      """;
+  }
 }

@@ -12,7 +12,7 @@ class PotSet extends Equatable {
   List<Pot> pots;
   double? unallocatedBalance;
   double? unallocatedPercent;
-  late ISortPot sortingLogic;
+  late SortingLogic sortingLogic;
 
   PotSet({
     required this.id,
@@ -22,7 +22,7 @@ class PotSet extends Equatable {
     this.pots = const [],
     this.unallocatedBalance,
     this.unallocatedPercent,
-    this.sortingLogic = const SortHighToLow(),
+    this.sortingLogic = SortingLogic.highToLow,
   });
 
   void addPot({required Pot newPot}) {
@@ -47,7 +47,11 @@ class PotSet extends Equatable {
   }
 
   void setSorting() {
-    pots = sortingLogic.sortPots(pots);
+    if (sortingLogic == SortingLogic.highToLow) {
+      pots.sort((potA, potB) => potB.percent!.compareTo(potA.percent!));
+    } else if (sortingLogic == SortingLogic.lowToHigh) {
+      pots.sort((potA, potB) => potA.percent!.compareTo(potB.percent!));
+    } else {}
   }
 
   /// Changes income value in current PotSet
@@ -94,4 +98,9 @@ class PotSet extends Equatable {
         unallocatedBalance,
         unallocatedPercent,
       ];
+}
+
+enum SortingLogic {
+  lowToHigh,
+  highToLow,
 }

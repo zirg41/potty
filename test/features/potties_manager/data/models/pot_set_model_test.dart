@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:potty/features/potties_manager/data/models/pot_set_model.dart';
 import 'package:potty/features/potties_manager/domain/entities/pot_set.dart';
-import 'package:potty/features/potties_manager/domain/usecases/sort_pot.dart';
+import 'package:potty/features/potties_manager/domain/entities/sorting_logic.dart';
 
 import '../../domain/entities/pot_set_test.dart';
 
@@ -12,7 +12,7 @@ void main() {
     name: 'test pot set name',
     pots: potList,
     createdDate: DateTime.now(),
-    sortingLogic: const SortHighToLow(),
+    sortingLogic: SortingLogic.highToLow,
   );
 
   group(

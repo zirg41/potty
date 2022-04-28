@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:potty/features/potties_manager/domain/entities/pot.dart';
 import 'package:potty/features/potties_manager/domain/entities/pot_set.dart';
-import 'package:potty/features/potties_manager/domain/usecases/sort_pot.dart';
+import 'package:potty/features/potties_manager/domain/entities/sorting_logic.dart';
 
 final pot1 = Pot(id: '1', name: 'pot1', percent: 10, isAmountFixed: false);
 final pot2 = Pot(id: '2', name: 'pot2', amount: 150, isAmountFixed: true);
@@ -102,7 +102,7 @@ void main() {
         "should sort pots in low to high sorting",
         () async {
           // arrange
-          potset.sortingLogic = SortLowToHigh();
+          potset.sortingLogic = SortingLogic.lowToHigh;
 
           // act
           final p = potset.pots;

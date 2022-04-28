@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:potty/features/potties_manager/domain/entities/pot_set.dart';
-import 'package:potty/features/potties_manager/domain/repositories/pots_repository.dart';
+import 'package:potty/features/potties_manager/domain/repositories/i_pots_repository.dart';
 
 part 'pots_event.dart';
 part 'pots_state.dart';

@@ -4,7 +4,7 @@ import 'package:potty/features/potties_manager/domain/entities/sorting_logic.dar
 import '../../../../core/errors/failure.dart';
 import '../../domain/entities/pot.dart';
 import '../../domain/entities/pot_set.dart';
-import '../../domain/repositories/pots_repository.dart';
+import '../../domain/repositories/i_pots_repository.dart';
 import '../datasources/local_datasource.dart';
 
 class PotsRepositoryImpl implements IPotsRepository {

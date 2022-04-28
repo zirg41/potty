@@ -1,16 +1,27 @@
+import 'package:hive/hive.dart';
 import 'package:potty/features/potties_manager/data/models/pot_model.dart';
+import 'package:potty/features/potties_manager/data/models/sorting_logic_model.dart';
 import 'package:potty/features/potties_manager/domain/entities/pot_set.dart';
-import 'package:potty/features/potties_manager/domain/usecases/sort_pot.dart';
+import 'package:potty/features/potties_manager/domain/entities/sorting_logic.dart';
 
-class PotSetHiveModel {
+@HiveType(typeId: 1)
+class PotSetHiveModel extends HiveObject {
+  @HiveField(0)
   late String id;
+  @HiveField(1)
   late String name;
+  @HiveField(2)
   late double income;
+  @HiveField(3)
   late DateTime createdDate;
+  @HiveField(4)
   late List<PotHiveModel> pots;
+  @HiveField(5)
   late double? unallocatedBalance;
+  @HiveField(6)
   late double? unallocatedPercent;
-  late ISortPot sortingLogic;
+  @HiveField(7)
+  late SortingLogicModel sortingLogic;
 
   PotSetHiveModel({
     required this.id,

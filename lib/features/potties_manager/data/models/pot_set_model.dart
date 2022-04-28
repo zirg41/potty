@@ -4,6 +4,8 @@ import 'package:potty/features/potties_manager/data/models/sorting_logic_model.d
 import 'package:potty/features/potties_manager/domain/entities/pot_set.dart';
 import 'package:potty/features/potties_manager/domain/entities/sorting_logic.dart';
 
+part 'pot_set_model.g.dart';
+
 @HiveType(typeId: 1)
 class PotSetHiveModel extends HiveObject {
   @HiveField(0)

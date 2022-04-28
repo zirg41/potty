@@ -5,7 +5,7 @@ import '../../../../core/errors/failure.dart';
 import '../../domain/entities/pot.dart';
 import '../../domain/entities/pot_set.dart';
 import '../../domain/repositories/i_pots_repository.dart';
-import '../datasources/local_datasource.dart';
+import '../datasources/i_local_datasource.dart';
 
 class PotsRepositoryImpl implements IPotsRepository {
   late ILocalDatasource localDatasource;

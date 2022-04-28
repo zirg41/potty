@@ -6,7 +6,7 @@ import 'package:hive/hive.dart';
 import '../../../../core/errors/failure.dart';
 import '../../domain/entities/pot_set.dart';
 import '../models/pot_set_model.dart';
-import 'local_datasource.dart';
+import 'i_local_datasource.dart';
 
 class LocalHiveDatasourceImpl implements ILocalDatasource {
   final Box<PotSetHiveModel> _potSetBox;

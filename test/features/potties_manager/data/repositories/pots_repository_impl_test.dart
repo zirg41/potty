@@ -2,7 +2,7 @@ import 'dart:ffi';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/mockito.dart';
-import 'package:potty/features/potties_manager/data/datasources/local_datasource.dart';
+import 'package:potty/features/potties_manager/data/datasources/i_local_datasource.dart';
 import 'package:potty/features/potties_manager/data/repositories/pots_repository_impl.dart';
 import 'package:potty/features/potties_manager/domain/entities/pot_set.dart';
 

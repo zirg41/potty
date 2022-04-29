@@ -23,7 +23,9 @@ class PotSet extends Equatable {
     this.unallocatedBalance,
     this.unallocatedPercent,
     this.sortingLogic = SortingLogic.highToLow,
-  });
+  }) {
+    _calculate();
+  }
 
   void addPot({required Pot newPot}) {
     pots.add(newPot);

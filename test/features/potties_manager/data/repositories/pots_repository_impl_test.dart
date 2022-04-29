@@ -209,6 +209,18 @@ void main() async {
           expect(listOfPotSets, [modifiedPotSet]);
         },
       );
+      test(
+        "should delete potSet and then get updated potset list from stream",
+        () async {
+          // act
+          await potsRepository.deletePotSet(mockPotSet.id);
+          // assert
+          print(
+              "[Listener]: There is ${listOfPotSets.length} potSets in fetched list with hashcode ${listOfPotSets.hashCode}");
+
+          expect(listOfPotSets, []);
+        },
+      );
     },
   );
 }

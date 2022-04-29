@@ -1,10 +1,10 @@
 import 'package:potty/features/potties_manager/domain/entities/pot.dart';
 
-abstract class PotsCreator {
+abstract class IPotsCreator {
   List<Pot> call();
 }
 
-class EmptyPotsCreator implements PotsCreator {
+class EmptyPotsCreator implements IPotsCreator {
   const EmptyPotsCreator();
   @override
   List<Pot> call() {

@@ -14,7 +14,7 @@ class CreatePotSetUseCase {
   });
 
   Future<void> call(String name, double income,
-      {PotsCreator potsCreator = const EmptyPotsCreator()}) async {
+      {IPotsCreator potsCreator = const EmptyPotsCreator()}) async {
     potSet = PotSet(
       id: idGenerator.generateID(),
       income: income,

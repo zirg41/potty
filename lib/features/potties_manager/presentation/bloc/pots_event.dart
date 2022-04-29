@@ -67,3 +67,34 @@ class DeletePotEvent extends PotsEvent {
   @override
   List<Object> get props => [potSetId, potIdToDelete];
 }
+
+class EditPotEvent extends PotsEvent {
+  final String potSetId;
+  final String potId;
+  final String? name;
+  final bool? isAmountFixed;
+  final double? amount;
+  final double? percent;
+  final IPotCreator? potCreator;
+
+  const EditPotEvent({
+    required this.potSetId,
+    required this.potId,
+    this.name,
+    this.isAmountFixed,
+    this.amount,
+    this.percent,
+    this.potCreator,
+  });
+
+  @override
+  List<Object> get props => [
+        potSetId,
+        potId,
+        name!,
+        isAmountFixed!,
+        amount!,
+        percent!,
+        potCreator!,
+      ];
+}

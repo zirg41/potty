@@ -13,7 +13,7 @@ class PotsRepositoryImpl implements IPotsRepository {
   PotsRepositoryImpl({required this.localDatasource});
 
   @override
-  late List<PotSet> potsets;
+  List<PotSet> potsets = [];
 
   @override
   Future<void> addPot(String potSetId, Pot newPot) async {

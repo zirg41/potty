@@ -98,3 +98,29 @@ class EditPotEvent extends PotsEvent {
         potCreator!,
       ];
 }
+
+class EditPotSetNameEvent extends PotsEvent {
+  final String potSetId;
+  final String name;
+
+  const EditPotSetNameEvent({
+    required this.potSetId,
+    required this.name,
+  });
+
+  @override
+  List<Object> get props => [potSetId, name];
+}
+
+class EditPotSetIncomeEvent extends PotsEvent {
+  final String potSetId;
+  final String income;
+
+  const EditPotSetIncomeEvent({
+    required this.potSetId,
+    required this.income,
+  });
+
+  @override
+  List<Object> get props => [potSetId, income];
+}

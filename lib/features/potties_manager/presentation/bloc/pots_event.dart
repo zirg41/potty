@@ -54,3 +54,16 @@ class DeletePotSetEvent extends PotsEvent {
   @override
   List<Object> get props => [potSetIdToDelete];
 }
+
+class DeletePotEvent extends PotsEvent {
+  final String potSetId;
+  final String potIdToDelete;
+
+  const DeletePotEvent({
+    required this.potSetId,
+    required this.potIdToDelete,
+  });
+
+  @override
+  List<Object> get props => [potSetId, potIdToDelete];
+}

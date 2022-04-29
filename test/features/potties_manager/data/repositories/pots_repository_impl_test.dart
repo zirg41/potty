@@ -119,6 +119,24 @@ void main() async {
           expect(listOfPotSets, [modifiedPotSet]);
         },
       );
+      test(
+        "should delete pot from potSet and get updated potset from stream",
+        () async {
+          // act
+          await potsRepository.deletePot(mockPotSet.id, pot1.id);
+          // assert
+          final modifiedPotSet = mockPotSet
+            ..pots = [pot1]
+            ..changeIncome(newIncome: 5000)
+            ..changePotSetName(newName: "New potset name")
+            ..deletePot(potId: pot1.id);
+
+          print(
+              "[Listener]: There is ${listOfPotSets.length} potSets in fetched list with hashcode ${listOfPotSets.hashCode}");
+
+          expect(listOfPotSets, [modifiedPotSet]);
+        },
+      );
     },
   );
 }

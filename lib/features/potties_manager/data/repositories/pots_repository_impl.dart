@@ -45,7 +45,7 @@ class PotsRepositoryImpl implements IPotsRepository {
   @override
   Future<void> deletePot(String potSetId, String potId) async {
     final currentPotSet = _definePotSet(potSetId);
-    currentPotSet.pots.removeWhere((element) => element.id == potId);
+    currentPotSet.deletePot(potId: potId);
     await localDatasource.saveToMemory(currentPotSet);
   }
 

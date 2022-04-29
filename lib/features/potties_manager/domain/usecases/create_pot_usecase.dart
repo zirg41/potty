@@ -17,7 +17,7 @@ class CreatePotUseCase {
   Future<void> call({
     required String potSetId,
     String name = 'default name',
-    bool? isAmountFixed,
+    bool isAmountFixed = false,
     double? amount,
     double? percent,
     IPotCreator? potCreator,

@@ -1,5 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:potty/core/util/pot_creator.dart';
+import 'package:potty/core/util/pots_creator.dart';
 
 import '../../domain/entities/pot_set.dart';
 import '../../domain/usecases/create_pot_set_usecase.dart';

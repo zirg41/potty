@@ -73,6 +73,7 @@ void main() {
                   .firstWhere((element) => element.name == 'test name')
                   .unallocatedPercent,
               100);
+          potsRepository.deletePotSet(listOfPotSets[0].id);
         },
       );
     },

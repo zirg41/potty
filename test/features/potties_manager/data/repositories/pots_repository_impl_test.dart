@@ -47,7 +47,7 @@ void main() async {
         "should save potset to memory and get saved potset from stream",
         () async {
           // arrange
-          localHiveDatasourceImpl.getFromMemory().listen((event) {
+          potsRepository.getAllPots().listen((event) {
             event.fold(
               (failure) {
                 print(failure.toString());

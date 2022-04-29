@@ -18,6 +18,9 @@ final mockPotSet = PotSet(
   createdDate: DateTime.now(),
 )..changeIncome(newIncome: 1000);
 
+/// The test does not use mock, it uses real instance of local database
+/// That's why all test must run together, not by each one seperately
+
 void main() async {
   late PotsRepositoryImpl potsRepository;
   late LocalHiveDatasourceImpl localHiveDatasourceImpl;

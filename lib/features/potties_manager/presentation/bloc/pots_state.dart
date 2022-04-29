@@ -17,4 +17,15 @@ class PotSetsLoaded extends PotsState {
   const PotSetsLoaded(this.pots);
 }
 
-class GetPotsErrorState extends PotsState {}
+class GetPotsErrorState extends PotsState {
+  const GetPotsErrorState();
+}
+
+class InputErrorState extends PotsState {
+  final String message;
+
+  const InputErrorState({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}

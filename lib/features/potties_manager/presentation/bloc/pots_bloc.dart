@@ -1,6 +1,9 @@
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:potty/core/errors/failure.dart';
+import 'package:potty/core/util/input_converter.dart';
 import 'package:potty/core/util/pot_creator.dart';
 import 'package:potty/core/util/pots_creator.dart';
 import 'package:potty/features/potties_manager/domain/entities/sorting_logic.dart';
@@ -27,6 +30,7 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
   final DeletePotSetUseCase deletePotSetUseCase;
   final ListenPotSetsStreamUseCase listenPotSetsStreamUseCase;
   final SetSortingUseCase setSortingUseCase;
+  final InputConverter inputConverter;
 
   PotsBloc({
     required this.createPotUseCase,
@@ -37,22 +41,33 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
     required this.editPotSetUseCase,
     required this.listenPotSetsStreamUseCase,
     required this.setSortingUseCase,
+    required this.inputConverter,
   }) : super(PotsInitial()) {
-    on<PotsEvent>((event, emit) {});
-
     on<GetPotsEvent>((event, emit) {
       emit(LoadingState());
       final potsStream = listenPotSetsStreamUseCase();
       potsStream.listen((event) {
         event.fold(
-          (failure) => GetPotsErrorState(),
+          (failure) => const GetPotsErrorState(),
           (potSets) => PotSetsLoaded(potSets),
         );
       });
     });
 
     on<CreatePotSetEvent>(
-      (event, emit) {},
+      (event, emit) {
+        final Either<Failure, double> inputEither =
+            inputConverter.stringToUnsignedInteger(event.income);
+
+        inputEither.fold(
+          (failure) async {
+            emit(const InputErrorState(message: INVALID_INPUT_FAILURE_MESSAGE));
+          },
+          (parsedAmount) async {
+            await createPotSetUseCase.call(event.name, parsedAmount);
+          },
+        );
+      },
     );
 
     on<CreatePotEvent>(

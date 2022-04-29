@@ -72,6 +72,7 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
 
     on<CreatePotEvent>(
       (event, emit) async {
+        // check if user entered a pot with fixed amount
         if (event.isAmountFixed!) {
           final Either<Failure, double> inputEither =
               inputConverter.stringToUnsignedDouble(event.amount!);
@@ -91,7 +92,9 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
               );
             },
           );
-        } else if (!event.isAmountFixed!) {
+        }
+        // check if user entered a pot with fixed percent
+        else if (!event.isAmountFixed!) {
           final Either<Failure, double> inputEither =
               inputConverter.stringToUnsignedDouble(event.percent!);
 
@@ -110,12 +113,16 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
               );
             },
           );
-        } else if (event.potCreator != null) {
+        }
+        // check if user chose a template pot
+        else if (event.potCreator != null) {
           await createPotUseCase.call(
             potSetId: event.potSetId,
             potCreator: event.potCreator,
           );
-        } else {
+        }
+        // program hardly gets to this place, but so
+        else {
           emit(
             const InputErrorState(message: INVALID_INPUT_FAILURE_MESSAGE),
           );

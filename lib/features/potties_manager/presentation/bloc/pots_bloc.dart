@@ -57,7 +57,7 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
     on<CreatePotSetEvent>(
       (event, emit) {
         final Either<Failure, double> inputEither =
-            inputConverter.stringToUnsignedInteger(event.income);
+            inputConverter.stringToUnsignedDouble(event.income);
 
         inputEither.fold(
           (failure) async {

@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:potty/core/errors/failure.dart';
 
 class InputConverter {
-  Either<Failure, double> stringToUnsignedInteger(String str) {
+  Either<Failure, double> stringToUnsignedDouble(String str) {
     try {
       final parsedAmount = double.parse(str);
       if (parsedAmount < 0) {

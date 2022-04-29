@@ -7,6 +7,7 @@ import 'package:potty/features/potties_manager/data/models/pot_set_model.dart';
 import 'package:potty/features/potties_manager/data/models/sorting_logic_model.dart';
 import 'package:potty/features/potties_manager/data/repositories/pots_repository_impl.dart';
 import 'package:potty/features/potties_manager/domain/entities/pot_set.dart';
+import 'package:potty/features/potties_manager/domain/entities/sorting_logic.dart';
 
 import '../../domain/entities/pot_set_test.dart';
 
@@ -153,6 +154,31 @@ void main() async {
             ..addPot(newPot: pot1)
             ..addPot(newPot: pot2)
             ..addPot(newPot: pot3);
+
+          print(
+              "[Listener]: There is ${listOfPotSets.length} potSets in fetched list with hashcode ${listOfPotSets.hashCode}");
+
+          expect(listOfPotSets, [modifiedPotSet]);
+        },
+      );
+      test(
+        "should add couple pots to potSet and sort them correctly, and then get updated potset from stream",
+        () async {
+          // act
+          await potsRepository.setSorting(
+            mockPotSet.id,
+            SortingLogic.lowToHigh,
+          );
+          // assert
+          final modifiedPotSet = mockPotSet
+            ..pots = [pot1]
+            ..changeIncome(newIncome: 5000)
+            ..changePotSetName(newName: "New potset name")
+            ..deletePot(potId: pot1.id)
+            ..addPot(newPot: pot1)
+            ..addPot(newPot: pot2)
+            ..addPot(newPot: pot3)
+            ..setSorting(SortingLogic.lowToHigh);
 
           print(
               "[Listener]: There is ${listOfPotSets.length} potSets in fetched list with hashcode ${listOfPotSets.hashCode}");

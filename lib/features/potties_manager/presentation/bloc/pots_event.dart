@@ -124,3 +124,16 @@ class EditPotSetIncomeEvent extends PotsEvent {
   @override
   List<Object> get props => [potSetId, income];
 }
+
+class SetSortingEvent extends PotsEvent {
+  final String potSetId;
+  final SortingLogic sortingLogic;
+
+  const SetSortingEvent({
+    required this.potSetId,
+    required this.sortingLogic,
+  });
+
+  @override
+  List<Object> get props => [potSetId, sortingLogic];
+}

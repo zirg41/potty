@@ -63,8 +63,7 @@ class PotsRepositoryImpl implements IPotsRepository {
   @override
   Future<void> setSorting(String potSetId, SortingLogic sortingLogic) async {
     final currentPotSet = _definePotSet(potSetId);
-    currentPotSet.sortingLogic = sortingLogic;
-    currentPotSet.setSorting();
+    currentPotSet.setSorting(sortingLogic);
     await localDatasource.saveToMemory(currentPotSet);
   }
 

@@ -46,7 +46,12 @@ class PotSet extends Equatable {
     _calculate();
   }
 
-  void setSorting() {
+  void setSorting(SortingLogic newSortingLogic) {
+    sortingLogic = newSortingLogic;
+    _sortPots();
+  }
+
+  void _sortPots() {
     if (sortingLogic == SortingLogic.highToLow) {
       pots.sort((potA, potB) => potB.percent!.compareTo(potA.percent!));
     } else if (sortingLogic == SortingLogic.lowToHigh) {
@@ -85,7 +90,7 @@ class PotSet extends Equatable {
       }
     }
     _calculateUnallocatedBalanceAndPercent();
-    setSorting();
+    _sortPots();
   }
 
   @override

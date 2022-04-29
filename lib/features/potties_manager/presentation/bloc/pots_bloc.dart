@@ -50,5 +50,37 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
         );
       });
     });
+
+    on<CreatePotSetEvent>(
+      (event, emit) {},
+    );
+
+    on<CreatePotEvent>(
+      (event, emit) {},
+    );
+
+    on<DeletePotSetEvent>(
+      (event, emit) {},
+    );
+
+    on<DeletePotEvent>(
+      (event, emit) {},
+    );
+
+    on<EditPotEvent>(
+      (event, emit) {},
+    );
+
+    on<EditPotSetNameEvent>(
+      (event, emit) {},
+    );
+
+    on<EditPotSetIncomeEvent>(
+      (event, emit) {},
+    );
+
+    on<SetSortingEvent>(
+      (event, emit) {},
+    );
   }
 }

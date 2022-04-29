@@ -137,6 +137,29 @@ void main() async {
           expect(listOfPotSets, [modifiedPotSet]);
         },
       );
+      test(
+        "should add couple pots to potSet and sort them correctly, and then get updated potset from stream",
+        () async {
+          // act
+          await potsRepository.addPot(mockPotSet.id, pot1);
+          await potsRepository.addPot(mockPotSet.id, pot2);
+          await potsRepository.addPot(mockPotSet.id, pot3);
+          // assert
+          final modifiedPotSet = mockPotSet
+            ..pots = [pot1]
+            ..changeIncome(newIncome: 5000)
+            ..changePotSetName(newName: "New potset name")
+            ..deletePot(potId: pot1.id)
+            ..addPot(newPot: pot1)
+            ..addPot(newPot: pot2)
+            ..addPot(newPot: pot3);
+
+          print(
+              "[Listener]: There is ${listOfPotSets.length} potSets in fetched list with hashcode ${listOfPotSets.hashCode}");
+
+          expect(listOfPotSets, [modifiedPotSet]);
+        },
+      );
     },
   );
 }

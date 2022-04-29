@@ -71,7 +71,56 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
     );
 
     on<CreatePotEvent>(
-      (event, emit) {},
+      (event, emit) async {
+        if (event.isAmountFixed!) {
+          final Either<Failure, double> inputEither =
+              inputConverter.stringToUnsignedDouble(event.amount!);
+
+          inputEither.fold(
+            (failure) async {
+              emit(
+                const InputErrorState(message: INVALID_INPUT_FAILURE_MESSAGE),
+              );
+            },
+            (parsedAmount) async {
+              await createPotUseCase.call(
+                potSetId: event.potSetId,
+                name: event.name!,
+                amount: parsedAmount,
+                isAmountFixed: event.isAmountFixed!,
+              );
+            },
+          );
+        } else if (!event.isAmountFixed!) {
+          final Either<Failure, double> inputEither =
+              inputConverter.stringToUnsignedDouble(event.percent!);
+
+          inputEither.fold(
+            (failure) async {
+              emit(
+                const InputErrorState(message: INVALID_INPUT_FAILURE_MESSAGE),
+              );
+            },
+            (parsedPercent) async {
+              await createPotUseCase.call(
+                potSetId: event.potSetId,
+                name: event.name!,
+                percent: parsedPercent,
+                isAmountFixed: event.isAmountFixed!,
+              );
+            },
+          );
+        } else if (event.potCreator != null) {
+          await createPotUseCase.call(
+            potSetId: event.potSetId,
+            potCreator: event.potCreator,
+          );
+        } else {
+          emit(
+            const InputErrorState(message: INVALID_INPUT_FAILURE_MESSAGE),
+          );
+        }
+      },
     );
 
     on<DeletePotSetEvent>(

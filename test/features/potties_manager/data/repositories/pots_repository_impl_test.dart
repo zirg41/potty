@@ -41,7 +41,7 @@ void main() async {
     'PotsRepositoryImpl',
     () {
       test(
-        "should save potset to memory",
+        "should save potset to memory and get saved potset from stream",
         () async {
           // arrange
           localHiveDatasourceImpl.getFromMemory().listen((event) {
@@ -69,12 +69,46 @@ void main() async {
         },
       );
       test(
-        "should add new pot to existing potset",
+        "should add new pot to existing potset and get updated potset from stream",
         () async {
           // act
           await potsRepository.addPot(mockPotSet.id, pot1);
           // assert
           final modifiedPotSet = mockPotSet..pots = [pot1];
+
+          print(
+              "[Listener]: There is ${listOfPotSets.length} potSets in fetched list with hashcode ${listOfPotSets.hashCode}");
+
+          expect(listOfPotSets, [modifiedPotSet]);
+        },
+      );
+      test(
+        "should change potSet income and get updated potset from stream",
+        () async {
+          // act
+          await potsRepository.changePotSetIncome(mockPotSet.id, 5000);
+          // assert
+          final modifiedPotSet = mockPotSet
+            ..pots = [pot1]
+            ..changeIncome(newIncome: 5000);
+
+          print(
+              "[Listener]: There is ${listOfPotSets.length} potSets in fetched list with hashcode ${listOfPotSets.hashCode}");
+
+          expect(listOfPotSets, [modifiedPotSet]);
+        },
+      );
+      test(
+        "should change potSet name and get updated potset from stream",
+        () async {
+          // act
+          await potsRepository.changePotSetName(
+              mockPotSet.id, "New potset name");
+          // assert
+          final modifiedPotSet = mockPotSet
+            ..pots = [pot1]
+            ..changeIncome(newIncome: 5000)
+            ..changePotSetName(newName: "New potset name");
 
           print(
               "[Listener]: There is ${listOfPotSets.length} potSets in fetched list with hashcode ${listOfPotSets.hashCode}");

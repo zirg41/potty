@@ -70,7 +70,7 @@ void main() {
   });
 
   group(
-    'CreatePotSetEvent',
+    'on CreatePotSetEvent',
     () {
       const String potSetNameFromUI = 'Test PotSet';
       const String potSetIncomeFromUI = '25000';
@@ -103,6 +103,24 @@ void main() {
           await Future.delayed(const Duration(milliseconds: 1));
           verify(() =>
               mockInputConverter.stringToUnsignedDouble(potSetIncomeFromUI));
+        },
+      );
+      test(
+        "should call the CreatePotSetUseCase with proper arguments",
+        () async {
+          // arrange
+          setUpMockInputConvertterSuccess();
+          when(() => mockCreatePotSetUseCase(any(), any()))
+              .thenAnswer((_) => Future(() {}));
+          // act
+          bloc.add(const CreatePotSetEvent(
+            name: potSetNameFromUI,
+            income: potSetIncomeFromUI,
+          ));
+          // assert
+          await Future.delayed(const Duration(milliseconds: 1));
+          verify(() => mockCreatePotSetUseCase(
+              potSetNameFromUI, potSetIncomeValideParsed));
         },
       );
     },

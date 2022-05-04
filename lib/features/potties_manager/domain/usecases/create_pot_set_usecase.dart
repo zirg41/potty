@@ -22,6 +22,6 @@ class CreatePotSetUseCase {
       createdDate: DateTime.now(),
       pots: potsCreator(),
     );
-    potsRepository.addPotSet(potSet);
+    await potsRepository.addPotSet(potSet);
   }
 }

@@ -1,5 +1,7 @@
 import 'package:get_it/get_it.dart';
-import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:potty/features/potties_manager/data/models/pot_model.dart';
+import 'package:potty/features/potties_manager/data/models/sorting_logic_model.dart';
 
 import 'core/util/id_generator.dart';
 import 'core/util/input_converter.dart';
@@ -70,6 +72,10 @@ Future<void> init() async {
   sl.registerLazySingleton(() => InputConverter());
 
   // ! External
+  await Hive.initFlutter();
+  Hive.registerAdapter(SortingLogicModelAdapter());
+  Hive.registerAdapter(PotSetHiveModelAdapter());
+  Hive.registerAdapter(PotHiveModelAdapter());
   sl.registerLazySingleton(
     () async => await Hive.openBox<PotSetHiveModel>('potSetModels'),
   );

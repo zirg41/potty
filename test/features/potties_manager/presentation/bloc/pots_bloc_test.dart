@@ -82,7 +82,7 @@ void main() {
         createdDate: DateTime.now(),
         pots: [],
       );
-      void setUpMockInputConvertterSuccess() {
+      void setUpMockInputConverterSuccess() {
         when(() => mockInputConverter.stringToUnsignedDouble(any()))
             .thenReturn(const Right(potSetIncomeValideParsed));
       }
@@ -91,7 +91,7 @@ void main() {
         "should call the InputConverter to validate and convert the string to an insigned double ",
         () async {
           // arrange
-          setUpMockInputConvertterSuccess();
+          setUpMockInputConverterSuccess();
           when(() => mockCreatePotSetUseCase(any(), any()))
               .thenAnswer((invocation) => Future(() {}));
           // act
@@ -109,7 +109,7 @@ void main() {
         "should call the CreatePotSetUseCase with proper arguments",
         () async {
           // arrange
-          setUpMockInputConvertterSuccess();
+          setUpMockInputConverterSuccess();
           when(() => mockCreatePotSetUseCase(any(), any()))
               .thenAnswer((_) => Future(() {}));
           // act
@@ -121,6 +121,28 @@ void main() {
           await Future.delayed(const Duration(milliseconds: 1));
           verify(() => mockCreatePotSetUseCase(
               potSetNameFromUI, potSetIncomeValideParsed));
+        },
+      );
+
+      test(
+        "should emit [InputErrorState] if input values is not valid",
+        () async {
+          // arrange
+          when(() => mockInputConverter.stringToUnsignedDouble(any()))
+              .thenReturn(Left(InvalidInputFailure()));
+
+          // assert later
+          final expected = <PotsState>[
+            const InputErrorState(message: INVALID_INPUT_FAILURE_MESSAGE),
+          ];
+
+          expectLater(bloc.stream, emitsInOrder(expected));
+
+          // act
+          bloc.add(const CreatePotSetEvent(
+            name: potSetNameFromUI,
+            income: potSetIncomeFromUI,
+          ));
         },
       );
     },

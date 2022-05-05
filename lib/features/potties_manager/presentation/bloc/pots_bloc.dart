@@ -144,7 +144,66 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
     );
 
     on<EditPotEvent>(
-      (event, emit) {},
+      (event, emit) async {
+        // check if user entered a pot with fixed amount
+        if (event.isAmountFixed!) {
+          final Either<Failure, double> inputEither =
+              inputConverter.stringToUnsignedDouble(event.amount!);
+
+          inputEither.fold(
+            (failure) async {
+              emit(
+                const InputErrorState(message: INVALID_INPUT_FAILURE_MESSAGE),
+              );
+            },
+            (parsedAmount) async {
+              await editPotUseCase.call(
+                potId: event.potId,
+                potSetId: event.potSetId,
+                name: event.name!,
+                amount: parsedAmount,
+                isAmountFixed: event.isAmountFixed!,
+              );
+            },
+          );
+        }
+        // check if user entered a pot with fixed percent
+        else if (!event.isAmountFixed!) {
+          final Either<Failure, double> inputEither =
+              inputConverter.stringToUnsignedDouble(event.percent!);
+
+          inputEither.fold(
+            (failure) async {
+              emit(
+                const InputErrorState(message: INVALID_INPUT_FAILURE_MESSAGE),
+              );
+            },
+            (parsedPercent) async {
+              await editPotUseCase.call(
+                potId: event.potId,
+                potSetId: event.potSetId,
+                name: event.name!,
+                amount: parsedPercent,
+                isAmountFixed: event.isAmountFixed!,
+              );
+            },
+          );
+        }
+        // check if user chose a template pot
+        else if (event.potCreator != null) {
+          await editPotUseCase.call(
+            potId: event.potId,
+            potSetId: event.potSetId,
+            potCreator: event.potCreator,
+          );
+        }
+        // program hardly gets to this place, but so
+        else {
+          emit(
+            const InputErrorState(message: INVALID_INPUT_FAILURE_MESSAGE),
+          );
+        }
+      },
     );
 
     on<EditPotSetNameEvent>(

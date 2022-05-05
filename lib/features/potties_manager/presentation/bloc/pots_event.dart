@@ -75,8 +75,8 @@ class EditPotEvent extends PotsEvent {
   final String potId;
   final String? name;
   final bool? isAmountFixed;
-  final double? amount;
-  final double? percent;
+  final String? amount;
+  final String? percent;
   final IPotCreator? potCreator;
 
   const EditPotEvent({

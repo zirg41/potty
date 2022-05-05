@@ -221,7 +221,12 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
     );
 
     on<SetSortingEvent>(
-      (event, emit) {},
+      (event, emit) async {
+        await setSortingUseCase.call(
+          potSetId: event.potSetId,
+          sortingLogic: event.sortingLogic,
+        );
+      },
     );
   }
 }

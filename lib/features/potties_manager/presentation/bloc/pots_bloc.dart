@@ -131,7 +131,9 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
     );
 
     on<DeletePotSetEvent>(
-      (event, emit) {},
+      (event, emit) async {
+        await deletePotSetUseCase(potSetIdToDelete: event.potSetIdToDelete);
+      },
     );
 
     on<DeletePotEvent>(

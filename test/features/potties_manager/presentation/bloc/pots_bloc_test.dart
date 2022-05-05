@@ -4,6 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:potty/core/util/input_converter.dart';
+import 'package:potty/features/potties_manager/domain/entities/pot.dart';
 import 'package:potty/features/potties_manager/domain/entities/pot_set.dart';
 import 'package:potty/features/potties_manager/domain/usecases/create_pot_set_usecase.dart';
 import 'package:potty/features/potties_manager/domain/usecases/create_pot_usecase.dart';
@@ -143,6 +144,51 @@ void main() {
             name: potSetNameFromUI,
             income: potSetIncomeFromUI,
           ));
+        },
+      );
+    },
+  );
+  group(
+    'on CreatePotEvent',
+    () {
+      const String testPotName = 'test pot';
+      const String testPotSetId = 'potSetId';
+      const String inputAmountFromUI = '1000';
+      const String inputPercentFromUI = '10';
+      const double inputAmountParsed = 1000;
+      const double inputPercentParsed = 10;
+      Pot testPot = Pot(
+          id: 'id',
+          name: testPotName,
+          amount: inputAmountParsed,
+          percent: inputPercentParsed);
+      void setUpMockInputConverterSuccess(parsedValue) {
+        when(() => mockInputConverter.stringToUnsignedDouble(any()))
+            .thenReturn(Right(parsedValue));
+      }
+
+      test(
+        "should call InputConverter to validate and convert the string to double",
+        () async {
+          // arrange
+          setUpMockInputConverterSuccess(inputAmountParsed);
+          when(() => mockCreatePotUseCase.call(
+              potSetId: testPotSetId,
+              name: testPotName,
+              amount: inputAmountParsed,
+              isAmountFixed: true)).thenAnswer((invocation) => Future(() {}));
+
+          // act
+          bloc.add(const CreatePotEvent(
+              potSetId: testPotSetId,
+              name: testPotName,
+              amount: inputAmountFromUI,
+              isAmountFixed: true));
+
+          // assert
+          await Future.delayed(const Duration(milliseconds: 1));
+          verify(() =>
+              mockInputConverter.stringToUnsignedDouble(inputAmountFromUI));
         },
       );
     },

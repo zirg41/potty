@@ -214,7 +214,10 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
     );
 
     on<EditPotSetIncomeEvent>(
-      (event, emit) {},
+      (event, emit) async {
+        await editPotSetUseCase.changePotSetName(
+            potSetId: event.potSetId, newName: event.income);
+      },
     );
 
     on<SetSortingEvent>(

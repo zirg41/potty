@@ -10,3 +10,9 @@ abstract class PotsWatcherEvent extends Equatable {
 class PotsWatcherGetAllPotsEvent extends PotsWatcherEvent {
   const PotsWatcherGetAllPotsEvent();
 }
+
+class PotsWatcherPotsReceived extends PotsWatcherEvent {
+  final Either<Failure, List<PotSet>> failureOrPots;
+
+  const PotsWatcherPotsReceived(this.failureOrPots);
+}

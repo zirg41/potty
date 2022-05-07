@@ -1,22 +1,50 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
+import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:potty/core/errors/failure.dart';
 import 'package:potty/features/potties_manager/domain/entities/pot_set.dart';
 import 'package:potty/features/potties_manager/domain/usecases/listen_potsets_stream_usecase.dart';
 part 'pots_watcher_event.dart';
 part 'pots_watcher_state.dart';
 
 class PotsWatcherBloc extends Bloc<PotsWatcherEvent, PotsWatcherState> {
-  ListenPotSetsStreamUseCase listenPotSetsStreamUseCase;
+  final ListenPotSetsStreamUseCase listenPotSetsStreamUseCase;
+  StreamSubscription<Either<Failure, List<PotSet>>>? _noteStreamSubscription;
 
   PotsWatcherBloc(this.listenPotSetsStreamUseCase)
       : super(PotsWatcherInitial()) {
-    on<PotsWatcherGetAllPotsEvent>((event, emit) {
+    on<PotsWatcherGetAllPotsEvent>((event, emit) async {
       emit(const PotsWatcherLoadingState());
 
       final potsStream = listenPotSetsStreamUseCase();
+      //_noteStreamSubscription?.cancel();
 
-      potsStream.listen((event) {
-        event.fold(
+      potsStream.listen((failureOrPots) {
+        add(PotsWatcherPotsReceived(failureOrPots));
+      });
+    });
+
+    on<PotsWatcherPotsReceived>(
+      (event, emit) {
+        event.failureOrPots.fold(
+          (failure) async => emit(const PotsWatcherLoadingError()),
+          (potSets) async {
+            print('got potsstream in bloc ${potSets.length}');
+
+            emit(PotsWatcherLoadedState(potSets));
+            print('after emmitting state with new pots');
+          },
+        );
+      },
+    );
+  }
+}
+
+
+/*
+failureOrPots.fold(
           (failure) async => emit(const PotsWatcherLoadingError()),
           (potSets) async {
             print('got potsstream in bloc ${potSets.length}');
@@ -24,7 +52,4 @@ class PotsWatcherBloc extends Bloc<PotsWatcherEvent, PotsWatcherState> {
             emit(PotsWatcherLoadedState(potSets));
           },
         );
-      });
-    });
-  }
-}
+*/

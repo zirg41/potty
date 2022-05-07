@@ -3,6 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:potty/features/potties_manager/data/models/pot_model.dart';
 import 'package:potty/features/potties_manager/data/models/sorting_logic_model.dart';
 import 'package:potty/features/potties_manager/presentation/bloc/pots_actor/pots_bloc.dart';
+import 'package:potty/features/potties_manager/presentation/bloc/pots_watcher/pots_watcher_bloc.dart';
 
 import 'core/util/id_generator.dart';
 import 'core/util/input_converter.dart';
@@ -32,10 +33,12 @@ Future<void> init() async {
       deletePotUseCase: sl(),
       editPotUseCase: sl(),
       editPotSetUseCase: sl(),
-      listenPotSetsStreamUseCase: sl(),
       setSortingUseCase: sl(),
       inputConverter: sl(),
     ),
+  );
+  sl.registerFactory(
+    () => PotsWatcherBloc(sl()),
   );
 
   //* Use cases

@@ -8,3 +8,15 @@ abstract class PotsWatcherState extends Equatable {
 }
 
 class PotsWatcherInitial extends PotsWatcherState {}
+
+class PotsWatcherLoadingState extends PotsWatcherState {}
+
+class PotsWatcherLoadedState extends PotsWatcherState {
+  final List<PotSet> pots;
+
+  const PotsWatcherLoadedState(this.pots);
+}
+
+class PotsWatcherLoadingError extends PotsWatcherState {
+  const PotsWatcherLoadingError();
+}

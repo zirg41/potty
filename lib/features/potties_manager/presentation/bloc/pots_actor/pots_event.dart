@@ -7,10 +7,6 @@ abstract class PotsEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetPotsEvent extends PotsEvent {
-  const GetPotsEvent();
-}
-
 class CreatePotSetEvent extends PotsEvent {
   final String name;
   final String income;

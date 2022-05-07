@@ -27,7 +27,6 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
   final CreatePotSetUseCase createPotSetUseCase;
   final EditPotSetUseCase editPotSetUseCase;
   final DeletePotSetUseCase deletePotSetUseCase;
-  final ListenPotSetsStreamUseCase listenPotSetsStreamUseCase;
   final SetSortingUseCase setSortingUseCase;
   final InputConverter inputConverter;
 
@@ -38,12 +37,9 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
     required this.deletePotUseCase,
     required this.editPotUseCase,
     required this.editPotSetUseCase,
-    required this.listenPotSetsStreamUseCase,
     required this.setSortingUseCase,
     required this.inputConverter,
   }) : super(PotsInitial()) {
-    on<GetPotsEvent>(mapGetPotsEventToState);
-
     on<CreatePotSetEvent>(
       (event, emit) {
         final Either<Failure, double> inputEither =
@@ -219,23 +215,5 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
         );
       },
     );
-  }
-
-  Future<void> mapGetPotsEventToState(
-    GetPotsEvent event,
-    Emitter<PotsState> emit,
-  ) async {
-    final potsStream = listenPotSetsStreamUseCase.call();
-
-    potsStream.listen((event) {
-      event.fold(
-        (failure) async => emit(const GetPotsErrorState()),
-        (potSets) async {
-          print('got potsstream in bloc ${potSets.length}');
-
-          emit(PotSetsLoaded(potSets));
-        },
-      );
-    });
   }
 }

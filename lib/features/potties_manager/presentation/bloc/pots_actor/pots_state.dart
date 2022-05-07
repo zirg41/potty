@@ -9,18 +9,6 @@ abstract class PotsState extends Equatable {
 
 class PotsInitial extends PotsState {}
 
-class LoadingState extends PotsState {}
-
-class PotSetsLoaded extends PotsState {
-  final List<PotSet> pots;
-
-  const PotSetsLoaded(this.pots);
-}
-
-class GetPotsErrorState extends PotsState {
-  const GetPotsErrorState();
-}
-
 class InputErrorState extends PotsState {
   final String message;
 

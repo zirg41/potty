@@ -20,7 +20,7 @@ import 'features/potties_manager/domain/usecases/listen_potsets_stream_usecase.d
 import 'features/potties_manager/domain/usecases/set_sorting_usecase.dart';
 import 'features/potties_manager/presentation/bloc/pots_bloc.dart';
 
-final sl = GetIt.asNewInstance();
+final sl = GetIt.instance;
 
 Future<void> init() async {
   //! Features - Potties Manager
@@ -76,7 +76,6 @@ Future<void> init() async {
   Hive.registerAdapter(SortingLogicModelAdapter());
   Hive.registerAdapter(PotSetHiveModelAdapter());
   Hive.registerAdapter(PotHiveModelAdapter());
-  sl.registerLazySingleton(
-    () async => await Hive.openBox<PotSetHiveModel>('potSetModels'),
-  );
+  final hiveBox = await Hive.openBox<PotSetHiveModel>('potSetModels');
+  sl.registerLazySingleton(() => hiveBox);
 }

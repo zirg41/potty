@@ -9,7 +9,9 @@ abstract class PotsWatcherState extends Equatable {
 
 class PotsWatcherInitial extends PotsWatcherState {}
 
-class PotsWatcherLoadingState extends PotsWatcherState {}
+class PotsWatcherLoadingState extends PotsWatcherState {
+  const PotsWatcherLoadingState();
+}
 
 class PotsWatcherLoadedState extends PotsWatcherState {
   final List<PotSet> pots;

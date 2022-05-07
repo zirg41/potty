@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:potty/features/potties_manager/data/models/pot_model.dart';
 import 'package:potty/features/potties_manager/data/models/sorting_logic_model.dart';
+import 'package:potty/features/potties_manager/presentation/bloc/pots_actor/pots_bloc.dart';
 
 import 'core/util/id_generator.dart';
 import 'core/util/input_converter.dart';
@@ -18,7 +19,6 @@ import 'features/potties_manager/domain/usecases/edit_pot_usecase.dart';
 import 'features/potties_manager/domain/usecases/edit_potset_usecase.dart';
 import 'features/potties_manager/domain/usecases/listen_potsets_stream_usecase.dart';
 import 'features/potties_manager/domain/usecases/set_sorting_usecase.dart';
-import 'features/potties_manager/presentation/bloc/pots_bloc.dart';
 
 final sl = GetIt.instance;
 

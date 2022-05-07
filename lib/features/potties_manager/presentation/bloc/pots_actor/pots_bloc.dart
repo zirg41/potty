@@ -1,22 +1,21 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:potty/core/errors/failure.dart';
-import 'package:potty/core/util/input_converter.dart';
-import 'package:potty/core/util/pot_creator.dart';
-import 'package:potty/core/util/pots_creator.dart';
-import 'package:potty/features/potties_manager/domain/entities/sorting_logic.dart';
+import 'package:potty/features/potties_manager/domain/usecases/delete_pot_set_usecase.dart';
+import 'package:potty/features/potties_manager/domain/usecases/listen_potsets_stream_usecase.dart';
+import 'package:potty/features/potties_manager/domain/usecases/set_sorting_usecase.dart';
 
-import '../../domain/entities/pot_set.dart';
-import '../../domain/usecases/create_pot_set_usecase.dart';
-import '../../domain/usecases/create_pot_usecase.dart';
-import '../../domain/usecases/delete_pot_set_usecase.dart';
-import '../../domain/usecases/delete_pot_usecase.dart';
-import '../../domain/usecases/edit_pot_usecase.dart';
-import '../../domain/usecases/edit_potset_usecase.dart';
-import '../../domain/usecases/listen_potsets_stream_usecase.dart';
-import '../../domain/usecases/set_sorting_usecase.dart';
+import '../../../../../core/errors/failure.dart';
+import '../../../../../core/util/input_converter.dart';
+import '../../../../../core/util/pot_creator.dart';
+import '../../../../../core/util/pots_creator.dart';
+import '../../../domain/entities/pot_set.dart';
+import '../../../domain/entities/sorting_logic.dart';
+import '../../../domain/usecases/create_pot_set_usecase.dart';
+import '../../../domain/usecases/create_pot_usecase.dart';
+import '../../../domain/usecases/delete_pot_usecase.dart';
+import '../../../domain/usecases/edit_pot_usecase.dart';
+import '../../../domain/usecases/edit_potset_usecase.dart';
 
 part 'pots_event.dart';
 part 'pots_state.dart';
@@ -43,16 +42,7 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
     required this.setSortingUseCase,
     required this.inputConverter,
   }) : super(PotsInitial()) {
-    on<GetPotsEvent>((event, emit) {
-      emit(LoadingState());
-      final potsStream = listenPotSetsStreamUseCase();
-      potsStream.listen((event) {
-        event.fold(
-          (failure) => const GetPotsErrorState(),
-          (potSets) => PotSetsLoaded(potSets),
-        );
-      });
-    });
+    on<GetPotsEvent>(mapGetPotsEventToState);
 
     on<CreatePotSetEvent>(
       (event, emit) {
@@ -132,7 +122,8 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
 
     on<DeletePotSetEvent>(
       (event, emit) async {
-        await deletePotSetUseCase(potSetIdToDelete: event.potSetIdToDelete);
+        await deletePotSetUseCase.call(
+            potSetIdToDelete: event.potSetIdToDelete);
       },
     );
 
@@ -228,5 +219,23 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
         );
       },
     );
+  }
+
+  Future<void> mapGetPotsEventToState(
+    GetPotsEvent event,
+    Emitter<PotsState> emit,
+  ) async {
+    final potsStream = listenPotSetsStreamUseCase.call();
+
+    potsStream.listen((event) {
+      event.fold(
+        (failure) async => emit(const GetPotsErrorState()),
+        (potSets) async {
+          print('got potsstream in bloc ${potSets.length}');
+
+          emit(PotSetsLoaded(potSets));
+        },
+      );
+    });
   }
 }

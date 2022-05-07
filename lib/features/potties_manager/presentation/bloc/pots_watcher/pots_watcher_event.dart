@@ -6,3 +6,7 @@ abstract class PotsWatcherEvent extends Equatable {
   @override
   List<Object> get props => [];
 }
+
+class PotsWatcherGetAllPotsEvent extends PotsWatcherEvent {
+  const PotsWatcherGetAllPotsEvent();
+}

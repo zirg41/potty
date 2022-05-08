@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import '../bloc/pots_actor/pots_bloc.dart';
 
 import '../../domain/entities/pot_set.dart';
+import '../bloc/pots_actor/pots_bloc.dart';
+
+final dateFormat = DateFormat.yMMMd();
 
 class PotSetItem extends StatelessWidget {
   final PotSet potset;
@@ -15,10 +17,7 @@ class PotSetItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final dateFormat = DateFormat.yMMMd();
-
     final themeData = Theme.of(context);
-
     return GestureDetector(
       // TODO Navigate to concrete pot
       onTap: () => _navigateToConcretePot(context),
@@ -56,13 +55,13 @@ class PotSetItem extends StatelessWidget {
                       title: const Text("Вы уверены?"),
                       content: const Text("Удалить данную позицию?"),
                       actions: [
-                        FlatButton(
+                        TextButton(
                           onPressed: () {
                             Navigator.of(context).pop(false);
                           },
                           child: const Text("Нет"),
                         ),
-                        FlatButton(
+                        TextButton(
                           onPressed: () {
                             Navigator.of(context).pop(true);
                           },

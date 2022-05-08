@@ -14,7 +14,7 @@ import 'package:potty/features/potties_manager/domain/usecases/edit_pot_usecase.
 import 'package:potty/features/potties_manager/domain/usecases/edit_potset_usecase.dart';
 import 'package:potty/features/potties_manager/domain/usecases/listen_potsets_stream_usecase.dart';
 import 'package:potty/features/potties_manager/domain/usecases/set_sorting_usecase.dart';
-import 'package:potty/features/potties_manager/presentation/bloc/pots_bloc.dart';
+import 'package:potty/features/potties_manager/presentation/bloc/pots_actor/pots_bloc.dart';
 
 class MockCreatePotSetUseCase extends Mock implements CreatePotSetUseCase {}
 
@@ -65,7 +65,6 @@ void main() {
         deletePotUseCase: mockDeletePotUseCase,
         editPotUseCase: mockEditPotUseCase,
         editPotSetUseCase: mockEditPotSetUseCase,
-        listenPotSetsStreamUseCase: mockListenPotSetsStreamUseCase,
         setSortingUseCase: mockSetSortingUseCase,
         inputConverter: mockInputConverter);
   });

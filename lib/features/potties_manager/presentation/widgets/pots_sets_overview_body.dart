@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:potty/core/errors/failure.dart';
 import '../bloc/pots_watcher/pots_watcher_bloc.dart';
 import 'pot_set_item.dart';
 
@@ -17,7 +18,7 @@ class PotSetsOverviewBody extends StatelessWidget {
           );
         }
         if (state is PotsWatcherLoadingError) {
-          return const Center(child: Text('Getting data from memory failed'));
+          return const Center(child: Text(GETTING_DATA_FROM_MEMORY_FAILED));
         }
         if (state is PotsWatcherLoadedState) {
           return ListView.builder(
@@ -28,7 +29,7 @@ class PotSetsOverviewBody extends StatelessWidget {
             },
           );
         }
-        return const Center(child: Text('No state'));
+        return const Center(child: Text(NO_STATE_ERROR));
       },
     );
   }

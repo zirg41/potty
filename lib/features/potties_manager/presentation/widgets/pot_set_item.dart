@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../dependency_injection.dart';
 import '../bloc/pots_actor/pots_bloc.dart';
 
 import '../../domain/entities/pot_set.dart';
@@ -17,6 +16,7 @@ class PotSetItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeData = Theme.of(context);
     return GestureDetector(
+      // TODO Navigate to concrete pot
       onTap: () => _navigateToConcretePot(context),
       child: Card(
         margin: const EdgeInsets.all(10),

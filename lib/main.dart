@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dependency_injection.dart' as di;
-import 'features/potties_manager/presentation/pages/pot_sets_page.dart';
+import 'features/potties_manager/presentation/pages/pot_sets_overview_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: PotSetsPage(),
+      home: PotSetsOverviewPage(),
     );
   }
 }

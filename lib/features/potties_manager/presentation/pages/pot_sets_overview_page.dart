@@ -7,9 +7,9 @@ import '../bloc/pots_actor/pots_bloc.dart';
 import '../bloc/pots_watcher/pots_watcher_bloc.dart';
 import '../widgets/pots_sets_overview_body.dart';
 
-class PotSetsPage extends StatelessWidget {
+class PotSetsOverviewPage extends StatelessWidget {
   static const routeName = "/pot-sets-page";
-  const PotSetsPage({Key? key}) : super(key: key);
+  const PotSetsOverviewPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

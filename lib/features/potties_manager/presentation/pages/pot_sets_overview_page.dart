@@ -32,7 +32,7 @@ class PotSetsOverviewPage extends StatelessWidget {
           onPressed: () {
             // TODO implement button click handler
             sl<PotsBloc>().add(CreatePotSetEvent(
-                name: 'name3', income: Random().nextInt(10000).toString()));
+                name: 'Test Name', income: Random().nextInt(10000).toString()));
           },
         ),
       ),

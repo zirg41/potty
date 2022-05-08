@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
+import 'package:potty/ui/global/misc.dart';
 
 import '../../domain/entities/pot_set.dart';
 import '../bloc/pots_actor/pots_bloc.dart';
-
-final dateFormat = DateFormat.yMMMd();
 
 class PotSetItem extends StatelessWidget {
   final PotSet potset;
@@ -41,7 +39,7 @@ class PotSetItem extends StatelessWidget {
                     width: 20,
                   ),
                   Text(
-                    dateFormat.format(potset.createdDate),
+                    potSetDateFormat.format(potset.createdDate),
                     style: themeData.textTheme.subtitle1,
                   ),
                 ],

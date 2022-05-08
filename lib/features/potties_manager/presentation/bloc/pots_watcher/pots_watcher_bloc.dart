@@ -19,7 +19,6 @@ class PotsWatcherBloc extends Bloc<PotsWatcherEvent, PotsWatcherState> {
       emit(const PotsWatcherLoadingState());
 
       final potsStream = listenPotSetsStreamUseCase();
-      //_noteStreamSubscription?.cancel();
 
       potsStream.listen((failureOrPots) {
         add(PotsWatcherPotsReceived(failureOrPots));
@@ -31,25 +30,15 @@ class PotsWatcherBloc extends Bloc<PotsWatcherEvent, PotsWatcherState> {
         event.failureOrPots.fold(
           (failure) async => emit(const PotsWatcherLoadingError()),
           (potSets) async {
-            print('got potsstream in bloc ${potSets.length}');
-
             emit(PotsWatcherLoadedState(potSets));
-            print('after emmitting state with new pots');
           },
         );
       },
     );
   }
+  @override
+  Future<void> close() {
+    _noteStreamSubscription?.cancel();
+    return super.close();
+  }
 }
-
-
-/*
-failureOrPots.fold(
-          (failure) async => emit(const PotsWatcherLoadingError()),
-          (potSets) async {
-            print('got potsstream in bloc ${potSets.length}');
-
-            emit(PotsWatcherLoadedState(potSets));
-          },
-        );
-*/

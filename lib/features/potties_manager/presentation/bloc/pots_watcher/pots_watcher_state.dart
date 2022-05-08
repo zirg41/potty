@@ -17,6 +17,8 @@ class PotsWatcherLoadedState extends PotsWatcherState {
   final List<PotSet> pots;
 
   const PotsWatcherLoadedState(this.pots);
+  @override
+  List<Object> get props => [pots];
 }
 
 class PotsWatcherLoadingError extends PotsWatcherState {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 import '../bloc/pots_actor/pots_bloc.dart';
 
 import '../../domain/entities/pot_set.dart';
@@ -14,7 +15,10 @@ class PotSetItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final dateFormat = DateFormat.yMMMd();
+
     final themeData = Theme.of(context);
+
     return GestureDetector(
       // TODO Navigate to concrete pot
       onTap: () => _navigateToConcretePot(context),
@@ -25,12 +29,23 @@ class PotSetItem extends StatelessWidget {
             ListTile(
               title: Text(
                 // TODO Change id showing to name
-                potset.id,
+                potset.name,
                 style: themeData.textTheme.bodyText1,
               ),
-              subtitle: Text(
-                potset.income.toString(),
-                style: themeData.textTheme.subtitle1,
+              subtitle: Row(
+                children: [
+                  Text(
+                    potset.income.toString(),
+                    style: themeData.textTheme.subtitle1,
+                  ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  Text(
+                    dateFormat.format(potset.createdDate),
+                    style: themeData.textTheme.subtitle1,
+                  ),
+                ],
               ),
               trailing: IconButton(
                 icon: const Icon(Icons.delete),

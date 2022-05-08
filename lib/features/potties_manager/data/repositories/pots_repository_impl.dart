@@ -57,6 +57,7 @@ class PotsRepositoryImpl implements IPotsRepository {
 
   @override
   Stream<Either<Failure, List<PotSet>>> getAllPots() {
+    localDatasource.initializeDataSource();
     return localDatasource.getFromMemory();
   }
 

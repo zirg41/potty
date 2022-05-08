@@ -20,7 +20,8 @@ class LocalHiveDatasourceImpl implements ILocalDatasource {
   @override
   Stream<Either<Failure, List<PotSet>>> getFromMemory() async* {
     _inputController.stream.listen((event) {
-      if (event == DatasourceEvent.update) {
+      if (event == DatasourceEvent.update ||
+          event == DatasourceEvent.initialize) {
         try {
           _outputController.sink.add(
             Right(_potSetBox.values.map((e) => e.toPotSetEntity()).toList()),
@@ -47,8 +48,13 @@ class LocalHiveDatasourceImpl implements ILocalDatasource {
     _inputController.sink.add(DatasourceEvent.update);
     await _potSetBox.delete(potSetId);
   }
+
+  void initializeDataSource() {
+    _inputController.sink.add(DatasourceEvent.initialize);
+  }
 }
 
 enum DatasourceEvent {
+  initialize,
   update,
 }

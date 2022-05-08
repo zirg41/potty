@@ -19,7 +19,8 @@ class LocalHiveDatasourceImpl implements ILocalDatasource {
 
   @override
   Stream<Either<Failure, List<PotSet>>> getFromMemory() async* {
-    _inputController.stream.listen((event) {
+    // TODO delete asBroadcastStream in production
+    _inputController.stream.asBroadcastStream().listen((event) {
       if (event == DatasourceEvent.update ||
           event == DatasourceEvent.initialize) {
         try {

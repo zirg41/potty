@@ -1,8 +1,8 @@
 import 'package:hive/hive.dart';
-import 'package:potty/features/potties_manager/data/models/pot_model.dart';
-import 'package:potty/features/potties_manager/data/models/sorting_logic_model.dart';
-import 'package:potty/features/potties_manager/domain/entities/pot_set.dart';
-import 'package:potty/features/potties_manager/domain/entities/sorting_logic.dart';
+import 'pot_model.dart';
+import 'sorting_logic_model.dart';
+import '../../domain/entities/pot_set.dart';
+import '../../domain/entities/sorting_logic.dart';
 
 part 'pot_set_model.g.dart';
 

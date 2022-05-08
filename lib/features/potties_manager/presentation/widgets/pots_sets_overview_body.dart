@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:potty/features/potties_manager/presentation/bloc/pots_watcher/pots_watcher_bloc.dart';
-import 'package:potty/features/potties_manager/presentation/widgets/pot_set_item.dart';
+import '../bloc/pots_watcher/pots_watcher_bloc.dart';
+import 'pot_set_item.dart';
 
 class PotSetsOverviewBody extends StatelessWidget {
   const PotSetsOverviewBody({Key? key}) : super(key: key);

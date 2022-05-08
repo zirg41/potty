@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:potty/features/potties_manager/domain/entities/sorting_logic.dart';
+import '../entities/sorting_logic.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../entities/pot.dart';

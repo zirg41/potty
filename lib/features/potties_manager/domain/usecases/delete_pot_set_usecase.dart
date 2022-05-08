@@ -1,4 +1,4 @@
-import 'package:potty/features/potties_manager/domain/repositories/i_pots_repository.dart';
+import '../repositories/i_pots_repository.dart';
 
 class DeletePotSetUseCase {
   IPotsRepository potsRepository;

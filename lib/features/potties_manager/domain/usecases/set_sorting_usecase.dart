@@ -1,4 +1,4 @@
-import 'package:potty/features/potties_manager/domain/entities/sorting_logic.dart';
+import '../entities/sorting_logic.dart';
 
 import '../repositories/i_pots_repository.dart';
 

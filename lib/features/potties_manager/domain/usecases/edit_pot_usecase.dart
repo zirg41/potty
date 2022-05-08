@@ -1,6 +1,6 @@
-import 'package:potty/core/util/pot_creator.dart';
-import 'package:potty/features/potties_manager/domain/entities/pot.dart';
-import 'package:potty/features/potties_manager/domain/repositories/i_pots_repository.dart';
+import '../../../../core/util/pot_creator.dart';
+import '../entities/pot.dart';
+import '../repositories/i_pots_repository.dart';
 
 class EditPotUseCase {
   final IPotsRepository potsRepository;

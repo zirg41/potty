@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:potty/dependency_injection.dart' as di;
-import 'package:potty/features/potties_manager/presentation/pages/pot_sets_page.dart';
+import 'dependency_injection.dart' as di;
+import 'features/potties_manager/presentation/pages/pot_sets_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

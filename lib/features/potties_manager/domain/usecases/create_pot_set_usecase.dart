@@ -1,7 +1,7 @@
-import 'package:potty/core/util/id_generator.dart';
-import 'package:potty/core/util/pots_creator.dart';
-import 'package:potty/features/potties_manager/domain/entities/pot_set.dart';
-import 'package:potty/features/potties_manager/domain/repositories/i_pots_repository.dart';
+import '../../../../core/util/id_generator.dart';
+import '../../../../core/util/pots_creator.dart';
+import '../entities/pot_set.dart';
+import '../repositories/i_pots_repository.dart';
 
 class CreatePotSetUseCase {
   late PotSet potSet;

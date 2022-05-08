@@ -1,4 +1,4 @@
-import 'package:potty/features/potties_manager/domain/entities/pot.dart';
+import '../../features/potties_manager/domain/entities/pot.dart';
 
 abstract class IPotCreator {
   Pot call();

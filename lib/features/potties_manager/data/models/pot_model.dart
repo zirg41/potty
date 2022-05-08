@@ -1,5 +1,5 @@
 import 'package:hive/hive.dart';
-import 'package:potty/features/potties_manager/domain/entities/pot.dart';
+import '../../domain/entities/pot.dart';
 
 part 'pot_model.g.dart';
 

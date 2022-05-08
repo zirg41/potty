@@ -1,9 +1,9 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:potty/features/potties_manager/domain/usecases/delete_pot_set_usecase.dart';
-import 'package:potty/features/potties_manager/domain/usecases/listen_potsets_stream_usecase.dart';
-import 'package:potty/features/potties_manager/domain/usecases/set_sorting_usecase.dart';
+import '../../../domain/usecases/delete_pot_set_usecase.dart';
+import '../../../domain/usecases/listen_potsets_stream_usecase.dart';
+import '../../../domain/usecases/set_sorting_usecase.dart';
 
 import '../../../../../core/errors/failure.dart';
 import '../../../../../core/util/input_converter.dart';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:potty/dependency_injection.dart';
-import 'package:potty/features/potties_manager/presentation/bloc/pots_actor/pots_bloc.dart';
+import '../../../../dependency_injection.dart';
+import '../bloc/pots_actor/pots_bloc.dart';
 
 import '../../domain/entities/pot_set.dart';
 

@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:potty/core/errors/failure.dart';
-import 'package:potty/features/potties_manager/domain/entities/pot_set.dart';
-import 'package:potty/features/potties_manager/domain/usecases/listen_potsets_stream_usecase.dart';
+import '../../../../../core/errors/failure.dart';
+import '../../../domain/entities/pot_set.dart';
+import '../../../domain/usecases/listen_potsets_stream_usecase.dart';
 part 'pots_watcher_event.dart';
 part 'pots_watcher_state.dart';
 

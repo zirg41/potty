@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:potty/dependency_injection.dart' as di;
+import 'package:potty/features/potties_manager/presentation/pages/pot_sets_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const Scaffold(body: Center(child: Text("Empty page"))),
+      home: PotSetsPage(),
     );
   }
 }

@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:potty/dependency_injection.dart';
+import 'package:potty/features/potties_manager/presentation/bloc/pots_actor/pots_bloc.dart';
+
+import '../../domain/entities/pot_set.dart';
 
 class PotSetItem extends StatelessWidget {
-  final String potSetName;
-  final double potSetIncome;
-  final DateTime potSetCreatedDate;
-  final Function deletePotSet;
+  final PotSet potset;
 
   const PotSetItem({
     Key? key,
-    required this.potSetName,
-    required this.potSetIncome,
-    required this.potSetCreatedDate,
-    required this.deletePotSet,
+    required this.potset,
   }) : super(key: key);
 
   @override
@@ -25,11 +24,12 @@ class PotSetItem extends StatelessWidget {
           children: [
             ListTile(
               title: Text(
-                potSetName,
+                // TODO Change id showing to name
+                potset.id,
                 style: themeData.textTheme.bodyText1,
               ),
               subtitle: Text(
-                potSetIncome.toString(),
+                potset.income.toString(),
                 style: themeData.textTheme.subtitle1,
               ),
               trailing: IconButton(
@@ -60,7 +60,8 @@ class PotSetItem extends StatelessWidget {
                     ),
                   );
                   if (response) {
-                    deletePotSet;
+                    BlocProvider.of<PotsBloc>(context)
+                        .add(DeletePotSetEvent(potSetIdToDelete: potset.id));
                   }
                 },
               ),

@@ -2,14 +2,12 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import '../../../domain/usecases/delete_pot_set_usecase.dart';
-import '../../../domain/usecases/listen_potsets_stream_usecase.dart';
 import '../../../domain/usecases/set_sorting_usecase.dart';
 
 import '../../../../../core/errors/failure.dart';
 import '../../../../../core/util/input_converter.dart';
 import '../../../../../core/util/pot_creator.dart';
 import '../../../../../core/util/pots_creator.dart';
-import '../../../domain/entities/pot_set.dart';
 import '../../../domain/entities/sorting_logic.dart';
 import '../../../domain/usecases/create_pot_set_usecase.dart';
 import '../../../domain/usecases/create_pot_usecase.dart';

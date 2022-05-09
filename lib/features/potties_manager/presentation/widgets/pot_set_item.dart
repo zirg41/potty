@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:potty/global/misc.dart';
+import '../../../../global/misc.dart';
 
 import '../../domain/entities/pot_set.dart';
 import '../bloc/pots_actor/pots_bloc.dart';

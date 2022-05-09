@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:potty/features/potties_manager/presentation/widgets/theme_switcher.dart';
-import 'package:potty/global/theme/app_themes.dart';
-import 'package:potty/global/theme/bloc/theme_bloc.dart';
+import '../widgets/theme_switcher.dart';
+import '../../../../global/theme/app_themes.dart';
+import '../../../../global/theme/bloc/theme_bloc.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({

@@ -50,6 +50,7 @@ class LocalHiveDatasourceImpl implements ILocalDatasource {
     await _potSetBox.delete(potSetId);
   }
 
+  @override
   void initializeDataSource() {
     _inputController.sink.add(DatasourceEvent.initialize);
   }

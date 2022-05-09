@@ -1,5 +1,4 @@
 import '../entities/sorting_logic.dart';
-
 import '../repositories/i_pots_repository.dart';
 
 class SetSortingUseCase {

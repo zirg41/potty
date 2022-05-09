@@ -2,7 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:intl/intl.dart';
-import 'package:potty/global/theme/bloc/theme_bloc.dart';
+import 'global/theme/bloc/theme_bloc.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'features/potties_manager/data/models/pot_model.dart';
 import 'features/potties_manager/data/models/sorting_logic_model.dart';

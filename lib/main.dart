@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:potty/features/potties_manager/presentation/pages/settings_page.dart';
-import 'package:potty/global/theme/bloc/theme_bloc.dart';
+import 'features/potties_manager/presentation/pages/settings_page.dart';
+import 'global/theme/bloc/theme_bloc.dart';
 import 'dependency_injection.dart' as di;
 
 void main() async {

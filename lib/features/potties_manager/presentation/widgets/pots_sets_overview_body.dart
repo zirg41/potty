@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:potty/core/errors/failure.dart';
+import '../../../../core/errors/failure.dart';
 import '../bloc/pots_watcher/pots_watcher_bloc.dart';
 import 'pot_set_item.dart';
 

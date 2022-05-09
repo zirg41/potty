@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:potty/features/potties_manager/domain/entities/pot.dart';
 import 'package:potty/features/potties_manager/domain/entities/pot_set.dart';

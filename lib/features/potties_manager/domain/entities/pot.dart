@@ -1,4 +1,5 @@
-// ignore: must_be_immutable
+// ignore_for_file: must_be_immutable
+
 import 'package:equatable/equatable.dart';
 
 /// WARNING amount fields must be decimal formatted

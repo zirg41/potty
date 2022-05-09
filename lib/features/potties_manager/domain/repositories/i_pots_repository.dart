@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import '../entities/sorting_logic.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../entities/pot.dart';
 import '../entities/pot_set.dart';
+import '../entities/sorting_logic.dart';
 
 abstract class IPotsRepository {
   late List<PotSet> potsets;

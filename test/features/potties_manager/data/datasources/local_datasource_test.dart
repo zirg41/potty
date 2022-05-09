@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables, avoid_print
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:hive/hive.dart';

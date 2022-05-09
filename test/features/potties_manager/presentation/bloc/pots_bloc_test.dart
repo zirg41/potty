@@ -1,11 +1,7 @@
-import 'dart:ffi';
-
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:potty/core/util/input_converter.dart';
-import 'package:potty/features/potties_manager/domain/entities/pot.dart';
-import 'package:potty/features/potties_manager/domain/entities/pot_set.dart';
 import 'package:potty/features/potties_manager/domain/usecases/create_pot_set_usecase.dart';
 import 'package:potty/features/potties_manager/domain/usecases/create_pot_usecase.dart';
 import 'package:potty/features/potties_manager/domain/usecases/delete_pot_set_usecase.dart';
@@ -43,7 +39,6 @@ void main() {
   late MockCreatePotSetUseCase mockCreatePotSetUseCase;
   late MockEditPotSetUseCase mockEditPotSetUseCase;
   late MockDeletePotSetUseCase mockDeletePotSetUseCase;
-  late MockListenPotSetsStreamUseCase mockListenPotSetsStreamUseCase;
   late MockSetSortingUseCase mockSetSortingUseCase;
   late MockInputConverter mockInputConverter;
 
@@ -54,7 +49,6 @@ void main() {
     mockCreatePotSetUseCase = MockCreatePotSetUseCase();
     mockEditPotSetUseCase = MockEditPotSetUseCase();
     mockDeletePotSetUseCase = MockDeletePotSetUseCase();
-    mockListenPotSetsStreamUseCase = MockListenPotSetsStreamUseCase();
     mockSetSortingUseCase = MockSetSortingUseCase();
     mockInputConverter = MockInputConverter();
 
@@ -75,13 +69,7 @@ void main() {
       const String potSetNameFromUI = 'Test PotSet';
       const String potSetIncomeFromUI = '25000';
       const double potSetIncomeValideParsed = 25000;
-      final PotSet testPotSet = PotSet(
-        id: 'id1',
-        income: potSetIncomeValideParsed,
-        name: potSetNameFromUI,
-        createdDate: DateTime.now(),
-        pots: [],
-      );
+
       void setUpMockInputConverterSuccess() {
         when(() => mockInputConverter.stringToUnsignedDouble(any()))
             .thenReturn(const Right(potSetIncomeValideParsed));
@@ -153,14 +141,8 @@ void main() {
       const String testPotName = 'test pot';
       const String testPotSetId = 'potSetId';
       const String inputAmountFromUI = '1000';
-      const String inputPercentFromUI = '10';
       const double inputAmountParsed = 1000;
-      const double inputPercentParsed = 10;
-      Pot testPot = Pot(
-          id: 'id',
-          name: testPotName,
-          amount: inputAmountParsed,
-          percent: inputPercentParsed);
+
       void setUpMockInputConverterSuccess(parsedValue) {
         when(() => mockInputConverter.stringToUnsignedDouble(any()))
             .thenReturn(Right(parsedValue));

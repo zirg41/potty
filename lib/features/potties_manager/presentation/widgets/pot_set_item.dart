@@ -19,7 +19,6 @@ class PotSetItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeData = Theme.of(context);
     return GestureDetector(
-      // TODO Navigate to concrete pot
       onTap: () => _navigateToConcretePotSet(context, potset),
       child: Card(
         margin: const EdgeInsets.all(10),
@@ -27,7 +26,6 @@ class PotSetItem extends StatelessWidget {
           children: [
             ListTile(
               title: Text(
-                // TODO Change id showing to name
                 potset.name,
                 style: themeData.textTheme.bodyText1,
               ),
@@ -40,6 +38,7 @@ class PotSetItem extends StatelessWidget {
                   const SizedBox(
                     width: 20,
                   ),
+                  // TODO Style text formatting
                   Text(
                     potSetDateFormat.format(potset.createdDate),
                     style: themeData.textTheme.subtitle1,

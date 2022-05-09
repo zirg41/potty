@@ -1,7 +1,9 @@
 import 'dart:math';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:potty/features/potties_manager/presentation/routes/router.gr.dart';
 import '../../../../dependency_injection.dart';
 import '../bloc/pots_actor/pots_bloc.dart';
 import '../bloc/pots_watcher/pots_watcher_bloc.dart';
@@ -26,6 +28,14 @@ class PotSetsOverviewPage extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           title: const Text('your test pots'),
+          actions: [
+            IconButton(
+              onPressed: () {
+                AutoRouter.of(context).pushNamed(const SettingsRoute().path);
+              },
+              icon: const Icon(Icons.settings),
+            )
+          ],
         ),
         body: const PotSetsOverviewBody(),
         floatingActionButton: FloatingActionButton(

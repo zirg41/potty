@@ -1,9 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../global/misc.dart';
 
+import '../../../../global/misc.dart';
 import '../../domain/entities/pot_set.dart';
 import '../bloc/pots_actor/pots_bloc.dart';
+import '../routes/router.gr.dart';
 
 class PotSetItem extends StatelessWidget {
   final PotSet potset;
@@ -18,7 +20,7 @@ class PotSetItem extends StatelessWidget {
     final themeData = Theme.of(context);
     return GestureDetector(
       // TODO Navigate to concrete pot
-      onTap: () => _navigateToConcretePot(context),
+      onTap: () => _navigateToConcretePotSet(context, potset),
       child: Card(
         margin: const EdgeInsets.all(10),
         child: Column(
@@ -84,5 +86,7 @@ class PotSetItem extends StatelessWidget {
     );
   }
 
-  void _navigateToConcretePot(BuildContext context) {}
+  void _navigateToConcretePotSet(BuildContext context, PotSet potSet) {
+    AutoRouter.of(context).push(ConcretePotSetOverviewRoute(potSet: potSet));
+  }
 }

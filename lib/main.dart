@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:potty/features/potties_manager/presentation/routes/router.gr.dart'
     as routes;
-import 'global/theme/bloc/theme_bloc.dart';
 import 'dependency_injection.dart' as di;
+import 'global/theme/bloc/theme_bloc.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,7 +14,9 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   MyApp({Key key = const ValueKey("root-widget")}) : super(key: key);
-  final appRouter = routes.Router();
+
+  final appRouter = di.sl<routes.Router>();
+
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(

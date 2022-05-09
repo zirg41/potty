@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:potty/features/potties_manager/presentation/pages/settings_page.dart';
+import 'package:potty/global/theme/bloc/theme_bloc.dart';
 import 'dependency_injection.dart' as di;
-import 'features/potties_manager/presentation/pages/pot_sets_overview_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -14,12 +16,22 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Empty app',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) =>
+              di.sl<ThemeBloc>()..add(const ThemeInitializationEvent()),
+        ),
+      ],
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: (context, state) {
+          return MaterialApp(
+            title: 'Empty app',
+            theme: state.themeData,
+            home: const SettingsPage(),
+          );
+        },
       ),
-      home: PotSetsOverviewPage(),
     );
   }
 }

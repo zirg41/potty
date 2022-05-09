@@ -16,12 +16,17 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
       emit(ThemeState(appThemeData[event.theme]!));
       await sharedPreferences.setString('theme', event.theme.toString());
     });
-    on<InitializedEvent>(
-      (event, emit) {
+    on<ThemeInitializationEvent>(
+      (_, emit) {
         final chosenTheme = sharedPreferences.getString('theme');
-        AppTheme appTheme = AppTheme.values
-            .firstWhere((element) => element.toString() == chosenTheme);
-        emit(ThemeState(appThemeData[appTheme]!));
+        if (chosenTheme is String) {
+          AppTheme appTheme = AppTheme.values
+              .firstWhere((element) => element.toString() == chosenTheme);
+          emit(ThemeState(appThemeData[appTheme]!));
+        }
+        if (chosenTheme == null) {
+          emit(ThemeState(appThemeData[AppTheme.lightTheme]!));
+        }
       },
     );
   }

@@ -15,3 +15,11 @@ class ThemeChanged extends ThemeEvent {
   @override
   List<Object> get props => [theme];
 }
+
+class InitializedEvent extends ThemeEvent {
+  final AppTheme theme;
+
+  const InitializedEvent(this.theme);
+  @override
+  List<Object> get props => [theme];
+}

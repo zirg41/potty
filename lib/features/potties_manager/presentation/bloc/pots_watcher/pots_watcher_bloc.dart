@@ -13,7 +13,7 @@ class PotsWatcherBloc extends Bloc<PotsWatcherEvent, PotsWatcherState> {
   final ListenPotSetsStreamUseCase listenPotSetsStreamUseCase;
   StreamSubscription<Either<Failure, List<PotSet>>>? _noteStreamSubscription;
 
-  PotsWatcherBloc(this.listenPotSetsStreamUseCase)
+  PotsWatcherBloc({required this.listenPotSetsStreamUseCase})
       : super(PotsWatcherInitial()) {
     on<PotsWatcherGetAllPotsEvent>((event, emit) async {
       emit(const PotsWatcherLoadingState());

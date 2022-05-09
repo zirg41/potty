@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'features/potties_manager/presentation/pages/settings_page.dart';
+import 'package:potty/features/potties_manager/presentation/routes/router.gr.dart'
+    as routes;
 import 'global/theme/bloc/theme_bloc.dart';
 import 'dependency_injection.dart' as di;
 
@@ -8,12 +9,12 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.init();
 
-  runApp(const MyApp());
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key key = const ValueKey("root-widget")}) : super(key: key);
-
+  MyApp({Key key = const ValueKey("root-widget")}) : super(key: key);
+  final appRouter = routes.Router();
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
@@ -25,10 +26,10 @@ class MyApp extends StatelessWidget {
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, state) {
-          return MaterialApp(
-            title: 'Empty app',
+          return MaterialApp.router(
             theme: state.themeData,
-            home: const SettingsPage(),
+            routerDelegate: appRouter.delegate(),
+            routeInformationParser: appRouter.defaultRouteParser(),
           );
         },
       ),

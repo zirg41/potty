@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 
 import '../../domain/entities/pot_set.dart';
 
-class ConretePotSetOverviewPage extends StatelessWidget {
+class ConcretePotSetOverviewPage extends StatelessWidget {
   final PotSet potSet;
 
-  const ConretePotSetOverviewPage({
+  const ConcretePotSetOverviewPage({
     required this.potSet,
     Key? key,
   }) : super(key: key);

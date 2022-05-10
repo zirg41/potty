@@ -19,6 +19,10 @@ class PotSetsLoadedState extends PotsWatcherState {
   const PotSetsLoadedState(this.pots);
   @override
   List<Object> get props => [pots];
+
+  PotSet getPotSetById({required String potSetId}) {
+    return pots.firstWhere((element) => element.id == potSetId);
+  }
 }
 
 class PotsWatcherLoadingError extends PotsWatcherState {

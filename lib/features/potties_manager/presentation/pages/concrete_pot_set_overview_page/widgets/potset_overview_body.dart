@@ -25,8 +25,7 @@ class ConcretePotSetBodyWidget extends StatelessWidget {
           return const Center(child: Text(GETTING_DATA_FROM_MEMORY_FAILED));
         }
         if (state is PotSetsLoadedState) {
-          final potSet =
-              state.pots.firstWhere((element) => element.id == potSetId);
+          final potSet = state.getPotSetById(potSetId: potSetId);
           return Center(
             child: Text(potSet.toString()),
           );

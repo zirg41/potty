@@ -29,13 +29,14 @@ class PotSetItem extends StatelessWidget {
             ListTile(
               title: Text(
                 potset.name,
-                style: themeData.textTheme.bodyText1,
+                style: themeData.textTheme.bodyLarge,
               ),
               subtitle: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Text(
                     potset.income.toString(),
-                    style: themeData.textTheme.subtitle1,
+                    style: themeData.textTheme.bodyMedium,
                   ),
                   const SizedBox(
                     width: 20,
@@ -43,7 +44,7 @@ class PotSetItem extends StatelessWidget {
                   // TODO Style text formatting
                   Text(
                     potSetDateFormat.format(potset.createdDate),
-                    style: themeData.textTheme.subtitle1,
+                    style: themeData.textTheme.bodySmall,
                   ),
                 ],
               ),

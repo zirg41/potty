@@ -21,12 +21,15 @@ class PotSetsOverviewBody extends StatelessWidget {
           return const Center(child: Text(GETTING_DATA_FROM_MEMORY_FAILED));
         }
         if (state is PotSetsLoadedState) {
-          return ListView.builder(
-            itemCount: state.pots.length,
-            itemBuilder: (context, index) {
-              final potSet = state.pots[index];
-              return PotSetItem(potset: potSet);
-            },
+          return Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: ListView.builder(
+              itemCount: state.pots.length,
+              itemBuilder: (context, index) {
+                final potSet = state.pots[index];
+                return PotSetItem(potset: potSet);
+              },
+            ),
           );
         }
         return const Center(child: Text(NO_STATE_ERROR));

@@ -14,7 +14,7 @@ class PotSetsOverviewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('your test pots'),
+        title: const Text('potty'),
         actions: [
           IconButton(
             onPressed: () {
@@ -25,12 +25,14 @@ class PotSetsOverviewPage extends StatelessWidget {
         ],
       ),
       body: const PotSetsOverviewBody(),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           // TODO implement button click handler
           BlocProvider.of<PotsBloc>(context).add(CreatePotSetEvent(
               name: 'Test Name', income: Random().nextInt(10000).toString()));
         },
+        icon: const Icon(Icons.add),
+        label: const Text("Создать"),
       ),
     );
   }

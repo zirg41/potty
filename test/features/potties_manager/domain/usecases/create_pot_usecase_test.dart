@@ -50,7 +50,7 @@ void main() {
         "should add new pot to an existing PotSet and verify it calculated",
         () async {
           // arrange
-          potsRepository.getAllPots().listen((event) {
+          potsRepository.getPotsStream().listen((event) {
             event.fold(
               (failure) {
                 print(failure.toString());
@@ -84,7 +84,7 @@ void main() {
         "should add new pot to an existing PotSet by providing the PotCreator instance and verify it calculated",
         () async {
           // arrange
-          potsRepository.getAllPots().listen((event) {
+          potsRepository.getPotsStream().listen((event) {
             event.fold(
               (failure) {
                 print(failure.toString());

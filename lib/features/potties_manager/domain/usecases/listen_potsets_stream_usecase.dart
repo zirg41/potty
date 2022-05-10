@@ -13,6 +13,6 @@ class ListenPotSetsStreamUseCase {
   });
 
   Stream<Either<Failure, List<PotSet>>> call() async* {
-    yield* potsRepository.getAllPots();
+    yield* potsRepository.getPotsStream();
   }
 }

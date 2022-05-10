@@ -44,7 +44,7 @@ void main() {
         "should add new PotSet and verify it calculated",
         () async {
           // arrange
-          potsRepository.getAllPots().listen((event) {
+          potsRepository.getPotsStream().listen((event) {
             event.fold(
               (failure) {
                 print(failure.toString());

@@ -8,7 +8,7 @@ import '../entities/sorting_logic.dart';
 abstract class IPotsRepository {
   late List<PotSet> potsets;
 
-  Stream<Either<Failure, List<PotSet>>> getAllPots();
+  Stream<Either<Failure, List<PotSet>>> getPotsStream();
   Future<void> addPotSet(PotSet potSet);
   Future<void> addPot(String potSetId, Pot newPot);
   Future<void> setSorting(String potSetId, SortingLogic sortingLogic);

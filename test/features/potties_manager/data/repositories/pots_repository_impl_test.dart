@@ -50,7 +50,7 @@ void main() async {
         "should save potset to memory and get saved potset from stream",
         () async {
           // arrange
-          potsRepository.getAllPots().listen((event) {
+          potsRepository.getPotsStream().listen((event) {
             event.fold(
               (failure) {
                 print(failure.toString());

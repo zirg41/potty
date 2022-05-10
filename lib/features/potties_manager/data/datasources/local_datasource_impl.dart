@@ -51,8 +51,9 @@ class LocalHiveDatasourceImpl implements ILocalDatasource {
   }
 
   @override
-  void initializeDataSource() {
+  List<PotSet> initializeDataSource() {
     _inputController.sink.add(DatasourceEvent.initialize);
+    return _potSetBox.values.map((e) => e.toPotSetEntity()).toList();
   }
 }
 

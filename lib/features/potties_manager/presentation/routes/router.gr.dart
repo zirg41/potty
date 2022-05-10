@@ -13,7 +13,6 @@
 import 'package:auto_route/auto_route.dart' as _i4;
 import 'package:flutter/material.dart' as _i5;
 
-import '../../domain/entities/pot_set.dart' as _i6;
 import '../pages/concrete_pot_set_overview_page.dart' as _i3;
 import '../pages/pot_sets_overview_page.dart' as _i1;
 import '../pages/settings_page.dart' as _i2;
@@ -37,7 +36,7 @@ class Router extends _i4.RootStackRouter {
       return _i4.MaterialPageX<dynamic>(
           routeData: routeData,
           child: _i3.ConcretePotSetOverviewPage(
-              potSet: args.potSet, key: args.key));
+              potSetId: args.potSetId, key: args.key));
     }
   };
 
@@ -70,23 +69,24 @@ class SettingsRoute extends _i4.PageRouteInfo<void> {
 /// [_i3.ConcretePotSetOverviewPage]
 class ConcretePotSetOverviewRoute
     extends _i4.PageRouteInfo<ConcretePotSetOverviewRouteArgs> {
-  ConcretePotSetOverviewRoute({required _i6.PotSet potSet, _i5.Key? key})
+  ConcretePotSetOverviewRoute({required String potSetId, _i5.Key? key})
       : super(ConcretePotSetOverviewRoute.name,
             path: '/concrete-pot-set-overview-page',
-            args: ConcretePotSetOverviewRouteArgs(potSet: potSet, key: key));
+            args:
+                ConcretePotSetOverviewRouteArgs(potSetId: potSetId, key: key));
 
   static const String name = 'ConcretePotSetOverviewRoute';
 }
 
 class ConcretePotSetOverviewRouteArgs {
-  const ConcretePotSetOverviewRouteArgs({required this.potSet, this.key});
+  const ConcretePotSetOverviewRouteArgs({required this.potSetId, this.key});
 
-  final _i6.PotSet potSet;
+  final String potSetId;
 
   final _i5.Key? key;
 
   @override
   String toString() {
-    return 'ConcretePotSetOverviewRouteArgs{potSet: $potSet, key: $key}';
+    return 'ConcretePotSetOverviewRouteArgs{potSetId: $potSetId, key: $key}';
   }
 }

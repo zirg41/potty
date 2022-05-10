@@ -19,7 +19,9 @@ class PotSetItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final themeData = Theme.of(context);
     return GestureDetector(
-      onTap: () => _navigateToConcretePotSet(context, potset),
+      onTap: () {
+        context.pushRoute(ConcretePotSetOverviewRoute(potSetId: potset.id));
+      },
       child: Card(
         margin: const EdgeInsets.all(10),
         child: Column(
@@ -83,9 +85,5 @@ class PotSetItem extends StatelessWidget {
         ),
       ),
     );
-  }
-
-  void _navigateToConcretePotSet(BuildContext context, PotSet potSet) {
-    AutoRouter.of(context).push(ConcretePotSetOverviewRoute(potSet: potSet));
   }
 }

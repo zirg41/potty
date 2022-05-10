@@ -4,8 +4,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:potty/features/potties_manager/presentation/routes/router.gr.dart';
-import '../bloc/pots_actor/pots_bloc.dart';
-import '../widgets/pots_sets_overview_body.dart';
+import '../../bloc/pots_actor/pots_bloc.dart';
+import 'widgets/pots_sets_overview_body.dart';
 
 class PotSetsOverviewPage extends StatelessWidget {
   const PotSetsOverviewPage({Key? key}) : super(key: key);

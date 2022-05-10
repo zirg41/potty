@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../dependency_injection.dart';
-import '../../../../global/theme/app_themes.dart';
-import '../../../../global/theme/bloc/theme_bloc.dart';
+import '../../../../../../dependency_injection.dart';
+import '../../../../../../global/theme/app_themes.dart';
+import '../../../../../../global/theme/bloc/theme_bloc.dart';
 
 class ThemeSwitcherWidget extends StatelessWidget {
   final bool toggled;

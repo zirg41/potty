@@ -2,10 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../global/misc.dart';
-import '../../domain/entities/pot_set.dart';
-import '../bloc/pots_actor/pots_bloc.dart';
-import '../routes/router.gr.dart';
+import '../../../../../../global/misc.dart';
+import '../../../../domain/entities/pot_set.dart';
+import '../../../bloc/pots_actor/pots_bloc.dart';
+import '../../../routes/router.gr.dart';
 
 class PotSetItem extends StatelessWidget {
   final PotSet potset;

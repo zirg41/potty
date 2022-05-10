@@ -13,9 +13,10 @@
 import 'package:auto_route/auto_route.dart' as _i4;
 import 'package:flutter/material.dart' as _i5;
 
-import '../pages/concrete_pot_set_overview_page.dart' as _i3;
-import '../pages/pot_sets_overview_page.dart' as _i1;
-import '../pages/settings_page.dart' as _i2;
+import '../pages/concrete_pot_set_overview_page/concrete_pot_set_overview_page.dart'
+    as _i3;
+import '../pages/pot_sets_overview_page/pot_sets_overview_page.dart' as _i1;
+import '../pages/settings_page/settings_page.dart' as _i2;
 
 class Router extends _i4.RootStackRouter {
   Router([_i5.GlobalKey<_i5.NavigatorState>? navigatorKey])

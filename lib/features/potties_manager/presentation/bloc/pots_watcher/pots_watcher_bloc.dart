@@ -38,7 +38,7 @@ class PotsWatcherBloc extends Bloc<PotsWatcherEvent, PotsWatcherState> {
   }
   @override
   Future<void> close() {
-    _noteStreamSubscription?.cancel();
+    // _noteStreamSubscription?.cancel();
     return super.close();
   }
 }

@@ -15,4 +15,6 @@ class PotSetsReceived extends PotsWatcherEvent {
   final Either<Failure, List<PotSet>> failureOrPots;
 
   const PotSetsReceived(this.failureOrPots);
+  @override
+  List<Object> get props => [failureOrPots];
 }

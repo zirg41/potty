@@ -44,7 +44,7 @@ Future<void> init() async {
     ),
   );
   sl.registerFactory(
-    () => PotsWatcherBloc(listenPotSetsStreamUseCase: sl()),
+    () => PotsWatcherBloc(potsRepository: sl()),
   );
   sl.registerFactory(
     () => ThemeBloc(sharedPreferences: sl()),

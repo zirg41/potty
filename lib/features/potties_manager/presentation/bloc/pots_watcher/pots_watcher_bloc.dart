@@ -3,24 +3,25 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:potty/features/potties_manager/domain/repositories/i_pots_repository.dart';
 import '../../../../../core/errors/failure.dart';
 import '../../../domain/entities/pot_set.dart';
-import '../../../domain/usecases/listen_potsets_stream_usecase.dart';
 part 'pots_watcher_event.dart';
 part 'pots_watcher_state.dart';
 
 class PotsWatcherBloc extends Bloc<PotsWatcherEvent, PotsWatcherState> {
-  final ListenPotSetsStreamUseCase listenPotSetsStreamUseCase;
+  final IPotsRepository potsRepository;
+
   StreamSubscription<Either<Failure, List<PotSet>>>? _noteStreamSubscription;
 
-  PotsWatcherBloc({required this.listenPotSetsStreamUseCase})
+  PotsWatcherBloc({required this.potsRepository})
       : super(PotsWatcherInitial()) {
     on<PotsWatcherGetAllPotsEvent>((event, emit) async {
       emit(const PotsWatcherLoadingState());
 
-      final potsStream = listenPotSetsStreamUseCase();
+      final potsStream = potsRepository.getAllPots();
 
-      potsStream.listen((failureOrPots) {
+      potsStream.asBroadcastStream().listen((failureOrPots) {
         add(PotsWatcherPotsReceived(failureOrPots));
       });
     });
@@ -30,6 +31,7 @@ class PotsWatcherBloc extends Bloc<PotsWatcherEvent, PotsWatcherState> {
         event.failureOrPots.fold(
           (failure) async => emit(const PotsWatcherLoadingError()),
           (potSets) async {
+            print('potsets in bloc: ${potSets.length}');
             emit(PotsWatcherLoadedState(potSets));
           },
         );

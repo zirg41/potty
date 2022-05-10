@@ -18,7 +18,7 @@ class ConcretePotSetOverviewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: PotSetAppBar(),
+        title: PotSetAppBar(potSetId: potSetId),
       ),
       body: ConcretePotSetBodyWidget(potSetId: potSetId),
       floatingActionButton: FloatingActionButton(

@@ -22,16 +22,16 @@ class PotsWatcherBloc extends Bloc<PotsWatcherEvent, PotsWatcherState> {
       final potsStream = potsRepository.getPotsStream();
 
       _noteStreamSubscription = potsStream.listen((failureOrPots) {
-        add(PotsWatcherPotsReceived(failureOrPots));
+        add(PotSetsReceived(failureOrPots));
       });
     });
 
-    on<PotsWatcherPotsReceived>(
+    on<PotSetsReceived>(
       (event, emit) {
         event.failureOrPots.fold(
           (failure) async => emit(const PotsWatcherLoadingError()),
           (potSets) async {
-            emit(PotsWatcherLoadedState(potSets));
+            emit(PotSetsLoadedState(potSets));
           },
         );
       },

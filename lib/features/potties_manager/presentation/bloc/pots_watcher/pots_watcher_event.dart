@@ -11,8 +11,8 @@ class PotsWatcherGetAllPotsEvent extends PotsWatcherEvent {
   const PotsWatcherGetAllPotsEvent();
 }
 
-class PotsWatcherPotsReceived extends PotsWatcherEvent {
+class PotSetsReceived extends PotsWatcherEvent {
   final Either<Failure, List<PotSet>> failureOrPots;
 
-  const PotsWatcherPotsReceived(this.failureOrPots);
+  const PotSetsReceived(this.failureOrPots);
 }

@@ -20,7 +20,7 @@ class PotSetsOverviewBody extends StatelessWidget {
         if (state is PotsWatcherLoadingError) {
           return const Center(child: Text(GETTING_DATA_FROM_MEMORY_FAILED));
         }
-        if (state is PotsWatcherLoadedState) {
+        if (state is PotSetsLoadedState) {
           return ListView.builder(
             itemCount: state.pots.length,
             itemBuilder: (context, index) {

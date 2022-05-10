@@ -13,10 +13,10 @@ class PotsWatcherLoadingState extends PotsWatcherState {
   const PotsWatcherLoadingState();
 }
 
-class PotsWatcherLoadedState extends PotsWatcherState {
+class PotSetsLoadedState extends PotsWatcherState {
   final List<PotSet> pots;
 
-  const PotsWatcherLoadedState(this.pots);
+  const PotSetsLoadedState(this.pots);
   @override
   List<Object> get props => [pots];
 }

@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:potty/core/errors/failure.dart';
-import 'package:potty/features/potties_manager/presentation/bloc/pots_watcher/pots_watcher_bloc.dart';
+import '../../../../../../core/errors/failure.dart';
+import '../../../bloc/pots_watcher/pots_watcher_bloc.dart';
 
 class ConcretePotSetBodyWidget extends StatelessWidget {
-  const ConcretePotSetBodyWidget({
-    Key? key,
-    required this.potSetId,
-  }) : super(key: key);
-
   final String potSetId;
+
+  const ConcretePotSetBodyWidget({
+    required this.potSetId,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -1,9 +1,9 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:equatable/equatable.dart';
-import 'sorting_logic.dart';
 
 import 'pot.dart';
+import 'sorting_logic.dart';
 
 /// WARNING: all double fields must be decimal formatted
 class PotSet extends Equatable {

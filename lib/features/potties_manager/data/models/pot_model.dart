@@ -1,4 +1,5 @@
 import 'package:hive/hive.dart';
+
 import '../../domain/entities/pot.dart';
 
 part 'pot_model.g.dart';

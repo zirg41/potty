@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import 'package:potty/features/potties_manager/domain/repositories/i_pots_repository.dart';
+import '../../../domain/repositories/i_pots_repository.dart';
 import '../../../../../core/errors/failure.dart';
 import '../../../domain/entities/pot_set.dart';
 part 'pots_watcher_event.dart';

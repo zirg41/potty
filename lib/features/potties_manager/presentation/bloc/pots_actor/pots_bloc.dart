@@ -1,8 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-import '../../../domain/usecases/delete_pot_set_usecase.dart';
-import '../../../domain/usecases/set_sorting_usecase.dart';
 
 import '../../../../../core/errors/failure.dart';
 import '../../../../../core/util/input_converter.dart';
@@ -11,9 +9,11 @@ import '../../../../../core/util/pots_creator.dart';
 import '../../../domain/entities/sorting_logic.dart';
 import '../../../domain/usecases/create_pot_set_usecase.dart';
 import '../../../domain/usecases/create_pot_usecase.dart';
+import '../../../domain/usecases/delete_pot_set_usecase.dart';
 import '../../../domain/usecases/delete_pot_usecase.dart';
 import '../../../domain/usecases/edit_pot_usecase.dart';
 import '../../../domain/usecases/edit_potset_usecase.dart';
+import '../../../domain/usecases/set_sorting_usecase.dart';
 
 part 'pots_event.dart';
 part 'pots_state.dart';

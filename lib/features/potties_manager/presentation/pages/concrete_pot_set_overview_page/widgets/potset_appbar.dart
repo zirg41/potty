@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:potty/core/errors/failure.dart';
-import 'package:potty/features/potties_manager/presentation/bloc/pots_watcher/pots_watcher_bloc.dart';
+
+import '../../../../../../core/errors/failure.dart';
+import '../../../bloc/pots_actor/pots_bloc.dart';
+import '../../../bloc/pots_watcher/pots_watcher_bloc.dart';
 
 class PotSetAppBar extends StatefulWidget {
   final String potSetId;
@@ -16,7 +18,7 @@ class PotSetAppBar extends StatefulWidget {
 
 class _PotSetAppBarState extends State<PotSetAppBar> {
   bool isEditing = false;
-  final contoller = TextEditingController();
+  final controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +29,20 @@ class _PotSetAppBarState extends State<PotSetAppBar> {
         setState(() {
           isEditing = true;
         });
+        controller.selection =
+            TextSelection(baseOffset: 0, extentOffset: controller.text.length);
       },
       child: isEditing
           ? TextField(
-              decoration: const InputDecoration(
-                border: InputBorder.none,
-              ),
+              controller: controller,
+              onSubmitted: (value) {
+                BlocProvider.of<PotsBloc>(context).add(EditPotSetNameEvent(
+                    potSetId: widget.potSetId, name: value));
+                isEditing = false;
+              },
+              autofocus: true,
               style: contextTheme.textTheme.titleLarge,
-              controller: contoller,
+              decoration: const InputDecoration(border: InputBorder.none),
             )
           : BlocBuilder<PotsWatcherBloc, PotsWatcherState>(
               bloc: BlocProvider.of<PotsWatcherBloc>(context),
@@ -42,10 +50,10 @@ class _PotSetAppBarState extends State<PotSetAppBar> {
                 if (state is PotsWatcherLoadedState) {
                   final potSet = state.pots
                       .firstWhere((element) => element.id == widget.potSetId);
-                  contoller.text = potSet.name;
+                  controller.text = potSet.name;
                   return Text(potSet.name);
                 }
-                return Text(NO_STATE_ERROR);
+                return const Text(NO_STATE_ERROR);
               },
             ),
     );

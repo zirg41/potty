@@ -15,36 +15,25 @@ class PotSetsOverviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) =>
-              sl<PotsWatcherBloc>()..add(const PotsWatcherGetAllPotsEvent()),
-        ),
-        BlocProvider(
-          create: (context) => sl<PotsBloc>(),
-        ),
-      ],
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('your test pots'),
-          actions: [
-            IconButton(
-              onPressed: () {
-                AutoRouter.of(context).pushNamed(const SettingsRoute().path);
-              },
-              icon: const Icon(Icons.settings),
-            )
-          ],
-        ),
-        body: const PotSetsOverviewBody(),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            // TODO implement button click handler
-            sl<PotsBloc>().add(CreatePotSetEvent(
-                name: 'Test Name', income: Random().nextInt(10000).toString()));
-          },
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('your test pots'),
+        actions: [
+          IconButton(
+            onPressed: () {
+              AutoRouter.of(context).pushNamed(const SettingsRoute().path);
+            },
+            icon: const Icon(Icons.settings),
+          )
+        ],
+      ),
+      body: const PotSetsOverviewBody(),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // TODO implement button click handler
+          sl<PotsBloc>().add(CreatePotSetEvent(
+              name: 'Test Name', income: Random().nextInt(10000).toString()));
+        },
       ),
     );
   }

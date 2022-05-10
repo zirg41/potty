@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:potty/core/errors/failure.dart';
-import 'package:potty/dependency_injection.dart';
 import 'package:potty/features/potties_manager/presentation/bloc/pots_actor/pots_bloc.dart';
 import 'package:potty/features/potties_manager/presentation/bloc/pots_watcher/pots_watcher_bloc.dart';
-
-import '../../domain/entities/pot_set.dart';
 
 class ConcretePotSetOverviewPage extends StatelessWidget {
   final String potSetId;
@@ -17,25 +14,22 @@ class ConcretePotSetOverviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => BlocProvider.of<PotsWatcherBloc>(context),
-      child: Scaffold(
-        appBar: AppBar(
-          title: const Text('App bar'),
-        ),
-        body: ConcretePotSetBodyWidget(potSetId: potSetId),
-        floatingActionButton: FloatingActionButton(
-          child: const Icon(Icons.add),
-          onPressed: () {
-            BlocProvider.of<PotsBloc>(context).add(
-              CreatePotEvent(
-                  potSetId: potSetId,
-                  isAmountFixed: false,
-                  percent: '15',
-                  name: 'test pot'),
-            );
-          },
-        ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('App bar'),
+      ),
+      body: ConcretePotSetBodyWidget(potSetId: potSetId),
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.add),
+        onPressed: () {
+          BlocProvider.of<PotsBloc>(context).add(
+            CreatePotEvent(
+                potSetId: potSetId,
+                isAmountFixed: false,
+                percent: '15',
+                name: 'test pot'),
+          );
+        },
       ),
     );
   }

@@ -200,8 +200,20 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
 
     on<EditPotSetIncomeEvent>(
       (event, emit) async {
-        await editPotSetUseCase.changePotSetName(
-            potSetId: event.potSetId, newName: event.income);
+        final Either<Failure, double> inputEither =
+            inputConverter.stringToUnsignedDouble(event.income);
+
+        inputEither.fold(
+          (failure) async {
+            emit(
+              const InputErrorState(message: INVALID_INPUT_FAILURE_MESSAGE),
+            );
+          },
+          (parsedIncome) async {
+            await editPotSetUseCase.changePotSetIncome(
+                potSetId: event.potSetId, newIncome: parsedIncome);
+          },
+        );
       },
     );
 

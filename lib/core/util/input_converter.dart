@@ -18,7 +18,3 @@ class InputConverter {
 }
 
 class InvalidInputFailure extends Failure {}
-
-const String CACHE_FAILURE_MESSAGE = 'Ошибка чтения с памяти телефона';
-const String INVALID_INPUT_FAILURE_MESSAGE =
-    'Некорректная величина. Значение должно быть положительным числом';

@@ -30,6 +30,8 @@ class _IncomeWidgetState extends State<IncomeWidget> {
           Scaffold.of(context)
               .showSnackBar(SnackBar(content: Text(state.message)));
           _controller.text = lastTextValue!;
+          BlocProvider.of<PotsBloc>(context)
+              .add(const PotsChangedSuccesfullyEvent());
         }
       },
       child: BlocBuilder<PotsWatcherBloc, PotsWatcherState>(

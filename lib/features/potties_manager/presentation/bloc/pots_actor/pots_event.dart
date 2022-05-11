@@ -135,3 +135,7 @@ class SetSortingEvent extends PotsEvent {
   @override
   List<Object> get props => [potSetId, sortingLogic];
 }
+
+class PotsChangedSuccesfullyEvent extends PotsEvent {
+  const PotsChangedSuccesfullyEvent();
+}

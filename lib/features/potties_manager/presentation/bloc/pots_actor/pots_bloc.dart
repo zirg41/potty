@@ -49,6 +49,7 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
           },
           (parsedAmount) async {
             await createPotSetUseCase.call(event.name, parsedAmount);
+            add(const PotsChangedSuccesfullyEvent());
           },
         );
       },
@@ -74,6 +75,7 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
                 amount: parsedAmount,
                 isAmountFixed: event.isAmountFixed!,
               );
+              add(const PotsChangedSuccesfullyEvent());
             },
           );
         }
@@ -95,6 +97,7 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
                 percent: parsedPercent,
                 isAmountFixed: event.isAmountFixed!,
               );
+              add(const PotsChangedSuccesfullyEvent());
             },
           );
         }
@@ -104,6 +107,7 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
             potSetId: event.potSetId,
             potCreator: event.potCreator,
           );
+          add(const PotsChangedSuccesfullyEvent());
         }
         // program hardly gets to this place, but so
         else {
@@ -118,6 +122,7 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
       (event, emit) async {
         await deletePotSetUseCase.call(
             potSetIdToDelete: event.potSetIdToDelete);
+        add(const PotsChangedSuccesfullyEvent());
       },
     );
 
@@ -125,6 +130,7 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
       (event, emit) async {
         await deletePotUseCase.call(
             potSetId: event.potSetId, potIdToDelete: event.potIdToDelete);
+        add(const PotsChangedSuccesfullyEvent());
       },
     );
 
@@ -149,6 +155,7 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
                 amount: parsedAmount,
                 isAmountFixed: event.isAmountFixed!,
               );
+              add(const PotsChangedSuccesfullyEvent());
             },
           );
         }
@@ -171,6 +178,7 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
                 amount: parsedPercent,
                 isAmountFixed: event.isAmountFixed!,
               );
+              add(const PotsChangedSuccesfullyEvent());
             },
           );
         }
@@ -181,6 +189,7 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
             potSetId: event.potSetId,
             potCreator: event.potCreator,
           );
+          add(const PotsChangedSuccesfullyEvent());
         }
         // program hardly gets to this place, but so
         else {
@@ -195,6 +204,7 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
       (event, emit) async {
         await editPotSetUseCase.changePotSetName(
             potSetId: event.potSetId, newName: event.name);
+        add(const PotsChangedSuccesfullyEvent());
       },
     );
 
@@ -212,6 +222,7 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
           (parsedIncome) async {
             await editPotSetUseCase.changePotSetIncome(
                 potSetId: event.potSetId, newIncome: parsedIncome);
+            add(const PotsChangedSuccesfullyEvent());
           },
         );
       },
@@ -223,6 +234,13 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
           potSetId: event.potSetId,
           sortingLogic: event.sortingLogic,
         );
+        add(const PotsChangedSuccesfullyEvent());
+      },
+    );
+
+    on<PotsChangedSuccesfullyEvent>(
+      (event, emit) {
+        emit(const PotsChangedSuccesfullyState());
       },
     );
   }

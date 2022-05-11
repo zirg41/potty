@@ -17,3 +17,7 @@ class InputErrorState extends PotsState {
   @override
   List<Object> get props => [message];
 }
+
+class PotsChangedSuccesfullyState extends PotsState {
+  const PotsChangedSuccesfullyState();
+}

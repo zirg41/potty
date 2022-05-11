@@ -19,41 +19,55 @@ class IncomeWidget extends StatefulWidget {
 
 class _IncomeWidgetState extends State<IncomeWidget> {
   final _controller = TextEditingController();
+  String? lastTextValue;
   @override
   Widget build(BuildContext context) {
     final contextTheme = Theme.of(context);
-    return BlocBuilder<PotsWatcherBloc, PotsWatcherState>(
-      bloc: BlocProvider.of<PotsWatcherBloc>(context),
-      builder: (context, state) {
-        if (state is PotSetsLoadedState) {
-          final potSet = state.getPotSetById(potSetId: widget.potSetId);
+    return BlocListener<PotsBloc, PotsState>(
+      listener: (context, state) {
+        if (state is InputErrorState) {
+          // TODO use not depreceted snackBar
+          Scaffold.of(context)
+              .showSnackBar(SnackBar(content: Text(state.message)));
+          _controller.text = lastTextValue!;
+        }
+      },
+      child: BlocBuilder<PotsWatcherBloc, PotsWatcherState>(
+        bloc: BlocProvider.of<PotsWatcherBloc>(context),
+        builder: (context, state) {
+          if (state is PotSetsLoadedState) {
+            final potSet = state.getPotSetById(potSetId: widget.potSetId);
 
-          _controller.text = potSet.income.toString();
+            lastTextValue = potSet.income.toString();
 
-          return Padding(
-            padding: const EdgeInsets.symmetric(vertical: 10),
-            child: FractionallySizedBox(
-              widthFactor: 0.4,
-              child: TextField(
-                textAlign: TextAlign.center,
-                onSubmitted: (value) {
-                  BlocProvider.of<PotsBloc>(context).add(EditPotSetIncomeEvent(
-                      potSetId: widget.potSetId, income: value));
-                },
-                controller: _controller,
-                style: contextTheme.textTheme.titleLarge!.copyWith(height: 1),
-                keyboardType: TextInputType.number,
-                decoration: const InputDecoration(
-                  suffixIcon: Icon(Icons.currency_ruble),
-                  suffixIconConstraints: BoxConstraints(maxWidth: 20),
-                  border: InputBorder.none,
+            _controller.text = lastTextValue!;
+
+            return Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
+              child: FractionallySizedBox(
+                widthFactor: 0.4,
+                child: TextField(
+                  textAlign: TextAlign.center,
+                  onSubmitted: (value) {
+                    BlocProvider.of<PotsBloc>(context).add(
+                        EditPotSetIncomeEvent(
+                            potSetId: widget.potSetId, income: value));
+                  },
+                  controller: _controller,
+                  style: contextTheme.textTheme.titleLarge!.copyWith(height: 1),
+                  keyboardType: TextInputType.number,
+                  decoration: const InputDecoration(
+                    suffixIcon: Icon(Icons.currency_ruble),
+                    suffixIconConstraints: BoxConstraints(maxWidth: 20),
+                    border: InputBorder.none,
+                  ),
                 ),
               ),
-            ),
-          );
-        }
-        return const Text(NO_STATE_ERROR);
-      },
+            );
+          }
+          return const Text(NO_STATE_ERROR);
+        },
+      ),
     );
   }
 }

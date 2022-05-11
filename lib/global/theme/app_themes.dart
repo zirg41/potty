@@ -29,9 +29,7 @@ final appThemeData = {
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: darkThemePalette['green'],
       foregroundColor: Colors.white70,
-      extendedTextStyle: TextStyle(
-          fontWeight: FontWeight.bold,
-          fontFamily: GoogleFonts.lato().fontFamily),
+      // extendedTextStyle: GoogleFonts.lato(),
     ),
   )
 };

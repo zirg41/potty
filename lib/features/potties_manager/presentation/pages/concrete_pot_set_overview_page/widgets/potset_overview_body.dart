@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:potty/features/potties_manager/presentation/pages/concrete_pot_set_overview_page/widgets/income_widget.dart';
 import '../../../../../../core/errors/failure.dart';
 import '../../../bloc/pots_watcher/pots_watcher_bloc.dart';
 
@@ -26,8 +27,15 @@ class ConcretePotSetBodyWidget extends StatelessWidget {
         }
         if (state is PotSetsLoadedState) {
           final potSet = state.getPotSetById(potSetId: potSetId);
-          return Center(
-            child: Text(potSet.toString()),
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                IncomeWidget(potSetId: potSet.id),
+                Center(
+                  child: Text(potSet.toString()),
+                ),
+              ],
+            ),
           );
         }
         return const Center(child: Text(NO_STATE_ERROR));

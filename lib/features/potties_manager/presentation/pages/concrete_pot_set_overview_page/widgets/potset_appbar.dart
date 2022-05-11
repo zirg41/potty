@@ -48,8 +48,7 @@ class _PotSetAppBarState extends State<PotSetAppBar> {
               bloc: BlocProvider.of<PotsWatcherBloc>(context),
               builder: (context, state) {
                 if (state is PotSetsLoadedState) {
-                  final potSet = state.pots
-                      .firstWhere((element) => element.id == widget.potSetId);
+                  final potSet = state.getPotSetById(potSetId: widget.potSetId);
                   controller.text = potSet.name;
                   return Text(potSet.name);
                 }

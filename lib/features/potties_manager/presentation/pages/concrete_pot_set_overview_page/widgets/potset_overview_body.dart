@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:potty/features/potties_manager/presentation/pages/concrete_pot_set_overview_page/widgets/income_widget.dart';
+import 'package:potty/features/potties_manager/presentation/pages/concrete_pot_set_overview_page/widgets/unallocated_pot.dart';
 import '../../../../../../core/errors/failure.dart';
 import '../../../bloc/pots_watcher/pots_watcher_bloc.dart';
 
@@ -31,6 +32,10 @@ class ConcretePotSetBodyWidget extends StatelessWidget {
             child: Column(
               children: [
                 IncomeWidget(potSetId: potSet.id),
+                UnallocatedPot(
+                    percent: potSet.unallocatedPercent!,
+                    amount: potSet.unallocatedBalance!,
+                    potSetId: potSetId),
                 Center(
                   child: Text(potSet.toString()),
                 ),

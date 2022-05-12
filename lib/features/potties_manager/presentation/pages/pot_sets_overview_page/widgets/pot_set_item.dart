@@ -23,6 +23,7 @@ class PotSetItem extends StatelessWidget {
         context.pushRoute(ConcretePotSetOverviewRoute(potSetId: potset.id));
       },
       child: Card(
+        color: themeData.colorScheme.surface,
         margin: const EdgeInsets.all(10),
         child: Column(
           children: [

@@ -16,22 +16,25 @@ final appThemeData = {
       bodyMedium: GoogleFonts.lato(fontSize: 15),
       bodySmall: GoogleFonts.lato(fontSize: 12),
     ),
+    // TODO light Colorscheme should be added
   ),
   AppTheme.darkTheme: ThemeData(
     brightness: Brightness.dark,
-    primaryColor: Colors.indigo[800],
     textTheme: TextTheme(
       titleLarge: GoogleFonts.lato(fontSize: 25),
       bodyLarge: GoogleFonts.lato(fontSize: 15, fontWeight: FontWeight.bold),
       bodyMedium: GoogleFonts.lato(fontSize: 15),
       bodySmall: GoogleFonts.lato(fontSize: 12),
     ),
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: darkThemePalette['green'],
-      foregroundColor: Colors.white70,
-      // extendedTextStyle: GoogleFonts.lato(),
+    colorScheme: const ColorScheme.dark().copyWith(
+      secondary: pottyPalette['Charcoal'],
+      onSecondary: Colors.white70,
+      primary: darkThemePalette['darkblue'],
+      surface: const Color.fromARGB(255, 43, 43, 43),
+      background: const Color(0xFF121212),
+      tertiary: const Color.fromARGB(255, 203, 122, 60),
     ),
-  )
+  ),
 };
 
 const darkThemePalette = {
@@ -40,4 +43,11 @@ const darkThemePalette = {
   'darkgreen': Color(0xFF002431),
   'maroon': Color(0xFF1f0001),
   'vinous': Color(0xFF6d0101),
+};
+const pottyPalette = {
+  'Charcoal': Color(0xFF264653),
+  'Persian Green': Color(0xFF2A9D8F),
+  'Maize Crayola': Color(0xFFE9C46A),
+  'Sandy Brown': Color(0xFFE76F51),
+  'Burnt Sienna': Color(0xFFE76F51),
 };

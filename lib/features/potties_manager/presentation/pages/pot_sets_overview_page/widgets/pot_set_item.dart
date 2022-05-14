@@ -7,6 +7,8 @@ import '../../../../domain/entities/pot_set.dart';
 import '../../../bloc/pots_actor/pots_bloc.dart';
 import '../../../routes/router.gr.dart';
 
+const itemsPadding = EdgeInsets.symmetric(vertical: 7, horizontal: 13);
+
 class PotSetItem extends StatelessWidget {
   final PotSet potset;
 
@@ -22,68 +24,74 @@ class PotSetItem extends StatelessWidget {
       onTap: () {
         context.pushRoute(ConcretePotSetOverviewRoute(potSetId: potset.id));
       },
-      child: Card(
-        color: themeData.colorScheme.surface,
-        margin: const EdgeInsets.all(10),
-        child: Column(
-          children: [
-            ListTile(
-              title: Text(
-                potset.name,
-                style: themeData.textTheme.bodyLarge,
-              ),
-              subtitle: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Text(
-                    potset.income.toString(),
-                    style: themeData.textTheme.bodyMedium,
-                  ),
-                  const SizedBox(
-                    width: 20,
-                  ),
-                  // TODO Style text formatting
-                  Text(
-                    potSetDateFormat.format(potset.createdDate),
-                    style: themeData.textTheme.bodySmall,
-                  ),
-                ],
-              ),
-              trailing: IconButton(
-                icon: const Icon(Icons.delete),
-                onPressed: () async {
-                  final bool response = await showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                      title: const Text("Вы уверены?"),
-                      content: const Text("Удалить данную позицию?"),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop(false);
-                          },
-                          child: const Text("Нет"),
-                        ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.of(context).pop(true);
-                          },
-                          child: const Text(
-                            "Да",
-                            style: TextStyle(color: Colors.red),
-                          ),
-                        ),
-                      ],
+      child: Padding(
+        padding: itemsPadding,
+        child: Card(
+          color: themeData.colorScheme.surface,
+          child: Column(
+            children: [
+              ListTile(
+                title: Text(
+                  potset.name,
+                  style: themeData.textTheme.bodyLarge,
+                ),
+                subtitle: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      potset.income.toString(),
+                      style: themeData.textTheme.bodyMedium,
                     ),
-                  );
-                  if (response) {
-                    BlocProvider.of<PotsBloc>(context)
-                        .add(DeletePotSetEvent(potSetIdToDelete: potset.id));
-                  }
-                },
+                    const SizedBox(
+                      width: 20,
+                    ),
+                    // TODO Style text formatting
+                    Text(
+                      potSetDateFormat.format(potset.createdDate),
+                      style: themeData.textTheme.bodySmall,
+                    ),
+                  ],
+                ),
+                trailing: IconButton(
+                  icon: const Icon(Icons.delete),
+                  onPressed: () async {
+                    final bool response = await showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: const Text("Вы уверены?"),
+                        content: const Text("Удалить данную позицию?"),
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop(false);
+                            },
+                            child: Text(
+                              "Нет",
+                              style: themeData.textTheme.bodyMedium,
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop(true);
+                            },
+                            child: Text(
+                              "Да",
+                              style: themeData.textTheme.bodyMedium!
+                                  .copyWith(color: themeData.colorScheme.error),
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                    if (response) {
+                      BlocProvider.of<PotsBloc>(context)
+                          .add(DeletePotSetEvent(potSetIdToDelete: potset.id));
+                    }
+                  },
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

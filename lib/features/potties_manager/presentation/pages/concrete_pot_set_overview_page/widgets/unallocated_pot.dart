@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:potty/features/potties_manager/presentation/pages/pot_sets_overview_page/widgets/pot_set_item.dart';
 
 class UnallocatedPot extends StatelessWidget {
   final double percent;
@@ -22,7 +23,8 @@ class UnallocatedPot extends StatelessWidget {
         }
       },
       child: Card(
-        margin: const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
+        margin: itemsPadding,
         color: contextTheme.colorScheme.surface,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

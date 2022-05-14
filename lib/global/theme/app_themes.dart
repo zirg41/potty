@@ -29,10 +29,11 @@ final appThemeData = {
     colorScheme: const ColorScheme.dark().copyWith(
       secondary: pottyPalette['Charcoal'],
       onSecondary: Colors.white70,
-      primary: darkThemePalette['darkblue'],
+      primary: Color.fromARGB(255, 75, 75, 75),
       surface: const Color.fromARGB(255, 43, 43, 43),
       background: const Color(0xFF121212),
       tertiary: const Color.fromARGB(255, 203, 122, 60),
+      error: Colors.red,
     ),
   ),
 };

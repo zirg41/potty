@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:potty/features/potties_manager/presentation/pages/pot_sets_overview_page/widgets/pot_set_item.dart';
 
 import '../../../bloc/pots_actor/pots_bloc.dart';
 
@@ -24,13 +25,15 @@ class AddPotButton extends StatelessWidget {
               name: 'test pot'),
         );
       },
-      child: Card(
-        margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-        color: contextTheme.colorScheme.surface,
-        child: const SizedBox(
-          height: 50,
-          child: Center(
-            child: Icon(Icons.add),
+      child: Padding(
+        padding: itemsPadding,
+        child: Card(
+          color: contextTheme.colorScheme.surface,
+          child: const SizedBox(
+            height: 50,
+            child: Center(
+              child: Icon(Icons.add),
+            ),
           ),
         ),
       ),

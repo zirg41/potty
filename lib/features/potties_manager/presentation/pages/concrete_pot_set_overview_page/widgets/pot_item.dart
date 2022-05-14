@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:potty/features/potties_manager/domain/entities/pot.dart';
+import 'package:potty/features/potties_manager/presentation/pages/pot_sets_overview_page/widgets/pot_set_item.dart';
 
 class PotItem extends StatelessWidget {
   final String potSetId;
   final Pot pot;
-  PotItem({
+
+  const PotItem({
+    Key? key,
     required this.potSetId,
     required this.pot,
-  });
-  static const itemsPadding = EdgeInsets.all(10);
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     final ctxTheme = Theme.of(context);
@@ -18,9 +21,8 @@ class PotItem extends StatelessWidget {
       duration: Duration(seconds: 1),
     );
 
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 10),
-      color: Colors.transparent,
+    return Padding(
+      padding: itemsPadding,
       child: Dismissible(
         key: ValueKey(pot.id),
         background: Container(
@@ -85,12 +87,14 @@ class PotItem extends StatelessWidget {
                     children: [
                       Container(
                         // ПРОЦЕНТЫ
-                        margin: const EdgeInsets.all(8),
+                        margin: const EdgeInsets.symmetric(
+                          vertical: 10,
+                          horizontal: 10,
+                        ),
                         decoration: BoxDecoration(
-                            color: ctxTheme.primaryColor,
-                            //border: Border.all(width: 8),
+                            color: ctxTheme.colorScheme.primary,
                             borderRadius: BorderRadius.circular(10)),
-                        padding: itemsPadding,
+                        padding: const EdgeInsets.all(10),
                         child: Text(
                           pot.percent == null
                               ? ""
@@ -112,7 +116,6 @@ class PotItem extends StatelessWidget {
                             child: Container(
                               // СУММА
                               margin: const EdgeInsets.all(5),
-                              //padding: itemsPadding,
                               child: Text(
                                 pot.amount != null
                                     ? pot.amount!.toStringAsFixed(

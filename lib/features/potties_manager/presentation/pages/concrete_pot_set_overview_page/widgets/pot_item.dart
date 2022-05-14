@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:potty/features/potties_manager/domain/entities/pot.dart';
+import 'package:potty/features/potties_manager/presentation/pages/concrete_pot_set_overview_page/widgets/edit_pot_widget.dart';
 import 'package:potty/features/potties_manager/presentation/pages/pot_sets_overview_page/widgets/pot_set_item.dart';
 
 class PotItem extends StatelessWidget {
@@ -67,8 +68,15 @@ class PotItem extends StatelessWidget {
         },
         onDismissed: (direction) {},
         child: InkWell(
-          onTap: () {
+          onTap: () async {
             //TODO pushing to edit pot page
+
+            await showDialog(
+              context: context,
+              builder: (ctx) {
+                return EditPotWidget();
+              },
+            );
           },
           child: Card(
             elevation: 5,

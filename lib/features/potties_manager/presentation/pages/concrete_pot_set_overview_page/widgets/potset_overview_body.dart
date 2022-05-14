@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:potty/features/potties_manager/presentation/pages/concrete_pot_set_overview_page/widgets/add_pot_button.dart';
 import 'package:potty/features/potties_manager/presentation/pages/concrete_pot_set_overview_page/widgets/income_widget.dart';
 import 'package:potty/features/potties_manager/presentation/pages/concrete_pot_set_overview_page/widgets/pot_item.dart';
 import 'package:potty/features/potties_manager/presentation/pages/concrete_pot_set_overview_page/widgets/unallocated_pot.dart';
@@ -38,6 +39,7 @@ class ConcretePotSetBodyWidget extends StatelessWidget {
                     amount: potSet.unallocatedBalance!,
                     potSetId: potSetId),
               ),
+              const SliverToBoxAdapter(child: Divider()),
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {
@@ -45,7 +47,8 @@ class ConcretePotSetBodyWidget extends StatelessWidget {
                   },
                   childCount: potSet.pots.length,
                 ),
-              )
+              ),
+              SliverToBoxAdapter(child: AddPotButton(potSetId: potSetId)),
             ],
           );
         }

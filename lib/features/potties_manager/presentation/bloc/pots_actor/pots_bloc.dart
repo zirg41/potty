@@ -175,7 +175,7 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
                 potId: event.potId,
                 potSetId: event.potSetId,
                 name: event.name!,
-                amount: parsedPercent,
+                percent: parsedPercent,
                 isAmountFixed: event.isAmountFixed!,
               );
               add(const PotsChangedSuccesfullyEvent());

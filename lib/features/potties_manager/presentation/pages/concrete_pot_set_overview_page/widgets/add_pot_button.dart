@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:potty/features/potties_manager/presentation/pages/edit_pot_page/edit_pot_widget.dart';
 import 'package:potty/features/potties_manager/presentation/pages/pot_sets_overview_page/widgets/pot_set_item.dart';
 
 import '../../../bloc/pots_actor/pots_bloc.dart';
@@ -16,14 +17,22 @@ class AddPotButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final contextTheme = Theme.of(context);
     return GestureDetector(
-      onTap: () {
-        BlocProvider.of<PotsBloc>(context).add(
-          CreatePotEvent(
+      onTap: () async {
+        await showDialog(
+          context: context,
+          builder: (ctx) {
+            return EditPotWidget(
               potSetId: potSetId,
-              isAmountFixed: false,
-              percent: '15',
-              name: 'test pot'),
+            );
+          },
         );
+        // BlocProvider.of<PotsBloc>(context).add(
+        //   CreatePotEvent(
+        //       potSetId: potSetId,
+        //       isAmountFixed: false,
+        //       percent: '15',
+        //       name: 'test pot'),
+        // );
       },
       child: Padding(
         padding: itemsPadding,

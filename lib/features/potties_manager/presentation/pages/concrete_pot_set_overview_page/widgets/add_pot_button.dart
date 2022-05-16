@@ -17,6 +17,7 @@ class AddPotButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final contextTheme = Theme.of(context);
     return GestureDetector(
+      // TODO try delete asyncs
       onTap: () async {
         await showDialog(
           context: context,
@@ -26,13 +27,6 @@ class AddPotButton extends StatelessWidget {
             );
           },
         );
-        // BlocProvider.of<PotsBloc>(context).add(
-        //   CreatePotEvent(
-        //       potSetId: potSetId,
-        //       isAmountFixed: false,
-        //       percent: '15',
-        //       name: 'test pot'),
-        // );
       },
       child: Padding(
         padding: itemsPadding,

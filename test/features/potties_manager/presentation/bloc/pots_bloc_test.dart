@@ -121,7 +121,7 @@ void main() {
 
           // assert later
           final expected = <PotsState>[
-            const InputErrorState(message: INVALID_INPUT_FAILURE_MESSAGE),
+            const IncomeInputErrorState(message: INVALID_INPUT_FAILURE_MESSAGE),
           ];
 
           expectLater(bloc.stream, emitsInOrder(expected));

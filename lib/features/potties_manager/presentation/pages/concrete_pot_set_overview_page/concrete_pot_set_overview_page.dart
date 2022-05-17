@@ -18,7 +18,7 @@ class ConcretePotSetOverviewPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocListener<PotsBloc, PotsState>(
       listener: (context, state) {
-        if (state is InputErrorState) {
+        if (state is IncomeInputErrorState) {
           ScaffoldMessenger.of(context).showSnackBar(
             errorSnackBar(state.message),
           );

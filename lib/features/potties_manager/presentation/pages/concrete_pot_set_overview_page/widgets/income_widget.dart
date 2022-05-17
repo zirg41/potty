@@ -25,7 +25,7 @@ class _IncomeWidgetState extends State<IncomeWidget> {
     final contextTheme = Theme.of(context);
     return BlocListener<PotsBloc, PotsState>(
       listener: (context, state) {
-        if (state is InputErrorState) {
+        if (state is IncomeInputErrorState) {
           _controller.text = lastTextValue!;
           BlocProvider.of<PotsBloc>(context)
               .add(const PotsChangedSuccesfullyEvent());

@@ -45,7 +45,8 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
 
         inputEither.fold(
           (failure) async {
-            emit(const InputErrorState(message: INVALID_INPUT_FAILURE_MESSAGE));
+            emit(const IncomeInputErrorState(
+                message: INVALID_INPUT_FAILURE_MESSAGE));
           },
           (parsedAmount) async {
             await createPotSetUseCase.call(event.name, parsedAmount);
@@ -65,7 +66,8 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
           inputEither.fold(
             (failure) async {
               emit(
-                const InputErrorState(message: INVALID_INPUT_FAILURE_MESSAGE),
+                const IncomeInputErrorState(
+                    message: INVALID_INPUT_FAILURE_MESSAGE),
               );
             },
             (parsedAmount) async {
@@ -87,7 +89,8 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
           inputEither.fold(
             (failure) async {
               emit(
-                const InputErrorState(message: INVALID_INPUT_FAILURE_MESSAGE),
+                const IncomeInputErrorState(
+                    message: INVALID_INPUT_FAILURE_MESSAGE),
               );
             },
             (parsedPercent) async {
@@ -112,7 +115,7 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
         // program hardly gets to this place, but so
         else {
           emit(
-            const InputErrorState(message: INVALID_INPUT_FAILURE_MESSAGE),
+            const IncomeInputErrorState(message: INVALID_INPUT_FAILURE_MESSAGE),
           );
         }
       },
@@ -144,7 +147,8 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
           inputEither.fold(
             (failure) async {
               emit(
-                const InputErrorState(message: INVALID_INPUT_FAILURE_MESSAGE),
+                const IncomeInputErrorState(
+                    message: INVALID_INPUT_FAILURE_MESSAGE),
               );
             },
             (parsedAmount) async {
@@ -167,7 +171,8 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
           inputEither.fold(
             (failure) async {
               emit(
-                const InputErrorState(message: INVALID_INPUT_FAILURE_MESSAGE),
+                const IncomeInputErrorState(
+                    message: INVALID_INPUT_FAILURE_MESSAGE),
               );
             },
             (parsedPercent) async {
@@ -194,7 +199,7 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
         // program hardly gets to this place, but so
         else {
           emit(
-            const InputErrorState(message: INVALID_INPUT_FAILURE_MESSAGE),
+            const IncomeInputErrorState(message: INVALID_INPUT_FAILURE_MESSAGE),
           );
         }
       },
@@ -216,7 +221,8 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
         inputEither.fold(
           (failure) async {
             emit(
-              const InputErrorState(message: INVALID_INPUT_FAILURE_MESSAGE),
+              const IncomeInputErrorState(
+                  message: INVALID_INPUT_FAILURE_MESSAGE),
             );
           },
           (parsedIncome) async {

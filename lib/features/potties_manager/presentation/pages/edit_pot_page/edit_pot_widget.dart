@@ -72,7 +72,7 @@ class _EditPotWidgetState extends State<EditPotWidget> {
     // ! build function return
     return BlocListener<PotsBloc, PotsState>(
       listener: (context, state) {
-        if (state is InputErrorState) {
+        if (state is IncomeInputErrorState) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               behavior: SnackBarBehavior.floating,

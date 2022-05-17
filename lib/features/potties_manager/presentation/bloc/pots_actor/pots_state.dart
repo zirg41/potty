@@ -9,10 +9,10 @@ abstract class PotsState extends Equatable {
 
 class PotsInitial extends PotsState {}
 
-class InputErrorState extends PotsState {
+class IncomeInputErrorState extends PotsState {
   final String message;
 
-  const InputErrorState({required this.message});
+  const IncomeInputErrorState({required this.message});
 
   @override
   List<Object> get props => [message];

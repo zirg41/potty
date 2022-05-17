@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../../../core/errors/failure.dart';
 import '../../../../../core/util/input_converter.dart';
@@ -248,7 +249,12 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
 
     on<PotsChangedSuccesfullyEvent>(
       (event, emit) {
-        emit(const PotsChangedSuccesfullyState());
+        emit(PotsChangedSuccesfullyState(Uuid().v1()));
+      },
+    );
+    on<UserIsFixingInputErrorEvent>(
+      (event, emit) {
+        emit(const WaitingActionsFromUserState());
       },
     );
   }

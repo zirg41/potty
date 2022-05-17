@@ -26,9 +26,6 @@ class _IncomeWidgetState extends State<IncomeWidget> {
     return BlocListener<PotsBloc, PotsState>(
       listener: (context, state) {
         if (state is InputErrorState) {
-          // TODO use not depreceted snackBar
-          Scaffold.of(context)
-              .showSnackBar(SnackBar(content: Text(state.message)));
           _controller.text = lastTextValue!;
           BlocProvider.of<PotsBloc>(context)
               .add(const PotsChangedSuccesfullyEvent());

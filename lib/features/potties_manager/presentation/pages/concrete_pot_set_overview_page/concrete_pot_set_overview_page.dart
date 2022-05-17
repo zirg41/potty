@@ -16,23 +16,31 @@ class ConcretePotSetOverviewPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.background,
-      appBar: AppBar(
-        title: PotSetAppBar(potSetId: potSetId),
-      ),
-      body: ConcretePotSetBodyWidget(potSetId: potSetId),
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () {
-          BlocProvider.of<PotsBloc>(context).add(
-            CreatePotEvent(
-                potSetId: potSetId,
-                isAmountFixed: false,
-                percent: '15',
-                name: 'test pot'),
+    return BlocListener<PotsBloc, PotsState>(
+      listener: (context, state) {
+        if (state is InputErrorState) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            errorSnackBar(state.message),
           );
-        },
+        }
+      },
+      child: Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.background,
+        appBar: AppBar(
+          title: PotSetAppBar(potSetId: potSetId),
+        ),
+        body: ConcretePotSetBodyWidget(potSetId: potSetId),
+      ),
+    );
+  }
+
+  SnackBar errorSnackBar(String message) {
+    return SnackBar(
+      behavior: SnackBarBehavior.floating,
+      content: Text(message),
+      action: SnackBarAction(
+        label: 'ОК',
+        onPressed: () {},
       ),
     );
   }

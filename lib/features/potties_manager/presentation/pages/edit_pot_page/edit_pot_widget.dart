@@ -83,6 +83,8 @@ class _EditPotWidgetState extends State<EditPotWidget> {
               ),
             ),
           );
+          BlocProvider.of<PotsBloc>(context)
+              .add(const UserIsFixingInputErrorEvent());
         }
         if (state is PotsChangedSuccesfullyState) {
           FocusManager.instance.primaryFocus?.unfocus();

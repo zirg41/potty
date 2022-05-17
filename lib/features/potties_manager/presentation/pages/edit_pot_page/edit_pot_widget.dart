@@ -72,7 +72,7 @@ class _EditPotWidgetState extends State<EditPotWidget> {
     // ! build function return
     return BlocListener<PotsBloc, PotsState>(
       listener: (context, state) {
-        if (state is IncomeInputErrorState) {
+        if (state is PercentOrAmountInputErrorState) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               behavior: SnackBarBehavior.floating,
@@ -85,13 +85,11 @@ class _EditPotWidgetState extends State<EditPotWidget> {
           );
         }
         if (state is PotsChangedSuccesfullyState) {
-          print('state is not error');
           FocusManager.instance.primaryFocus?.unfocus();
           Navigator.of(context).pop();
         }
       },
       child: FractionallySizedBox(
-        // TODO Listen error states from bloc
         alignment: const Alignment(0.0, -0.5),
         widthFactor: 0.8,
         heightFactor: 0.35,

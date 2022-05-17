@@ -28,6 +28,11 @@ class PercentOrAmountInputErrorState extends PotsState {
 }
 
 class PotsChangedSuccesfullyState extends PotsState {
+  final String stateId;
+  const PotsChangedSuccesfullyState(this.stateId);
+
+  @override
+  List<Object> get props => [stateId];
 }
 
 class WaitingActionsFromUserState extends PotsState {

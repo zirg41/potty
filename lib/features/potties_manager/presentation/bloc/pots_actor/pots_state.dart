@@ -28,5 +28,8 @@ class PercentOrAmountInputErrorState extends PotsState {
 }
 
 class PotsChangedSuccesfullyState extends PotsState {
-  const PotsChangedSuccesfullyState();
+}
+
+class WaitingActionsFromUserState extends PotsState {
+  const WaitingActionsFromUserState();
 }

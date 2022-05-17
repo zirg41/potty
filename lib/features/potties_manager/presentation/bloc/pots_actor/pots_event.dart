@@ -139,3 +139,7 @@ class SetSortingEvent extends PotsEvent {
 class PotsChangedSuccesfullyEvent extends PotsEvent {
   const PotsChangedSuccesfullyEvent();
 }
+
+class UserIsFixingInputErrorEvent extends PotsEvent {
+  const UserIsFixingInputErrorEvent();
+}

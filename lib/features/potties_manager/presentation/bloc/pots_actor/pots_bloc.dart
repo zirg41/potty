@@ -66,7 +66,7 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
           inputEither.fold(
             (failure) async {
               emit(
-                const IncomeInputErrorState(
+                const PercentOrAmountInputErrorState(
                     message: INVALID_INPUT_FAILURE_MESSAGE),
               );
             },
@@ -89,7 +89,7 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
           inputEither.fold(
             (failure) async {
               emit(
-                const IncomeInputErrorState(
+                const PercentOrAmountInputErrorState(
                     message: INVALID_INPUT_FAILURE_MESSAGE),
               );
             },
@@ -115,7 +115,8 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
         // program hardly gets to this place, but so
         else {
           emit(
-            const IncomeInputErrorState(message: INVALID_INPUT_FAILURE_MESSAGE),
+            const PercentOrAmountInputErrorState(
+                message: INVALID_INPUT_FAILURE_MESSAGE),
           );
         }
       },
@@ -147,7 +148,7 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
           inputEither.fold(
             (failure) async {
               emit(
-                const IncomeInputErrorState(
+                const PercentOrAmountInputErrorState(
                     message: INVALID_INPUT_FAILURE_MESSAGE),
               );
             },
@@ -171,7 +172,7 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
           inputEither.fold(
             (failure) async {
               emit(
-                const IncomeInputErrorState(
+                const PercentOrAmountInputErrorState(
                     message: INVALID_INPUT_FAILURE_MESSAGE),
               );
             },
@@ -199,7 +200,8 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
         // program hardly gets to this place, but so
         else {
           emit(
-            const IncomeInputErrorState(message: INVALID_INPUT_FAILURE_MESSAGE),
+            const PercentOrAmountInputErrorState(
+                message: INVALID_INPUT_FAILURE_MESSAGE),
           );
         }
       },

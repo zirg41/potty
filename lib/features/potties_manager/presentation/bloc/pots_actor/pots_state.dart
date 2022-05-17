@@ -18,6 +18,15 @@ class IncomeInputErrorState extends PotsState {
   List<Object> get props => [message];
 }
 
+class PercentOrAmountInputErrorState extends PotsState {
+  final String message;
+
+  const PercentOrAmountInputErrorState({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}
+
 class PotsChangedSuccesfullyState extends PotsState {
   const PotsChangedSuccesfullyState();
 }

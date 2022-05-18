@@ -38,3 +38,7 @@ class PotsChangedSuccesfullyState extends PotsState {
 class WaitingActionsFromUserState extends PotsState {
   const WaitingActionsFromUserState();
 }
+
+class UserEditingEitherNameOrIncomeOfPotSetState extends PotsState {
+  const UserEditingEitherNameOrIncomeOfPotSetState();
+}

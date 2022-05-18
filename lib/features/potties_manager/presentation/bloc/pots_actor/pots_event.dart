@@ -143,3 +143,7 @@ class PotsChangedSuccesfullyEvent extends PotsEvent {
 class UserIsFixingInputErrorEvent extends PotsEvent {
   const UserIsFixingInputErrorEvent();
 }
+
+class UserEditingEitherNameOrIncomeOfPotSetEvent extends PotsEvent {
+  const UserEditingEitherNameOrIncomeOfPotSetEvent();
+}

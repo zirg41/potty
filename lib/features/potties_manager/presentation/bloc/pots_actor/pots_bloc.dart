@@ -252,9 +252,16 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
         emit(PotsChangedSuccesfullyState(Uuid().v1()));
       },
     );
+
     on<UserIsFixingInputErrorEvent>(
       (event, emit) {
         emit(const WaitingActionsFromUserState());
+      },
+    );
+
+    on<UserEditingEitherNameOrIncomeOfPotSetEvent>(
+      (event, emit) {
+        emit(const UserEditingEitherNameOrIncomeOfPotSetState());
       },
     );
   }

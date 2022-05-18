@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../../core/errors/failure.dart';
 import '../../bloc/pots_actor/pots_bloc.dart';
-import '../../bloc/pots_watcher/pots_watcher_bloc.dart';
 import 'widgets/potset_overview_body.dart';
 import 'widgets/potset_appbar.dart';
 
@@ -24,12 +22,17 @@ class ConcretePotSetOverviewPage extends StatelessWidget {
           );
         }
       },
-      child: Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.background,
-        appBar: AppBar(
-          title: PotSetAppBar(potSetId: potSetId),
+      child: GestureDetector(
+        onTap: () {
+          FocusManager.instance.primaryFocus?.unfocus();
+        },
+        child: Scaffold(
+          backgroundColor: Theme.of(context).colorScheme.background,
+          appBar: AppBar(
+            title: PotSetAppBar(potSetId: potSetId),
+          ),
+          body: ConcretePotSetBodyWidget(potSetId: potSetId),
         ),
-        body: ConcretePotSetBodyWidget(potSetId: potSetId),
       ),
     );
   }

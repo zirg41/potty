@@ -33,14 +33,14 @@ class ConcretePotSetBodyWidget extends StatelessWidget {
           return CustomScrollView(
             slivers: [
               SliverToBoxAdapter(child: IncomeWidget(potSetId: potSet.id)),
-              if (potSet.unallocatedBalance! > 0.0)
+              if (potSet.unallocatedBalance != 0.0)
                 SliverToBoxAdapter(
                   child: UnallocatedPot(
                       percent: potSet.unallocatedPercent!,
                       amount: potSet.unallocatedBalance!,
                       potSetId: potSetId),
                 ),
-              if (potSet.unallocatedBalance! > 0.0)
+              if (potSet.unallocatedBalance != 0.0)
                 const SliverToBoxAdapter(child: Divider()),
               SliverList(
                 delegate: SliverChildBuilderDelegate(

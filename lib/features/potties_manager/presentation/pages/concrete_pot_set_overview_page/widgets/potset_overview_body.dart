@@ -50,7 +50,8 @@ class ConcretePotSetBodyWidget extends StatelessWidget {
                   childCount: potSet.pots.length,
                 ),
               ),
-              SliverToBoxAdapter(child: AddPotButton(potSetId: potSetId)),
+              if (potSet.unallocatedBalance != 0.0)
+                SliverToBoxAdapter(child: AddPotButton(potSetId: potSetId)),
             ],
           );
         }

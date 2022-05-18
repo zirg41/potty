@@ -33,8 +33,8 @@ class _EditPotWidgetState extends State<EditPotWidget> {
   Widget currentPotCreationOption =
       dropdownIconValues[DropValue.amount] as Icon;
   Pot? _editedPot;
-  String? previousPercentValue;
-  String? previousAmountValue;
+  String previousPercentValue = '';
+  String previousAmountValue = '';
 
   @override
   void initState() {
@@ -99,8 +99,8 @@ class _EditPotWidgetState extends State<EditPotWidget> {
       listener: (context, state) {
         if (state is PercentOrAmountInputErrorState) {
           // TODO try to add error state of textField (red field while error)
-          _amountController.text = previousPercentValue!;
-          _percentController.text = previousAmountValue!;
+          _amountController.text = previousPercentValue;
+          _percentController.text = previousAmountValue;
 
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(

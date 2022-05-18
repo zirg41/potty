@@ -8,9 +8,14 @@ import '../../bloc/pots_actor/pots_bloc.dart';
 class EditPotWidget extends StatefulWidget {
   final String potSetId;
   final Pot? editedPot;
+  final String? unallocatedAmount;
+  final String? unallocatedPercent;
+
   const EditPotWidget({
     required this.potSetId,
     this.editedPot,
+    this.unallocatedAmount,
+    this.unallocatedPercent,
     Key? key,
   }) : super(key: key);
 
@@ -52,6 +57,13 @@ class _EditPotWidgetState extends State<EditPotWidget> {
             dropdownIconValues[DropValue.percent] as Icon;
       }
     }
+
+    if (widget.unallocatedAmount != null || widget.unallocatedPercent != null) {
+      _nameController.text = 'Остаток';
+
+      _amountController.text = widget.unallocatedAmount!;
+      _percentController.text = widget.unallocatedPercent!;
+    }
     super.initState();
   }
 
@@ -87,7 +99,6 @@ class _EditPotWidgetState extends State<EditPotWidget> {
       listener: (context, state) {
         if (state is PercentOrAmountInputErrorState) {
           // TODO try to add error state of textField (red field while error)
-
           _amountController.text = previousPercentValue!;
           _percentController.text = previousAmountValue!;
 

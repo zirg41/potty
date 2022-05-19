@@ -30,8 +30,8 @@ class _EditPotWidgetState extends State<EditPotWidget> {
   final _amountController = TextEditingController();
   final _percentAmountFocusNode = FocusNode();
 
-  late String _previousPercentValue;
-  late String _previousAmountValue;
+  String _previousPercentValue = '';
+  String _previousAmountValue = '';
 
   bool _isEditing = false;
   Widget _currentPotCreationOption =

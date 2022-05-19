@@ -30,6 +30,9 @@ class _IncomeWidgetState extends State<IncomeWidget> {
           BlocProvider.of<PotsBloc>(context)
               .add(const PotsChangedSuccesfullyEvent());
         }
+        if (state is PotsChangedSuccesfullyState) {
+          _controller.text = lastTextValue!;
+        }
       },
       child: BlocBuilder<PotsWatcherBloc, PotsWatcherState>(
         bloc: BlocProvider.of<PotsWatcherBloc>(context),
@@ -55,6 +58,10 @@ class _IncomeWidgetState extends State<IncomeWidget> {
                   controller: _controller,
                   style: contextTheme.textTheme.titleLarge!.copyWith(height: 1),
                   keyboardType: TextInputType.number,
+                  onTap: () {
+                    BlocProvider.of<PotsBloc>(context).add(
+                        const UserEditingEitherNameOrIncomeOfPotSetEvent());
+                  },
                   decoration: const InputDecoration(
                     suffixIcon: Icon(Icons.currency_ruble),
                     suffixIconConstraints: BoxConstraints(maxWidth: 20),

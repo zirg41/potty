@@ -25,6 +25,8 @@ class ConcretePotSetOverviewPage extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           FocusManager.instance.primaryFocus?.unfocus();
+          BlocProvider.of<PotsBloc>(context)
+              .add(const PotsChangedSuccesfullyEvent());
         },
         child: Scaffold(
           backgroundColor: Theme.of(context).colorScheme.background,

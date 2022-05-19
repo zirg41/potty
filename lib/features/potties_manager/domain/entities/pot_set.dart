@@ -1,5 +1,7 @@
 // ignore_for_file: must_be_immutable
 
+import 'dart:ffi';
+
 import 'package:equatable/equatable.dart';
 
 import 'pot.dart';
@@ -82,13 +84,16 @@ class PotSet extends Equatable {
       percentSumm += pot.percent!;
     }
     unallocatedPercent = (100 - percentSumm);
-    unallocatedBalance = income * unallocatedPercent! / 100;
+    final unallocatedBalanceUnParsed = income * unallocatedPercent! / 100;
+    unallocatedBalance =
+        double.parse(unallocatedBalanceUnParsed.toStringAsFixed(2));
   }
 
   void _calculate() {
     for (var pot in pots) {
       if (!pot.isAmountFixed!) {
         pot.amount = income * pot.percent! / 100;
+        pot.amount = double.parse(pot.amount!.toStringAsFixed(2));
       } else {
         pot.percent = pot.amount! / income * 100;
       }

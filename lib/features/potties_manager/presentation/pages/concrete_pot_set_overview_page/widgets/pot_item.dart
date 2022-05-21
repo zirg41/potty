@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:potty/features/potties_manager/domain/entities/pot.dart';
-import 'package:potty/features/potties_manager/presentation/bloc/pots_actor/pots_bloc.dart';
-import 'package:potty/features/potties_manager/presentation/pages/edit_pot_page/edit_pot_widget.dart';
-import 'package:potty/features/potties_manager/presentation/pages/pot_sets_overview_page/widgets/pot_set_item.dart';
+import '../../../../domain/entities/pot.dart';
+import '../../../bloc/pots_actor/pots_bloc.dart';
+import '../../edit_pot_page/edit_pot_widget.dart';
+import '../../pot_sets_overview_page/widgets/pot_set_item.dart';
 
 class PotItem extends StatelessWidget {
   final String potSetId;

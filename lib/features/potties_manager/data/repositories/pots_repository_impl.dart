@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
-import '../../domain/entities/sorting_logic.dart';
 
 import '../../../../core/errors/failure.dart';
 import '../../domain/entities/pot.dart';
 import '../../domain/entities/pot_set.dart';
+import '../../domain/entities/sorting_logic.dart';
 import '../../domain/repositories/i_pots_repository.dart';
 import '../datasources/i_local_datasource.dart';
 

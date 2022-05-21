@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:potty/features/potties_manager/presentation/pages/edit_pot_page/drop_down_values.dart';
+import 'drop_down_values.dart';
 
 import '../../../domain/entities/pot.dart';
 import '../../bloc/pots_actor/pots_bloc.dart';

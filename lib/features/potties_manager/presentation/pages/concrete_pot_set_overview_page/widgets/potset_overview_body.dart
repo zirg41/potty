@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:potty/features/potties_manager/presentation/pages/concrete_pot_set_overview_page/widgets/add_pot_button.dart';
-import 'package:potty/features/potties_manager/presentation/pages/concrete_pot_set_overview_page/widgets/income_widget.dart';
-import 'package:potty/features/potties_manager/presentation/pages/concrete_pot_set_overview_page/widgets/pot_item.dart';
-import 'package:potty/features/potties_manager/presentation/pages/concrete_pot_set_overview_page/widgets/unallocated_pot.dart';
+import 'add_pot_button.dart';
+import 'income_widget.dart';
+import 'pot_item.dart';
+import 'unallocated_pot.dart';
 import '../../../../../../core/errors/failure.dart';
 import '../../../bloc/pots_watcher/pots_watcher_bloc.dart';
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:potty/features/potties_manager/presentation/pages/edit_pot_page/edit_pot_widget.dart';
-import 'package:potty/features/potties_manager/presentation/pages/pot_sets_overview_page/widgets/pot_set_item.dart';
+import '../../edit_pot_page/edit_pot_widget.dart';
+import '../../pot_sets_overview_page/widgets/pot_set_item.dart';
 
 class UnallocatedPot extends StatelessWidget {
   final double percent;

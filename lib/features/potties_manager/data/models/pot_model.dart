@@ -4,7 +4,7 @@ import '../../domain/entities/pot.dart';
 
 part 'pot_model.g.dart';
 
-@HiveType(typeId: 0)
+@HiveType(typeId: 2)
 class PotHiveModel extends HiveObject {
   @HiveField(0)
   late String id;

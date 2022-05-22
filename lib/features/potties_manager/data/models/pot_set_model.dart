@@ -7,7 +7,7 @@ import 'sorting_logic_model.dart';
 
 part 'pot_set_model.g.dart';
 
-@HiveType(typeId: 1)
+@HiveType(typeId: 3)
 class PotSetHiveModel extends HiveObject {
   @HiveField(0)
   late String id;

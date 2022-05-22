@@ -8,7 +8,7 @@ part of 'pot_set_model.dart';
 
 class PotSetHiveModelAdapter extends TypeAdapter<PotSetHiveModel> {
   @override
-  final int typeId = 1;
+  final int typeId = 3;
 
   @override
   PotSetHiveModel read(BinaryReader reader) {

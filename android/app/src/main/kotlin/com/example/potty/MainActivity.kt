@@ -1,4 +1,4 @@
-package com.example.potty
+package com.example.potty_app
 
 import io.flutter.embedding.android.FlutterActivity
 

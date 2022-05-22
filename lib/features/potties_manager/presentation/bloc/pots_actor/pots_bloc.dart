@@ -50,7 +50,8 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
                 message: INVALID_INPUT_FAILURE_MESSAGE));
           },
           (parsedAmount) async {
-            await createPotSetUseCase.call(event.name, parsedAmount);
+            await createPotSetUseCase(event.name, parsedAmount,
+                potsCreator: event.potsCreator ?? const EmptyPotsCreator());
             add(const PotsChangedSuccesfullyEvent());
           },
         );

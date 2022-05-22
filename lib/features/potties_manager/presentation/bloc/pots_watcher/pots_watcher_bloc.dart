@@ -12,7 +12,7 @@ part 'pots_watcher_state.dart';
 class PotsWatcherBloc extends Bloc<PotsWatcherEvent, PotsWatcherState> {
   final IPotsRepository potsRepository;
 
-  StreamSubscription<Either<Failure, List<PotSet>>>? _noteStreamSubscription;
+  StreamSubscription<Either<Failure, List<PotSet>>>? _potsStreamSubscription;
 
   PotsWatcherBloc({required this.potsRepository})
       : super(PotsWatcherInitial()) {
@@ -21,12 +21,12 @@ class PotsWatcherBloc extends Bloc<PotsWatcherEvent, PotsWatcherState> {
 
       final potsStream = potsRepository.getPotsStream();
 
-      _noteStreamSubscription = potsStream.listen((failureOrPots) {
-        add(PotSetsReceived(failureOrPots));
+      _potsStreamSubscription = potsStream.listen((failureOrPots) {
+        add(PotSetsReceivedEvent(failureOrPots));
       });
     });
 
-    on<PotSetsReceived>(
+    on<PotSetsReceivedEvent>(
       (event, emit) {
         event.failureOrPots.fold(
           (failure) async => emit(const PotsWatcherLoadingError()),
@@ -40,7 +40,7 @@ class PotsWatcherBloc extends Bloc<PotsWatcherEvent, PotsWatcherState> {
 
   @override
   Future<void> close() {
-    _noteStreamSubscription?.cancel();
+    _potsStreamSubscription?.cancel();
     return super.close();
   }
 }

@@ -11,10 +11,10 @@ class PotsWatcherGetAllPotsEvent extends PotsWatcherEvent {
   const PotsWatcherGetAllPotsEvent();
 }
 
-class PotSetsReceived extends PotsWatcherEvent {
+class PotSetsReceivedEvent extends PotsWatcherEvent {
   final Either<Failure, List<PotSet>> failureOrPots;
 
-  const PotSetsReceived(this.failureOrPots);
+  const PotSetsReceivedEvent(this.failureOrPots);
   @override
   List<Object> get props => [failureOrPots];
 }

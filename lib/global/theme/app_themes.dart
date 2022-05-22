@@ -22,6 +22,7 @@ final appThemeData = {
     colorScheme: const ColorScheme.dark().copyWith(
       brightness: Brightness.light,
       primary: pottyPalette['Charcoal'],
+      onBackground: const Color(0xFF121212),
       secondary: pottyPalette['Persian Green'],
       onSecondary: const Color(0xFFFFFFFF),
       onPrimary: const Color(0xFFFFFFFF),

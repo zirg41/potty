@@ -56,7 +56,8 @@ class _IncomeWidgetState extends State<IncomeWidget> {
                             potSetId: widget.potSetId, income: value));
                   },
                   controller: _controller,
-                  style: contextTheme.textTheme.titleLarge!.copyWith(height: 1),
+                  style: contextTheme.textTheme.titleLarge!.copyWith(
+                      height: 1, color: contextTheme.colorScheme.onBackground),
                   keyboardType: TextInputType.number,
                   onTap: () {
                     BlocProvider.of<PotsBloc>(context).add(

@@ -50,6 +50,7 @@ class UnallocatedPot extends StatelessWidget {
           }
         },
         child: Card(
+          elevation: 5,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
           margin: itemsPadding,
           color: contextTheme.colorScheme.surface,

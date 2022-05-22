@@ -27,6 +27,7 @@ class PotSetItem extends StatelessWidget {
       child: Padding(
         padding: itemsPadding,
         child: Card(
+          elevation: 5,
           color: themeData.colorScheme.surface,
           child: Column(
             children: [

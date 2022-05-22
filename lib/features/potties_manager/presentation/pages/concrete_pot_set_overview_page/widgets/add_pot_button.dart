@@ -46,6 +46,7 @@ class AddPotButton extends StatelessWidget {
         child: Padding(
           padding: itemsPadding,
           child: Card(
+            elevation: 5,
             color: contextTheme.colorScheme.surface,
             child: const SizedBox(
               height: 50,

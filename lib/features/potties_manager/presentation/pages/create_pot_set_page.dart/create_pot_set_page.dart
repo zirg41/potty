@@ -15,7 +15,7 @@ class _CreatePotSetBodyState extends State<CreatePotSetBody> {
   final _incomeController = TextEditingController();
   final _nameController = TextEditingController();
   final _incomeAmountFocusNode = FocusNode();
-
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   String _previousIncomeValue = '';
 
   void _saveForm(BuildContext context) {
@@ -52,11 +52,12 @@ class _CreatePotSetBodyState extends State<CreatePotSetBody> {
         borderSide: BorderSide(width: 1.5, color: themeDataColorScheme.error),
         borderRadius: textFieldBorderRadius);
 
-    return BlocListener<PotsBloc, PotsState>(
-      listener: (context, state) => _stateHandler(context, state),
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Stack(
+    return Scaffold(
+      key: _scaffoldKey,
+      backgroundColor: Colors.transparent,
+      body: BlocListener<PotsBloc, PotsState>(
+        listener: (context, state) => _stateHandler(context, state),
+        child: Stack(
           children: [
             GestureDetector(
               onTap: () {
@@ -171,16 +172,17 @@ class _CreatePotSetBodyState extends State<CreatePotSetBody> {
     if (state is IncomeInputErrorState) {
       _incomeController.text = _previousIncomeValue;
 
-      ScaffoldMessenger.of(context).showSnackBar(
+      _scaffoldKey.currentState?.showSnackBar(
         SnackBar(
           behavior: SnackBarBehavior.floating,
           content: Text(state.message),
           action: SnackBarAction(
-            label: 'ОК',
+            label: 'ОКjkl',
             onPressed: () {},
           ),
         ),
       );
+
       BlocProvider.of<PotsBloc>(context)
           .add(const UserIsFixingInputErrorEvent());
     }

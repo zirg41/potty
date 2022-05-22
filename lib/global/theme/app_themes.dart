@@ -9,10 +9,15 @@ enum AppTheme {
 final appThemeData = {
   AppTheme.lightTheme: ThemeData(
     textTheme: TextTheme(
-      titleLarge: GoogleFonts.lato(fontSize: 25),
+      titleLarge: GoogleFonts.lato(
+          fontSize: 25, color: const Color.fromARGB(255, 255, 255, 255)),
       bodyLarge: GoogleFonts.lato(fontSize: 15, fontWeight: FontWeight.bold),
       bodyMedium: GoogleFonts.lato(fontSize: 15),
       bodySmall: GoogleFonts.lato(fontSize: 12),
+    ),
+    textSelectionTheme: const TextSelectionThemeData(
+      cursorColor: Colors.white70,
+      selectionColor: Colors.white70,
     ),
     colorScheme: const ColorScheme.dark().copyWith(
       brightness: Brightness.light,

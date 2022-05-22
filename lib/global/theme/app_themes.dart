@@ -44,6 +44,7 @@ final appThemeData = {
       bodySmall: GoogleFonts.lato(fontSize: 12),
     ),
     colorScheme: const ColorScheme.dark().copyWith(
+      brightness: Brightness.dark,
       secondary: pottyPalette['Charcoal'],
       onSecondary: Colors.white70,
       primary: const Color.fromARGB(255, 75, 75, 75),

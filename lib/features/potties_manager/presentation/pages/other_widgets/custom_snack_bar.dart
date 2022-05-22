@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 
 SnackBar showCustomSnackBar(BuildContext context, String message) {
-  final contextColorScheme = Theme.of(context).colorScheme;
+  final contextTheme = Theme.of(context);
 
   return SnackBar(
     behavior: SnackBarBehavior.floating,
-    content: Text(message),
+    content: Text(
+      message,
+      style: contextTheme.textTheme.bodyMedium
+          ?.copyWith(color: contextTheme.colorScheme.onSecondary),
+    ),
     action: SnackBarAction(
       label: 'ОК',
-      textColor: contextColorScheme.onSecondary,
+      textColor: contextTheme.colorScheme.onSecondary,
       onPressed: () {},
     ),
-    backgroundColor: contextColorScheme.primaryContainer,
+    backgroundColor: contextTheme.colorScheme.primaryContainer,
   );
 }

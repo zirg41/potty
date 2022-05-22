@@ -1,7 +1,5 @@
 // ignore_for_file: must_be_immutable
 
-import 'dart:ffi';
-
 import 'package:equatable/equatable.dart';
 
 import 'pot.dart';

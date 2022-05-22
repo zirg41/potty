@@ -46,7 +46,6 @@ class PotSetItem extends StatelessWidget {
                     const SizedBox(
                       width: 20,
                     ),
-                    // TODO Style text formatting
                     Text(
                       potSetDateFormat.format(potset.createdDate),
                       style: themeData.textTheme.bodySmall,

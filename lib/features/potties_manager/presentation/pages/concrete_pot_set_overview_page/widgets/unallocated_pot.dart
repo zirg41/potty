@@ -9,7 +9,7 @@ class UnallocatedPot extends StatelessWidget {
   final double amount;
   final String potSetId;
 
-  UnallocatedPot({
+  const UnallocatedPot({
     required this.percent,
     required this.amount,
     required this.potSetId,

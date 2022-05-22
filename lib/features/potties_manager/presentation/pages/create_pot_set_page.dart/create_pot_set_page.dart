@@ -17,7 +17,7 @@ class _CreatePotSetBodyState extends State<CreatePotSetBody> {
   final _nameController = TextEditingController();
   final _incomeAmountFocusNode = FocusNode();
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-  String _previousIncomeValue = '';
+  String previousIncomeValue = '';
 
   void _saveForm(BuildContext context) {
     BlocProvider.of<PotsBloc>(context).add(
@@ -171,8 +171,9 @@ class _CreatePotSetBodyState extends State<CreatePotSetBody> {
 
   void _stateHandler(BuildContext context, PotsState state) {
     if (state is IncomeInputErrorState) {
-      _incomeController.text = _previousIncomeValue;
+      _incomeController.text = previousIncomeValue;
 
+      // ignore: deprecated_member_use
       _scaffoldKey.currentState?.showSnackBar(
         showCustomSnackBar(context, state.message),
       );

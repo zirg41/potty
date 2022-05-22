@@ -250,6 +250,7 @@ class PotsBloc extends Bloc<PotsEvent, PotsState> {
 
     on<PotsChangedSuccesfullyEvent>(
       (event, emit) {
+        // ignore: prefer_const_constructors
         emit(PotsChangedSuccesfullyState(Uuid().v1()));
       },
     );

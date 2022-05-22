@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:potty/features/potties_manager/presentation/pages/other_widgets/custom_snack_bar.dart';
 
 import '../../bloc/pots_actor/pots_bloc.dart';
 
@@ -173,14 +174,7 @@ class _CreatePotSetBodyState extends State<CreatePotSetBody> {
       _incomeController.text = _previousIncomeValue;
 
       _scaffoldKey.currentState?.showSnackBar(
-        SnackBar(
-          behavior: SnackBarBehavior.floating,
-          content: Text(state.message),
-          action: SnackBarAction(
-            label: 'ОКjkl',
-            onPressed: () {},
-          ),
-        ),
+        showCustomSnackBar(context, state.message),
       );
 
       BlocProvider.of<PotsBloc>(context)

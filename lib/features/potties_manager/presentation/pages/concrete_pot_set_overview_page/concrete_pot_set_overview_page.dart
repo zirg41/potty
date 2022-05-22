@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:potty/features/potties_manager/presentation/pages/other_widgets/custom_snack_bar.dart';
 import '../../bloc/pots_actor/pots_bloc.dart';
 import 'widgets/potset_overview_body.dart';
 import 'widgets/potset_appbar.dart';
@@ -18,7 +19,7 @@ class ConcretePotSetOverviewPage extends StatelessWidget {
       listener: (context, state) {
         if (state is IncomeInputErrorState) {
           ScaffoldMessenger.of(context).showSnackBar(
-            errorSnackBar(state.message),
+            showCustomSnackBar(context, state.message),
           );
         }
       },
@@ -35,17 +36,6 @@ class ConcretePotSetOverviewPage extends StatelessWidget {
           ),
           body: ConcretePotSetBodyWidget(potSetId: potSetId),
         ),
-      ),
-    );
-  }
-
-  SnackBar errorSnackBar(String message) {
-    return SnackBar(
-      behavior: SnackBarBehavior.floating,
-      content: Text(message),
-      action: SnackBarAction(
-        label: 'ОК',
-        onPressed: () {},
       ),
     );
   }

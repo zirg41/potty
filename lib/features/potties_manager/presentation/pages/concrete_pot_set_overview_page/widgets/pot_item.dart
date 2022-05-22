@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:potty/features/potties_manager/presentation/pages/other_widgets/custom_snack_bar.dart';
 import '../../../../domain/entities/pot.dart';
 import '../../../bloc/pots_actor/pots_bloc.dart';
 import '../../edit_pot_page/edit_pot_widget.dart';
@@ -19,10 +20,6 @@ class PotItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ctxTheme = Theme.of(context);
-    const snackBar = SnackBar(
-      content: Text('Скопировано!'),
-      duration: Duration(seconds: 1),
-    );
     bool isEnabled = true;
 
     return BlocListener<PotsBloc, PotsState>(
@@ -140,8 +137,9 @@ class PotItem extends StatelessWidget {
                               onLongPress: () {
                                 Clipboard.setData(
                                     ClipboardData(text: pot.amount.toString()));
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(snackBar);
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                    showCustomSnackBar(
+                                        context, 'Скопировано!'));
                               },
                               child: Container(
                                 // СУММА

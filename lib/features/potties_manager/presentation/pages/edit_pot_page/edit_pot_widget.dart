@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:potty/features/potties_manager/presentation/pages/other_widgets/custom_snack_bar.dart';
 import 'drop_down_values.dart';
 
 import '../../../domain/entities/pot.dart';
@@ -133,14 +134,7 @@ class _EditPotWidgetState extends State<EditPotWidget> {
           _percentController.text = _previousAmountValue;
 
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              behavior: SnackBarBehavior.floating,
-              content: Text(state.message),
-              action: SnackBarAction(
-                label: 'ОК',
-                onPressed: () {},
-              ),
-            ),
+            showCustomSnackBar(context, state.message),
           );
           BlocProvider.of<PotsBloc>(context)
               .add(const UserIsFixingInputErrorEvent());

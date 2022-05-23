@@ -58,7 +58,10 @@ class PotSetItem extends StatelessWidget {
                     final bool response = await showDialog(
                       context: context,
                       builder: (context) => AlertDialog(
-                        title: const Text("Вы уверены?"),
+                        title: Text(
+                          "Вы уверены?",
+                          style: themeData.textTheme.displayLarge,
+                        ),
                         content: const Text("Удалить данную позицию?"),
                         actions: [
                           TextButton(

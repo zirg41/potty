@@ -49,7 +49,10 @@ class PotItem extends StatelessWidget {
               return showDialog(
                 context: context,
                 builder: (context) => AlertDialog(
-                  title: const Text("Вы уверены?"),
+                  title: Text(
+                    "Вы уверены?",
+                    style: ctxTheme.textTheme.displayLarge,
+                  ),
                   content: const Text("Удалить данную позицию?"),
                   actions: [
                     TextButton(
@@ -126,8 +129,9 @@ class PotItem extends StatelessWidget {
                             pot.percent == null
                                 ? ""
                                 : "${pot.percent!.toStringAsFixed(pot.percent!.truncateToDouble() == pot.percent ? 0 : 1)} %",
-                            style: const TextStyle(
-                                fontSize: 18, color: Color(0xFFf4f1de)),
+                            style: TextStyle(
+                                fontSize: 18,
+                                color: ctxTheme.colorScheme.onPrimary),
                           ),
                         ),
                         Column(

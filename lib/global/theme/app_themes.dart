@@ -14,6 +14,8 @@ final appThemeData = {
       bodyLarge: GoogleFonts.lato(fontSize: 15, fontWeight: FontWeight.bold),
       bodyMedium: GoogleFonts.lato(fontSize: 15),
       bodySmall: GoogleFonts.lato(fontSize: 12),
+      displayLarge:
+          GoogleFonts.lato(fontSize: 25, color: const Color(0xFF121212)),
     ),
     textSelectionTheme: const TextSelectionThemeData(
       cursorColor: Colors.white70,
@@ -42,11 +44,13 @@ final appThemeData = {
       bodyLarge: GoogleFonts.lato(fontSize: 15, fontWeight: FontWeight.bold),
       bodyMedium: GoogleFonts.lato(fontSize: 15),
       bodySmall: GoogleFonts.lato(fontSize: 12),
+      displayLarge: GoogleFonts.lato(fontSize: 25),
     ),
     colorScheme: const ColorScheme.dark().copyWith(
       brightness: Brightness.dark,
       secondary: pottyPalette['Charcoal'],
-      onSecondary: Colors.white70,
+      onSecondary: const Color(0xFFFFFFFF),
+      onPrimary: const Color(0xFFFFFFFF),
       primary: const Color.fromARGB(255, 75, 75, 75),
       surface: const Color.fromARGB(255, 43, 43, 43),
       background: const Color(0xFF121212),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:potty/config/pots_converter_to_new_version.dart';
+import 'config/pots_converter_to_new_version.dart';
 import 'features/potties_manager/presentation/bloc/pots_actor/pots_bloc.dart';
 import 'features/potties_manager/presentation/bloc/pots_watcher/pots_watcher_bloc.dart';
 import 'package:potty/features/potties_manager/presentation/routes/router.gr.dart'

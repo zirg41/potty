@@ -1,10 +1,10 @@
 import 'package:hive_flutter/adapters.dart';
-import 'package:potty/config/old_pot_model.dart';
-import 'package:potty/config/old_pot_set_model.dart';
-import 'package:potty/core/util/pots_creator.dart';
-import 'package:potty/dependency_injection.dart';
-import 'package:potty/features/potties_manager/domain/entities/pot.dart';
-import 'package:potty/features/potties_manager/presentation/bloc/pots_actor/pots_bloc.dart';
+import 'old_pot_model.dart';
+import 'old_pot_set_model.dart';
+import '../core/util/pots_creator.dart';
+import '../dependency_injection.dart';
+import '../features/potties_manager/domain/entities/pot.dart';
+import '../features/potties_manager/presentation/bloc/pots_actor/pots_bloc.dart';
 
 Future<void> convertOldPotSetToNewOne() async {
   late Box<OldPotSet> oldPotSetBox;

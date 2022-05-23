@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:potty/config/old_pot_model.dart';
+import 'old_pot_model.dart';
 
 part 'old_pot_set_model.g.dart';
 

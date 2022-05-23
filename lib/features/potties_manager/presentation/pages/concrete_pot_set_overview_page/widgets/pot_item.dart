@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:potty/features/potties_manager/presentation/pages/other_widgets/custom_snack_bar.dart';
+import '../../other_widgets/custom_snack_bar.dart';
 import '../../../../domain/entities/pot.dart';
 import '../../../bloc/pots_actor/pots_bloc.dart';
 import '../../edit_pot_page/edit_pot_widget.dart';

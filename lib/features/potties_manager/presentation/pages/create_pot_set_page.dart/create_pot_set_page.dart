@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:potty/features/potties_manager/presentation/pages/other_widgets/custom_snack_bar.dart';
-import 'package:potty/features/potties_manager/presentation/routes/router.gr.dart';
+import '../other_widgets/custom_snack_bar.dart';
+import '../../routes/router.gr.dart';
 
 import '../../bloc/pots_actor/pots_bloc.dart';
 import '../../bloc/pots_watcher/pots_watcher_bloc.dart';
@@ -80,7 +80,7 @@ class _CreatePotSetBodyState extends State<CreatePotSetBody> {
             listener: (context, state) {
               if (state is PotSetsLoadedState) {
                 FocusManager.instance.primaryFocus?.unfocus();
-                AutoRouter.of(context).push(
+                AutoRouter.of(context).popAndPush(
                     ConcretePotSetOverviewRoute(potSetId: state.pots.last.id));
               }
             },

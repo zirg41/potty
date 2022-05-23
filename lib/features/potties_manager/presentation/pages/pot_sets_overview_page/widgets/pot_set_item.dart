@@ -28,6 +28,7 @@ class PotSetItem extends StatelessWidget {
         padding: itemsPadding,
         child: Card(
           elevation: 5,
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
           color: themeData.colorScheme.surface,
           child: Column(
             children: [

@@ -1,8 +1,11 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:potty/features/potties_manager/presentation/pages/other_widgets/custom_snack_bar.dart';
+import 'package:potty/features/potties_manager/presentation/routes/router.gr.dart';
 
 import '../../bloc/pots_actor/pots_bloc.dart';
+import '../../bloc/pots_watcher/pots_watcher_bloc.dart';
 
 class CreatePotSetBody extends StatefulWidget {
   const CreatePotSetBody({Key? key}) : super(key: key);
@@ -56,8 +59,33 @@ class _CreatePotSetBodyState extends State<CreatePotSetBody> {
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: Colors.transparent,
-      body: BlocListener<PotsBloc, PotsState>(
-        listener: (context, state) => _stateHandler(context, state),
+      body: MultiBlocListener(
+        listeners: [
+          BlocListener<PotsBloc, PotsState>(
+            listener: (context, state) {
+              if (state is IncomeInputErrorState) {
+                _incomeController.text = previousIncomeValue;
+
+                // ignore: deprecated_member_use
+                _scaffoldKey.currentState?.showSnackBar(
+                  showCustomSnackBar(context, state.message),
+                );
+
+                BlocProvider.of<PotsBloc>(context)
+                    .add(const UserIsFixingInputErrorEvent());
+              }
+            },
+          ),
+          BlocListener<PotsWatcherBloc, PotsWatcherState>(
+            listener: (context, state) {
+              if (state is PotSetsLoadedState) {
+                FocusManager.instance.primaryFocus?.unfocus();
+                AutoRouter.of(context).push(
+                    ConcretePotSetOverviewRoute(potSetId: state.pots.last.id));
+              }
+            },
+          ),
+        ],
         child: Stack(
           children: [
             GestureDetector(
@@ -167,23 +195,5 @@ class _CreatePotSetBodyState extends State<CreatePotSetBody> {
         ),
       ),
     );
-  }
-
-  void _stateHandler(BuildContext context, PotsState state) {
-    if (state is IncomeInputErrorState) {
-      _incomeController.text = previousIncomeValue;
-
-      // ignore: deprecated_member_use
-      _scaffoldKey.currentState?.showSnackBar(
-        showCustomSnackBar(context, state.message),
-      );
-
-      BlocProvider.of<PotsBloc>(context)
-          .add(const UserIsFixingInputErrorEvent());
-    }
-    if (state is PotsChangedSuccesfullyState) {
-      FocusManager.instance.primaryFocus?.unfocus();
-      Navigator.of(context).pop();
-    }
   }
 }

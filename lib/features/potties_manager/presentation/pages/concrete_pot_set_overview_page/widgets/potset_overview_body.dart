@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:potty/features/potties_manager/presentation/pages/concrete_pot_set_overview_page/widgets/set_sorting_button.dart';
 import 'add_pot_button.dart';
 import 'income_widget.dart';
 import 'pot_item.dart';
@@ -42,6 +43,11 @@ class ConcretePotSetBodyWidget extends StatelessWidget {
                 ),
               if (potSet.unallocatedBalance != 0.0)
                 const SliverToBoxAdapter(child: Divider()),
+              SliverToBoxAdapter(
+                  child: SetPotSetSortingButton(
+                potSetId: potSetId,
+                sortingLogic: potSet.sortingLogic,
+              )),
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {

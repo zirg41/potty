@@ -17,13 +17,13 @@ class OldPotSetAdapter extends TypeAdapter<OldPotSet> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return OldPotSet(
-      id: fields[0] as String,
-      income: fields[1] as double,
-      name: fields[2] as String,
-      pots: (fields[3] as List).cast<OldPot>(),
+      id: fields[0] as String?,
+      income: fields[1] as double?,
+      name: fields[2] as String?,
+      pots: (fields[3] as List?)?.cast<OldPot>(),
     )
-      ..unallocatedAmount = fields[4] as double
-      ..unallocatedPercent = fields[5] as double;
+      ..unallocatedAmount = fields[4] as double?
+      ..unallocatedPercent = fields[5] as double?;
   }
 
   @override

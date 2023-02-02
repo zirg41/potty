@@ -41,13 +41,12 @@ class ConcretePotSetBodyWidget extends StatelessWidget {
                       amount: potSet.unallocatedBalance!,
                       potSetId: potSetId),
                 ),
-              if (potSet.unallocatedBalance != 0.0)
-                const SliverToBoxAdapter(child: Divider()),
-              SliverToBoxAdapter(
-                  child: SetPotSetSortingButton(
-                potSetId: potSetId,
-                sortingLogic: potSet.sortingLogic,
-              )),
+              if (potSet.unallocatedPercent != 100)
+                SliverToBoxAdapter(
+                    child: SetPotSetSortingButton(
+                  potSetId: potSetId,
+                  sortingLogic: potSet.sortingLogic,
+                )),
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) {

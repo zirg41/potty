@@ -17,11 +17,11 @@ class OldPotAdapter extends TypeAdapter<OldPot> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return OldPot(
-      id: fields[0] as String,
-      name: fields[1] as String,
-      percent: fields[2] as double,
-      amount: fields[3] as double,
-      isAmountFixed: fields[4] as bool,
+      id: fields[0] as String?,
+      name: fields[1] as String?,
+      percent: fields[2] as double?,
+      amount: fields[3] as double?,
+      isAmountFixed: fields[4] as bool?,
     );
   }
 

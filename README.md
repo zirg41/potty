@@ -1,6 +1,6 @@
 # Potty
 
- Flutter mobile app that will help to manage your cash flow easily. 
+Flutter mobile app that will help to manage your cash flow easily.
 
 
 ## Main page

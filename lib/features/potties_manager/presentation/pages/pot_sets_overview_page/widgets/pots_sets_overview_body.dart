@@ -26,6 +26,7 @@ class PotSetsOverviewBody extends StatelessWidget {
             padding: const EdgeInsets.only(top: 10),
             child: ListView.builder(
               itemCount: state.pots.length,
+              reverse: false,
               itemBuilder: (context, index) {
                 final potSet = state.pots[index];
                 return PotSetItem(potset: potSet);

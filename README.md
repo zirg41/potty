@@ -32,8 +32,7 @@ There is few more features:
 
 ---
 # Few words about code
-First repository with "dirty" code - [click](
-https://user-images.githubusercontent.com/94638085/216392516-0e2100ee-aab0-41b1-ad1d-1aea3191a592.png)
+First repository with "dirty" code - [click](https://github.com/zirg41/potty_app)
 
 At this repos was being using clean code principles.
 CHECK [UML DIAGRAM](Class%20structure.drawio.pdf)

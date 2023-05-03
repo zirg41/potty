@@ -67,9 +67,9 @@ class _CreatePotSetBodyState extends State<CreatePotSetBody> {
                 _incomeController.text = previousIncomeValue;
 
                 // ignore: deprecated_member_use
-                _scaffoldKey.currentState?.showSnackBar(
-                  showCustomSnackBar(context, state.message),
-                );
+                // _scaffoldKey.currentState?.showSnackBar(
+                //   showCustomSnackBar(context, state.message),
+                // );
 
                 BlocProvider.of<PotsBloc>(context)
                     .add(const UserIsFixingInputErrorEvent());

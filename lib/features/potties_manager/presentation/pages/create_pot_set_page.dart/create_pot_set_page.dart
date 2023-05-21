@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../other_widgets/custom_snack_bar.dart';
 import '../../routes/router.gr.dart';
 
 import '../../bloc/pots_actor/pots_bloc.dart';
@@ -45,14 +44,14 @@ class _CreatePotSetBodyState extends State<CreatePotSetBody> {
     final mediaQuery = MediaQuery.of(context);
 
     final textFieldBorderRadius = BorderRadius.circular(10);
-    final _enabledBorder = OutlineInputBorder(
+    final enabledBorder = OutlineInputBorder(
         borderSide: BorderSide(width: 1.5, color: themeDataColorScheme.outline),
         borderRadius: textFieldBorderRadius);
-    final _focusedBorder = OutlineInputBorder(
+    final focusedBorder = OutlineInputBorder(
         borderSide:
             BorderSide(width: 1.5, color: themeDataColorScheme.onSurface),
         borderRadius: textFieldBorderRadius);
-    final _errorBorder = OutlineInputBorder(
+    final errorBorder = OutlineInputBorder(
         borderSide: BorderSide(width: 1.5, color: themeDataColorScheme.error),
         borderRadius: textFieldBorderRadius);
 
@@ -129,9 +128,9 @@ class _CreatePotSetBodyState extends State<CreatePotSetBody> {
                                           TextCapitalization.sentences,
                                       decoration: InputDecoration(
                                         hintText: 'Наименование',
-                                        enabledBorder: _enabledBorder,
-                                        focusedBorder: _focusedBorder,
-                                        errorBorder: _errorBorder,
+                                        enabledBorder: enabledBorder,
+                                        focusedBorder: focusedBorder,
+                                        errorBorder: errorBorder,
                                         suffixIcon: IconButton(
                                           onPressed: _nameController.clear,
                                           color: themeDataColorScheme.outline,
@@ -150,9 +149,9 @@ class _CreatePotSetBodyState extends State<CreatePotSetBody> {
                                       onFieldSubmitted: (_) =>
                                           _saveForm(context),
                                       decoration: InputDecoration(
-                                        enabledBorder: _enabledBorder,
-                                        focusedBorder: _focusedBorder,
-                                        errorBorder: _errorBorder,
+                                        enabledBorder: enabledBorder,
+                                        focusedBorder: focusedBorder,
+                                        errorBorder: errorBorder,
                                         hintText: 'Доход, RUB',
                                         suffixIcon: IconButton(
                                           onPressed: () =>

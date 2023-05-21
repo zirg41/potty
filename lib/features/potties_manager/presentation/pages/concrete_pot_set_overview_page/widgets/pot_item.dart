@@ -39,9 +39,9 @@ class PotItem extends StatelessWidget {
             margin: const EdgeInsets.all(0),
             decoration: BoxDecoration(
                 color: Colors.red, borderRadius: BorderRadius.circular(7)),
-            child: const Icon(Icons.delete),
             alignment: Alignment.centerRight,
             padding: const EdgeInsets.only(right: 20),
+            child: const Icon(Icons.delete),
           ),
           direction: DismissDirection.endToStart,
           confirmDismiss: (direction) {

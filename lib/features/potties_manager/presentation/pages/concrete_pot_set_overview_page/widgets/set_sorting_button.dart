@@ -29,6 +29,7 @@ class SetPotSetSortingButton extends StatelessWidget {
               DropdownButton<String>(
                 items: sortingWaysStringList
                     .map((e) => DropdownMenuItem(
+                          value: e,
                           child: Text(
                             e,
                             style: Theme.of(context)
@@ -36,7 +37,6 @@ class SetPotSetSortingButton extends StatelessWidget {
                                 .bodySmall!
                                 .copyWith(fontSize: 15),
                           ),
-                          value: e,
                         ))
                     .toList(),
                 underline: const SizedBox.shrink(),

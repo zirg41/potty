@@ -65,7 +65,7 @@ class UnallocatedPot extends StatelessWidget {
                     margin: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                         color: percent < 0.0
-                            ? contextTheme.errorColor
+                            ? contextTheme.colorScheme.error
                             : contextTheme.colorScheme.tertiary,
                         //border: Border.all(width: 8),
                         borderRadius: BorderRadius.circular(10)),

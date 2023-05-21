@@ -112,14 +112,14 @@ class _EditPotWidgetState extends State<EditPotWidget> {
     final mediaQuery = MediaQuery.of(context);
 
     final textFieldBorderRadius = BorderRadius.circular(10);
-    final _enabledBorder = OutlineInputBorder(
+    final enabledBorder = OutlineInputBorder(
         borderSide: BorderSide(width: 1.5, color: themeDataColorScheme.outline),
         borderRadius: textFieldBorderRadius);
-    final _focusedBorder = OutlineInputBorder(
+    final focusedBorder = OutlineInputBorder(
         borderSide:
             BorderSide(width: 1.5, color: themeDataColorScheme.onSurface),
         borderRadius: textFieldBorderRadius);
-    final _errorBorder = OutlineInputBorder(
+    final errorBorder = OutlineInputBorder(
         borderSide: BorderSide(width: 1.5, color: themeDataColorScheme.error),
         borderRadius: textFieldBorderRadius);
 
@@ -189,9 +189,9 @@ class _EditPotWidgetState extends State<EditPotWidget> {
                                           TextCapitalization.sentences,
                                       decoration: InputDecoration(
                                         hintText: 'Наименование',
-                                        enabledBorder: _enabledBorder,
-                                        focusedBorder: _focusedBorder,
-                                        errorBorder: _errorBorder,
+                                        enabledBorder: enabledBorder,
+                                        focusedBorder: focusedBorder,
+                                        errorBorder: errorBorder,
                                         suffixIcon: IconButton(
                                           onPressed: _nameController.clear,
                                           color: themeDataColorScheme.outline,
@@ -218,9 +218,9 @@ class _EditPotWidgetState extends State<EditPotWidget> {
                                             onFieldSubmitted: (_) => _saveForm(
                                                 context, isAmountFixedByUser),
                                             decoration: InputDecoration(
-                                              enabledBorder: _enabledBorder,
-                                              focusedBorder: _focusedBorder,
-                                              errorBorder: _errorBorder,
+                                              enabledBorder: enabledBorder,
+                                              focusedBorder: focusedBorder,
+                                              errorBorder: errorBorder,
                                               hintText: isAmountFixedByUser
                                                   ? 'Сумма'
                                                   : 'Проценты',
@@ -287,8 +287,8 @@ class _EditPotWidgetState extends State<EditPotWidget> {
                                               items: dropdownIconValues.values
                                                   .map(
                                                     (value) => DropdownMenuItem(
-                                                        child: value,
-                                                        value: value),
+                                                        value: value,
+                                                        child: value),
                                                   )
                                                   .toList(),
                                             ),

@@ -28,7 +28,7 @@ class PotSetsOverviewBody extends StatelessWidget {
               itemCount: state.pots.length,
               reverse: false,
               itemBuilder: (context, index) {
-                final potSet = state.pots[index];
+                final potSet = state.pots.reversed.toList()[index];
                 return PotSetItem(potset: potSet);
               },
             ),

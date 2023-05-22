@@ -20,6 +20,7 @@ class PotSetItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeData = Theme.of(context);
+    var potsBloc = BlocProvider.of<PotsBloc>(context);
     return GestureDetector(
       onTap: () {
         context.pushRoute(ConcretePotSetOverviewRoute(potSetId: potset.id));
@@ -88,7 +89,7 @@ class PotSetItem extends StatelessWidget {
                       ),
                     );
                     if (response) {
-                      BlocProvider.of<PotsBloc>(context)
+                      potsBloc
                           .add(DeletePotSetEvent(potSetIdToDelete: potset.id));
                     }
                   },

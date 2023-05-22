@@ -7,7 +7,7 @@ import '../../../bloc/pots_actor/pots_bloc.dart';
 import '../../edit_pot_page/edit_pot_widget.dart';
 import '../../pot_sets_overview_page/widgets/pot_set_item.dart';
 
-class PotItem extends StatelessWidget {
+class PotItem extends StatefulWidget {
   final String potSetId;
   final Pot pot;
 
@@ -18,23 +18,36 @@ class PotItem extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<PotItem> createState() => _PotItemState();
+}
+
+class _PotItemState extends State<PotItem> {
+  bool isEditing = false;
+
+  @override
   Widget build(BuildContext context) {
     final ctxTheme = Theme.of(context);
-    bool isEnabled = true;
+    bool isButtonEnabled = true;
 
     return BlocListener<PotsBloc, PotsState>(
       listener: (context, state) {
         if (state is UserEditingEitherNameOrIncomeOfPotSetState) {
-          isEnabled = false;
+          setState(() {
+            isButtonEnabled = false;
+            isEditing = false;
+          });
         }
         if (state is PotsChangedSuccesfullyState) {
-          isEnabled = true;
+          setState(() {
+            isButtonEnabled = true;
+            isEditing = false;
+          });
         }
       },
       child: Padding(
         padding: itemsPadding,
         child: Dismissible(
-          key: ValueKey(pot.id),
+          key: ValueKey(widget.pot.id),
           background: Container(
             margin: const EdgeInsets.all(0),
             decoration: BoxDecoration(
@@ -79,109 +92,110 @@ class PotItem extends StatelessWidget {
             return Future.value(false);
           },
           onDismissed: (direction) {
-            BlocProvider.of<PotsBloc>(context)
-                .add(DeletePotEvent(potSetId: potSetId, potIdToDelete: pot.id));
+            BlocProvider.of<PotsBloc>(context).add(DeletePotEvent(
+                potSetId: widget.potSetId, potIdToDelete: widget.pot.id));
           },
           child: InkWell(
             onTap: () {
-              if (isEnabled) {
-                showDialog(
-                  context: context,
-                  builder: (ctx) {
-                    return EditPotWidget(
-                      potSetId: potSetId,
-                      editedPot: pot,
-                    );
-                  },
-                );
+              if (isButtonEnabled) {
+                setState(() {
+                  isEditing = true;
+                });
               } else {
                 FocusManager.instance.primaryFocus?.unfocus();
                 BlocProvider.of<PotsBloc>(context)
                     .add(const PotsChangedSuccesfullyEvent());
               }
             },
-            child: Card(
-              elevation: 5,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(7)),
-              // color: Colors.transparent,
-              margin: const EdgeInsets.all(0),
-              child: Container(
-                decoration: BoxDecoration(
-                    color: ctxTheme.colorScheme.surface,
-                    borderRadius: BorderRadius.circular(7)),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: [
-                        Container(
-                          // ПРОЦЕНТЫ
-                          margin: const EdgeInsets.symmetric(
-                            vertical: 10,
-                            horizontal: 10,
-                          ),
-                          decoration: BoxDecoration(
-                              color: ctxTheme.colorScheme.primary,
-                              borderRadius: BorderRadius.circular(10)),
-                          padding: const EdgeInsets.all(10),
-                          child: Text(
-                            pot.percent == null
-                                ? ""
-                                : "${pot.percent!.toStringAsFixed(pot.percent!.truncateToDouble() == pot.percent ? 0 : 1)} %",
-                            style: TextStyle(
-                                fontSize: 18,
-                                color: ctxTheme.colorScheme.onPrimary),
-                          ),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            GestureDetector(
-                              onLongPress: () {
-                                Clipboard.setData(
-                                    ClipboardData(text: pot.amount.toString()));
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                    showCustomSnackBar(
-                                        context, 'Скопировано!'));
-                              },
-                              child: Container(
-                                // СУММА
-                                margin: const EdgeInsets.all(5),
+            child: isEditing
+                ? EditPotWidget(
+                    potSetId: widget.potSetId,
+                    editedPot: widget.pot,
+                  )
+                : Card(
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(7)),
+                    // color: Colors.transparent,
+                    margin: const EdgeInsets.all(0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: ctxTheme.colorScheme.surface,
+                          borderRadius: BorderRadius.circular(7)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                // ПРОЦЕНТЫ
+                                margin: const EdgeInsets.symmetric(
+                                  vertical: 10,
+                                  horizontal: 10,
+                                ),
+                                decoration: BoxDecoration(
+                                    color: ctxTheme.colorScheme.primary,
+                                    borderRadius: BorderRadius.circular(10)),
+                                padding: const EdgeInsets.all(10),
                                 child: Text(
-                                  pot.amount != null
-                                      ? pot.amount!.toStringAsFixed(
-                                          pot.amount!.truncateToDouble() ==
-                                                  pot.amount
-                                              ? 0
-                                              : 2)
-                                      : "-",
-                                  style: const TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
+                                  widget.pot.percent == null
+                                      ? ""
+                                      : "${widget.pot.percent!.toStringAsFixed(widget.pot.percent!.truncateToDouble() == widget.pot.percent ? 0 : 1)} %",
+                                  style: TextStyle(
+                                      fontSize: 18,
+                                      color: ctxTheme.colorScheme.onPrimary),
+                                ),
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  GestureDetector(
+                                    onLongPress: () {
+                                      Clipboard.setData(ClipboardData(
+                                          text: widget.pot.amount.toString()));
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(showCustomSnackBar(
+                                              context, 'Скопировано!'));
+                                    },
+                                    child: Container(
+                                      // СУММА
+                                      margin: const EdgeInsets.all(5),
+                                      child: Text(
+                                        widget.pot.amount != null
+                                            ? widget.pot.amount!
+                                                .toStringAsFixed(widget
+                                                            .pot.amount!
+                                                            .truncateToDouble() ==
+                                                        widget.pot.amount
+                                                    ? 0
+                                                    : 2)
+                                            : "-",
+                                        style: const TextStyle(
+                                          fontSize: 18,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                ),
+                                  Container(
+                                    // НАИМЕНОВАНИЕ
+                                    margin: const EdgeInsets.only(
+                                        left: 5, right: 5, top: 0, bottom: 5),
+                                    child: FittedBox(
+                                      child: Text(
+                                        widget.pot.name,
+                                        style: const TextStyle(fontSize: 16),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
-                            ),
-                            Container(
-                              // НАИМЕНОВАНИЕ
-                              margin: const EdgeInsets.only(
-                                  left: 5, right: 5, top: 0, bottom: 5),
-                              child: FittedBox(
-                                child: Text(
-                                  pot.name,
-                                  style: const TextStyle(fontSize: 16),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
-                  ],
-                ),
-              ),
-            ),
+                  ),
           ),
         ),
       ),

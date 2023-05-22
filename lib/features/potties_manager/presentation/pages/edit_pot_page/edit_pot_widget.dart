@@ -141,190 +141,148 @@ class _EditPotWidgetState extends State<EditPotWidget> {
         }
         if (state is PotsChangedSuccesfullyState) {
           FocusManager.instance.primaryFocus?.unfocus();
-          Navigator.of(context).pop();
+          // Navigator.of(context).pop();
         }
       },
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        body: Stack(
-          children: [
-            GestureDetector(
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-            ),
-            Column(
-              children: [
-                const SizedBox(height: 100),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+      child: Card(
+        elevation: 5,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(7)),
+        // color: Colors.transparent,
+        margin: const EdgeInsets.all(0),
+        color: ctxTheme.colorScheme.surface,
+        child: Padding(
+          padding: const EdgeInsets.all(15),
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              return Form(
+                key: _formKey,
+                child: Column(
                   children: [
-                    Container(
-                      constraints: BoxConstraints(
-                          maxHeight: mediaQuery.size.height * 0.35,
-                          maxWidth: mediaQuery.size.width * 0.7),
-                      child: Card(
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        color: ctxTheme.colorScheme.surface,
-                        child: Padding(
-                          padding: const EdgeInsets.all(20),
-                          child: LayoutBuilder(
-                            builder: (context, constraints) {
-                              return Form(
-                                key: _formKey,
-                                child: Column(
-                                  children: [
-                                    // ! Pot's name Text Field
-                                    TextFormField(
-                                      controller: _nameController,
-                                      autocorrect: false,
-                                      autofocus: true,
-                                      keyboardType: TextInputType.name,
-                                      textInputAction: TextInputAction.next,
-                                      onFieldSubmitted: (value) {
-                                        _percentAmountFocusNode.requestFocus();
-                                      },
-                                      textCapitalization:
-                                          TextCapitalization.sentences,
-                                      decoration: InputDecoration(
-                                        hintText: 'Наименование',
-                                        enabledBorder: enabledBorder,
-                                        focusedBorder: focusedBorder,
-                                        errorBorder: errorBorder,
-                                        suffixIcon: IconButton(
-                                          onPressed: _nameController.clear,
-                                          color: themeDataColorScheme.outline,
-                                          focusColor:
-                                              themeDataColorScheme.onSurface,
-                                          icon: const Icon(Icons.clear),
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(height: 15),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        // ! Percent&Amount Text Field
-                                        SizedBox(
-                                          width: constraints.maxWidth * 0.65,
-                                          child: TextFormField(
-                                            controller: isAmountFixedByUser
-                                                ? _amountController
-                                                : _percentController,
-                                            keyboardType: TextInputType.number,
-                                            focusNode: _percentAmountFocusNode,
-                                            onFieldSubmitted: (_) => _saveForm(
-                                                context, isAmountFixedByUser),
-                                            decoration: InputDecoration(
-                                              enabledBorder: enabledBorder,
-                                              focusedBorder: focusedBorder,
-                                              errorBorder: errorBorder,
-                                              hintText: isAmountFixedByUser
-                                                  ? 'Сумма'
-                                                  : 'Проценты',
-                                              suffixIcon: IconButton(
-                                                onPressed: isAmountFixedByUser
-                                                    ? () => _amountController
-                                                        .clear()
-                                                    : () => _percentController
-                                                        .clear(),
-                                                color: themeDataColorScheme
-                                                    .outline,
-                                                focusColor: themeDataColorScheme
-                                                    .onSurface,
-                                                icon: const Icon(Icons.clear),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                        // ! Dropdown button
-                                        Container(
-                                          width: constraints.maxWidth * 0.3,
-                                          height: 59,
-                                          decoration: BoxDecoration(
-                                            border: Border.all(
-                                              width: 1.5,
-                                              color:
-                                                  themeDataColorScheme.outline,
-                                            ),
-                                            borderRadius: textFieldBorderRadius,
-                                          ),
-                                          child: Center(
-                                            child: DropdownButton<Widget>(
-                                              onTap: () =>
-                                                  _percentAmountFocusNode
-                                                      .requestFocus(),
-                                              alignment: Alignment.center,
-                                              value: _currentPotCreationOption,
-                                              icon: const Icon(Icons
-                                                  .arrow_drop_down_outlined),
-                                              underline:
-                                                  const SizedBox.shrink(),
-                                              isExpanded: false,
-                                              isDense: false,
-                                              onChanged: (Widget? newValue) {
-                                                if (newValue == null) {
-                                                  return;
-                                                }
-                                                setState(() {
-                                                  _currentPotCreationOption =
-                                                      newValue;
-
-                                                  if (newValue ==
-                                                      dropdownIconValues[
-                                                          DropValue.percent]) {
-                                                    isAmountFixedByUser = false;
-                                                  }
-                                                  if (newValue ==
-                                                      dropdownIconValues[
-                                                          DropValue.amount]) {
-                                                    isAmountFixedByUser = true;
-                                                  }
-                                                });
-                                              },
-                                              items: dropdownIconValues.values
-                                                  .map(
-                                                    (value) => DropdownMenuItem(
-                                                        value: value,
-                                                        child: value),
-                                                  )
-                                                  .toList(),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 15),
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        TextButton(
-                                            onPressed: () =>
-                                                Navigator.of(context).pop(),
-                                            child: const Text('Отменить')),
-                                        ElevatedButton(
-                                          child: const Text('Сохранить'),
-                                          onPressed: () => _saveForm(
-                                              context, isAmountFixedByUser),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              );
-                            },
-                          ),
+                    // ! Pot's name Text Field
+                    TextFormField(
+                      controller: _nameController,
+                      autocorrect: false,
+                      autofocus: true,
+                      keyboardType: TextInputType.name,
+                      textInputAction: TextInputAction.next,
+                      onFieldSubmitted: (value) {
+                        _percentAmountFocusNode.requestFocus();
+                      },
+                      textCapitalization: TextCapitalization.sentences,
+                      decoration: InputDecoration(
+                        hintText: 'Наименование',
+                        enabledBorder: enabledBorder,
+                        focusedBorder: focusedBorder,
+                        errorBorder: errorBorder,
+                        suffixIcon: IconButton(
+                          onPressed: _nameController.clear,
+                          color: themeDataColorScheme.outline,
+                          focusColor: themeDataColorScheme.onSurface,
+                          icon: const Icon(Icons.clear),
                         ),
                       ),
                     ),
+                    const SizedBox(height: 15),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        // ! Percent&Amount Text Field
+                        SizedBox(
+                          width: constraints.maxWidth * 0.65,
+                          child: TextFormField(
+                            controller: isAmountFixedByUser
+                                ? _amountController
+                                : _percentController,
+                            keyboardType: TextInputType.number,
+                            focusNode: _percentAmountFocusNode,
+                            onFieldSubmitted: (_) =>
+                                _saveForm(context, isAmountFixedByUser),
+                            decoration: InputDecoration(
+                              enabledBorder: enabledBorder,
+                              focusedBorder: focusedBorder,
+                              errorBorder: errorBorder,
+                              hintText:
+                                  isAmountFixedByUser ? 'Сумма' : 'Проценты',
+                              suffixIcon: IconButton(
+                                onPressed: isAmountFixedByUser
+                                    ? () => _amountController.clear()
+                                    : () => _percentController.clear(),
+                                color: themeDataColorScheme.outline,
+                                focusColor: themeDataColorScheme.onSurface,
+                                icon: const Icon(Icons.clear),
+                              ),
+                            ),
+                          ),
+                        ),
+                        // ! Dropdown button
+                        Container(
+                          width: constraints.maxWidth * 0.3,
+                          height: 59,
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              width: 1.5,
+                              color: themeDataColorScheme.outline,
+                            ),
+                            borderRadius: textFieldBorderRadius,
+                          ),
+                          child: Center(
+                            child: DropdownButton<Widget>(
+                              onTap: () =>
+                                  _percentAmountFocusNode.requestFocus(),
+                              alignment: Alignment.center,
+                              value: _currentPotCreationOption,
+                              icon: const Icon(Icons.arrow_drop_down_outlined),
+                              underline: const SizedBox.shrink(),
+                              isExpanded: false,
+                              isDense: false,
+                              onChanged: (Widget? newValue) {
+                                if (newValue == null) {
+                                  return;
+                                }
+                                setState(() {
+                                  _currentPotCreationOption = newValue;
+
+                                  if (newValue ==
+                                      dropdownIconValues[DropValue.percent]) {
+                                    isAmountFixedByUser = false;
+                                  }
+                                  if (newValue ==
+                                      dropdownIconValues[DropValue.amount]) {
+                                    isAmountFixedByUser = true;
+                                  }
+                                });
+                              },
+                              items: dropdownIconValues.values
+                                  .map(
+                                    (value) => DropdownMenuItem(
+                                        value: value, child: value),
+                                  )
+                                  .toList(),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 15),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        TextButton(
+                            onPressed: () => BlocProvider.of<PotsBloc>(context)
+                                .add(const PotsChangedSuccesfullyEvent()),
+                            child: const Text('Отменить')),
+                        ElevatedButton(
+                          child: const Text('Сохранить'),
+                          onPressed: () =>
+                              _saveForm(context, isAmountFixedByUser),
+                        ),
+                      ],
+                    ),
                   ],
                 ),
-              ],
-            ),
-          ],
+              );
+            },
+          ),
         ),
       ),
     );

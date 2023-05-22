@@ -16,9 +16,6 @@ class SetPotSetSortingButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String currentValue =
-        sortingWaysStringList[sortingLogic == SortingLogic.lowToHigh ? 0 : 1];
-
     return BlocBuilder<PotsWatcherBloc, PotsWatcherState>(
       bloc: BlocProvider.of<PotsWatcherBloc>(context),
       builder: (context, state) {
